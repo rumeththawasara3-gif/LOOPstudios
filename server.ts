@@ -16,6 +16,10 @@ const PORT = parseInt(process.env.PORT || '3000', 10);
 
 const SYSTEM_INSTRUCTION = `You are the official AI Assistant for Loop Studios, an elite visual content and digital marketing agency based in Sri Lanka (available worldwide). Your tone is ultra-minimalist, professional, concise, polished, and helpful. You speak naturally and never pad responses with robotic filler.
 
+STUDIO BASE & LOCATION GROUNDING:
+- Loop Studios is based in Sri Lanka at the location pinned here: https://maps.app.goo.gl/kzwf9SkoCJSia1J37.
+- When clients ask where the studio is located, provide this link directly and mention that on-site event coverage is available nationwide and worldwide.
+
 KNOWLEDGE BASE & SERVICE OFFERINGS:
 1. Short-Form Video Editing (≤ 60s for TikTok, Reels, Shorts):
    - Level 01 (The Raw Cut): LKR 1,000 / video (Assembly, jump cuts, audio sync, 24h turnaround).
@@ -44,17 +48,20 @@ const LIVE_VOICE_SYSTEM_INSTRUCTION = `You are speaking out loud in real time as
 Your tone is confident, concise, articulate, and direct. Because this is a live spoken voice conversation, keep your answers short and conversational (1 to 3 sentences maximum per turn). Never read out long bullet lists or robotic filler.
 
 Key knowledge:
-1. Short-Form Video Editing rates:
+1. Base Location:
+   - Loop Studios is based in Sri Lanka at the location pinned here: https://maps.app.goo.gl/kzwf9SkoCJSia1J37.
+   - Mention that on-site event coverage is available nationwide across Sri Lanka and worldwide.
+2. Short-Form Video Editing rates:
    - Level 01 Raw Cut: LKR 1,000 per video.
    - Level 02 Social Edit: LKR 3,000 per video (our most popular tier).
    - Level 03 Viral Polish: LKR 5,000 per video (retention hook engineering and studio grading).
-2. Explaining 360° VR vs. Standard Event Reels:
+3. Explaining 360° VR vs. Standard Event Reels:
    - Standard event reels are dynamic, high-retention cinematic 4K recap films formatted for social feeds.
    - 360° VR captures record the complete venue in full spherical immersion, allowing clients and guests to look around in any direction using their phone gyro, computer screen, or VR headsets.
-3. Event Production Shoots:
+4. Event Production Shoots:
    - Deploys videographers, signature event photographers, and licensed drone pilots simultaneously.
    - Always state that on-location shoots are custom-tailored to the venue and date.
-4. Call to Action:
+5. Call to Action:
    - Proactively ask if the client would like to transfer to WhatsApp (+94 76 843 9916) to lock in their date or review raw samples.`;
 
 async function startServer() {
@@ -124,7 +131,9 @@ async function startServer() {
 
       let reply = "I'm here to assist with your video production, editing, or retainer needs! For bespoke quotes and immediate scheduling, connect directly with our lead producer on WhatsApp: https://wa.me/94768439916";
 
-      if (lastUserMsg.includes('rate') || lastUserMsg.includes('editing') || lastUserMsg.includes('price') || lastUserMsg.includes('cost')) {
+      if (lastUserMsg.includes('where') || lastUserMsg.includes('location') || lastUserMsg.includes('base') || lastUserMsg.includes('address') || lastUserMsg.includes('maps') || lastUserMsg.includes('studio')) {
+        reply = "Loop Studios is based in Sri Lanka at the location pinned here: https://maps.app.goo.gl/kzwf9SkoCJSia1J37.\n\nOn-site full-crew event coverage is available nationwide across Sri Lanka and worldwide for destination projects! You can also connect directly with our production desk on WhatsApp: https://wa.me/94768439916";
+      } else if (lastUserMsg.includes('rate') || lastUserMsg.includes('editing') || lastUserMsg.includes('price') || lastUserMsg.includes('cost')) {
         reply = "Here are our short-form video editing rate cards (≤ 60s for TikTok, Reels & Shorts):\n\n• **Level 01 (The Raw Cut):** LKR 1,000 / video (Assembly, jump cuts, audio sync, 24h turnaround)\n• **Level 02 (The Social Edit):** LKR 3,000 / video (Dynamic retention pacing, kinetic captions, sound design, color correction)\n• **Level 03 (The Viral Polish):** LKR 5,000 / video (Retention hook engineering, custom VFX, studio color grading)\n\nReady to book? [Chat on WhatsApp](https://wa.me/94768439916)";
       } else if (lastUserMsg.includes('360') || lastUserMsg.includes('vr') || lastUserMsg.includes('spatial') || lastUserMsg.includes('virtual')) {
         reply = "Our 360° VR Immersive Capture records the entire venue in high-resolution spherical video. Viewers can interactively pan and look around in 360° using mobile gyroscopes, desktop click-and-drag, or VR headsets. Perfect for luxury events, venues, and brand activations!\n\nWant to include 360° capture in your upcoming event? [Chat on WhatsApp](https://wa.me/94768439916)";

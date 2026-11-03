@@ -11,7 +11,6 @@ import { TiltCard } from '../components/TiltCard.tsx';
 import { Magnetic } from '../components/Magnetic.tsx';
 import { Panorama360Viewer } from '../components/Panorama360Viewer.tsx';
 import { CapabilitiesSection } from '../components/CapabilitiesSection.tsx';
-import { Hero3DCanvas } from '../components/Hero3DCanvas.tsx';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -100,83 +99,75 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenQuoteModal
       ========================================================================= */}
       <section
         ref={heroRef}
-        className="relative min-h-[85vh] flex flex-col justify-center px-5 sm:px-8 md:px-12 max-w-6xl mx-auto pt-28 md:pt-40 pb-16 md:pb-24"
+        className="relative min-h-[75vh] flex flex-col justify-center px-5 sm:px-8 md:px-12 max-w-5xl mx-auto pt-28 md:pt-40 pb-16 md:pb-24"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-          {/* Left / Primary Column */}
-          <div className="lg:col-span-7 space-y-6 sm:space-y-8">
-            {/* Subtle Metadata Eyebrow */}
-            <div className="hero-fade-item inline-flex flex-wrap items-center gap-2 sm:gap-3 text-xs font-mono uppercase tracking-widest text-neutral-600 dark:text-neutral-400">
-              <span>High-End Event Media</span>
-              <span className="opacity-40" aria-hidden="true">/</span>
-              <span>Strategic Retention</span>
-              <span className="opacity-40" aria-hidden="true">/</span>
-              <span className="text-[#0A0A0C] dark:text-white font-medium">Available Worldwide</span>
+        <div className="space-y-6 sm:space-y-8">
+          {/* Subtle Metadata Eyebrow */}
+          <div className="hero-fade-item inline-flex flex-wrap items-center gap-2 sm:gap-3 text-xs font-mono uppercase tracking-widest text-neutral-600 dark:text-neutral-400">
+            <span>High-End Event Media</span>
+            <span className="opacity-40" aria-hidden="true">/</span>
+            <span>Strategic Retention</span>
+            <span className="opacity-40" aria-hidden="true">/</span>
+            <span className="text-[#0A0A0C] dark:text-white font-medium">Available Worldwide</span>
+          </div>
+
+          {/* Primary High-Impact Typography */}
+          <h1 className="hero-fade-item font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#0A0A0C] dark:text-white leading-[1.08] [text-wrap:balance]">
+            Cinema-Grade Production. <br />
+            <span className="text-neutral-600 dark:text-neutral-400 font-normal">
+              Engineered for Viral Growth.
+            </span>
+          </h1>
+
+          {/* Narrative copy */}
+          <p className="hero-fade-item text-sm sm:text-base md:text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl font-light leading-relaxed [text-wrap:balance]">
+            Loop Studios unites editorial cinema production with data-driven social retention engineering. We deliver multi-crew event coverage, viral short-form edits, and turnkey brand retainers.
+          </p>
+
+          {/* Key Metrics Badges */}
+          <div
+            ref={metricsRef}
+            className="hero-fade-item flex flex-wrap items-center gap-2.5 sm:gap-3 pt-1 text-xs font-mono"
+          >
+            <div className="metric-badge-item px-3.5 py-1.5 rounded-full editorial-glass text-[#0A0A0C] dark:text-white font-medium flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 shrink-0" />
+              <span>5–7 Days Turnaround (Delivery)</span>
             </div>
 
-            {/* Primary High-Impact Typography */}
-            <h1 className="hero-fade-item font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#0A0A0C] dark:text-white leading-tight [text-wrap:balance]">
-              Cinema-Grade Production. <br />
-              <span className="text-neutral-600 dark:text-neutral-400 font-normal">
-                Engineered for Viral Growth.
-              </span>
-            </h1>
-
-            {/* Narrative copy */}
-            <p className="hero-fade-item text-sm sm:text-base md:text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl font-light leading-relaxed [text-wrap:balance]">
-              Loop Studios unites editorial cinema production with data-driven social retention engineering. We deliver multi-crew event coverage, viral short-form edits, and turnkey brand retainers.
-            </p>
-
-            {/* Key Metrics Badges */}
-            <div
-              ref={metricsRef}
-              className="hero-fade-item flex flex-wrap items-center gap-2.5 sm:gap-3 pt-1 text-xs font-mono"
-            >
-              <div className="metric-badge-item px-3.5 py-1.5 rounded-full editorial-glass text-[#0A0A0C] dark:text-white font-medium flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 shrink-0" />
-                <span>5–7 Days Turnaround (Delivery)</span>
-              </div>
-
-              <div className="metric-badge-item px-3.5 py-1.5 rounded-full editorial-glass text-[#0A0A0C] dark:text-white font-medium flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
-                <span>High-Hook Retention (Reels & Shorts)</span>
-              </div>
-
-              <div className="metric-badge-item px-3.5 py-1.5 rounded-full editorial-glass text-[#0A0A0C] dark:text-white font-medium flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-purple-500 shrink-0" />
-                <span>Full Pipeline (Shoot to Growth)</span>
-              </div>
+            <div className="metric-badge-item px-3.5 py-1.5 rounded-full editorial-glass text-[#0A0A0C] dark:text-white font-medium flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
+              <span>High-Hook Retention (Reels & Shorts)</span>
             </div>
 
-            {/* Primary CTAs */}
-            <div className="hero-fade-item flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-3">
-              <Magnetic strength={0.25}>
-                <button
-                  onClick={() => onNavigate('services', 'event-visuals')}
-                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 min-h-[44px] text-xs sm:text-sm font-semibold rounded-full bg-[#0A0A0C] text-white dark:bg-white dark:text-black hover:opacity-90 transition-all shadow-xl active:scale-95 cursor-pointer"
-                >
-                  <span>Explore Services</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </Magnetic>
-
-              <Magnetic strength={0.2}>
-                <a
-                  href={getWhatsAppUrl(`Hi Loop Studios, I'd like to start a project with your team.`)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 min-h-[44px] text-xs sm:text-sm font-medium rounded-full bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-[#0A0A0C] dark:text-white border border-black/10 dark:border-white/15 transition-all active:scale-95"
-                >
-                  <span>Start a Project / WhatsApp DM</span>
-                  <ArrowUpRight className="w-4 h-4 text-slate-500 dark:text-slate-400" />
-                </a>
-              </Magnetic>
+            <div className="metric-badge-item px-3.5 py-1.5 rounded-full editorial-glass text-[#0A0A0C] dark:text-white font-medium flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-purple-500 shrink-0" />
+              <span>Full Pipeline (Shoot to Growth)</span>
             </div>
           </div>
 
-          {/* Right Column: Interactive Three.js 3D Viewport */}
-          <div className="lg:col-span-5 hero-fade-item w-full">
-            <Hero3DCanvas isDark={isDark} />
+          {/* Primary CTAs */}
+          <div className="hero-fade-item flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-3">
+            <Magnetic strength={0.25}>
+              <button
+                onClick={() => onNavigate('services', 'event-visuals')}
+                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 min-h-[44px] text-xs sm:text-sm font-semibold rounded-full bg-[#0A0A0C] text-white dark:bg-white dark:text-black hover:opacity-90 transition-all shadow-xl active:scale-95 cursor-pointer"
+              >
+                <span>Explore Services</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </Magnetic>
+
+            <Magnetic strength={0.2}>
+              <a
+                href={getWhatsAppUrl(`Hi Loop Studios, I'd like to start a project with your team.`)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 min-h-[44px] text-xs sm:text-sm font-medium rounded-full bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-[#0A0A0C] dark:text-white border border-black/10 dark:border-white/15 transition-all active:scale-95"
+              >
+                <span>Start a Project / WhatsApp DM</span>
+                <ArrowUpRight className="w-4 h-4 text-slate-500 dark:text-slate-400" />
+              </a>
+            </Magnetic>
           </div>
         </div>
       </section>

@@ -3,6 +3,7 @@ export const DISPLAY_PHONE = '+94 76 843 9916';
 export const BRAND_NAME = 'Loop Studios';
 export const BRAND_STATEMENT = 'Loop Studios — Full-stack visual content and strategic growth agency.';
 export const BRAND_PRESENCE = 'Based in Sri Lanka · Available Worldwide';
+export const GOOGLE_MAPS_LOCATION_URL = 'https://maps.app.goo.gl/kzwf9SkoCJSia1J37';
 export const LOGO_PATH = '/public/assets/aistudio/Gemini_Generated_Image_c49f7uc49f7uc49f-removebg-preview_da24f11c.png';
 
 export const STUDIO_PHOTO_DRONE = '/assets/generated/cinema-drone.png';

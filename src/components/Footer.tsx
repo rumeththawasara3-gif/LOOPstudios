@@ -48,7 +48,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuoteModal, is
             </p>
 
             <div className="text-xs font-mono text-slate-500 dark:text-slate-400">
-              Based in Sri Lanka · Available Worldwide
+              <a
+                href="https://maps.app.goo.gl/kzwf9SkoCJSia1J37"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline flex items-center gap-1.5 transition-colors"
+              >
+                📍 Based in Sri Lanka · Available Worldwide
+              </a>
             </div>
           </div>
 

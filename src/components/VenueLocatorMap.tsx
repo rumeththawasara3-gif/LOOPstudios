@@ -393,6 +393,18 @@ export const VenueLocatorMap: React.FC<VenueLocatorMapProps> = ({ isDark = true 
               <Send className="w-4 h-4" />
               <span>Send Location to WhatsApp for Date Reservation</span>
             </a>
+
+            <a
+              href="https://maps.app.goo.gl/kzwf9SkoCJSia1J37"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2.5 w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-[#0A0A0C] dark:text-white border border-black/10 dark:border-white/10 font-mono text-xs transition-all text-center cursor-pointer"
+            >
+              <MapPin className="w-3.5 h-3.5 text-blue-500" />
+              <span>Find Our Studio / Base Location (Google Maps)</span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-slate-400" />
+            </a>
+
             <div className="text-[10px] font-mono text-center text-slate-400 mt-2">
               Hotline: +94 76 843 9916 · Instant response from lead producer
             </div>
