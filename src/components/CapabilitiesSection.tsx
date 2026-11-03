@@ -206,25 +206,25 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavi
   return (
     <section
       ref={sectionRef}
-      className="relative px-6 lg:px-8 max-w-7xl mx-auto py-20 sm:py-28 border-t border-black/10 dark:border-white/10"
+      className="relative px-5 sm:px-8 md:px-12 max-w-6xl mx-auto py-16 md:py-32 border-t border-black/10 dark:border-white/10"
     >
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
         <div className="max-w-2xl space-y-3">
-          <div className="text-xs font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400">
+          <div className="text-xs font-mono uppercase tracking-widest text-neutral-600 dark:text-neutral-400">
             Agency Capabilities
           </div>
-          <h2 className="font-display text-3xl sm:text-5xl font-bold text-[#0A0A0C] dark:text-white tracking-tight">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-bold text-[#0A0A0C] dark:text-white tracking-tight">
             Our Capabilities.
           </h2>
-          <p className="text-sm text-slate-600 dark:text-slate-300 font-light leading-relaxed">
+          <p className="text-xs sm:text-sm md:text-base text-neutral-600 dark:text-neutral-400 font-light leading-relaxed">
             A cohesive 4-pillar production framework unifying on-site cinematography, viral retention engineering, immersive spatial technology, and client growth.
           </p>
         </div>
 
         <button
           onClick={() => onNavigate('services', 'event-visuals')}
-          className="shrink-0 inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-slate-600 dark:text-slate-400 hover:text-black dark:hover:text-white transition-colors group"
+          className="shrink-0 inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors group cursor-pointer"
         >
           <span>View Detailed Rates & Services</span>
           <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -232,13 +232,13 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavi
       </div>
 
       {/* 4-Pillar Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-stretch">
         {/* =========================================================================
             PILLAR 1: Full-Spectrum Event Coverage
             Synchronized drone & camera studio vector outlines aligning on scroll
         ========================================================================= */}
         <TiltCard className="h-full">
-          <div className="h-full p-8 rounded-2xl editorial-glass flex flex-col justify-between group">
+          <div className="h-full p-6 sm:p-8 rounded-2xl editorial-glass flex flex-col justify-between group">
             <div>
               <div className="relative w-full aspect-[16/9] rounded-xl overflow-hidden mb-6 bg-black/[0.02] dark:bg-white/[0.02] border border-black/10 dark:border-white/10 flex items-center justify-center p-4">
                 <svg
@@ -298,7 +298,7 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavi
             Timeline playhead slicing across waveform tracks
         ========================================================================= */}
         <TiltCard className="h-full">
-          <div className="h-full p-8 rounded-2xl editorial-glass flex flex-col justify-between group">
+          <div className="h-full p-6 sm:p-8 rounded-2xl editorial-glass flex flex-col justify-between group">
             <div>
               <div className="relative w-full aspect-[16/9] rounded-xl overflow-hidden mb-6 bg-black/[0.02] dark:bg-white/[0.02] border border-black/10 dark:border-white/10 flex items-center justify-center p-4">
                 <svg
@@ -340,18 +340,18 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavi
                 </svg>
               </div>
 
-              <div className="text-[11px] font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-1.5">
+              <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-600 dark:text-neutral-400 mb-1.5">
                 Pillar 02 · Algorithmic Retention
               </div>
-              <h3 className="text-2xl font-bold text-[#0A0A0C] dark:text-white mb-3">
+              <h3 className="text-xl sm:text-2xl font-bold text-[#0A0A0C] dark:text-white mb-3">
                 Viral Retention & Post-Production
               </h3>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-light">
+              <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-light">
                 Frame-by-frame hook engineering, dynamic pacing, custom kinetic typography, and high-impact sound design built for TikTok, Reels, and Shorts.
               </p>
             </div>
 
-            <div className="pt-6 mt-6 border-t border-black/10 dark:border-white/10 flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400">
+            <div className="pt-6 mt-6 border-t border-black/10 dark:border-white/10 flex items-center justify-between text-[11px] font-mono text-neutral-600 dark:text-neutral-400">
               <span>Shorts · Reels · TikTok</span>
               <span className="text-[#0A0A0C] dark:text-white font-medium">From LKR 1,000</span>
             </div>
@@ -363,7 +363,7 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavi
             Spatial VR headset rotating inside coordinate ring
         ========================================================================= */}
         <TiltCard className="h-full">
-          <div className="h-full p-8 rounded-2xl editorial-glass flex flex-col justify-between group">
+          <div className="h-full p-6 sm:p-8 rounded-2xl editorial-glass flex flex-col justify-between group">
             <div>
               <div className="relative w-full aspect-[16/9] rounded-xl overflow-hidden mb-6 bg-black/[0.02] dark:bg-white/[0.02] border border-black/10 dark:border-white/10 flex items-center justify-center p-4">
                 <svg
@@ -397,18 +397,18 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavi
                 </svg>
               </div>
 
-              <div className="text-[11px] font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-1.5">
+              <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-600 dark:text-neutral-400 mb-1.5">
                 Pillar 03 · Spatial Reality
               </div>
-              <h3 className="text-2xl font-bold text-[#0A0A0C] dark:text-white mb-3">
+              <h3 className="text-xl sm:text-2xl font-bold text-[#0A0A0C] dark:text-white mb-3">
                 Spatial & 360° VR Immersion
               </h3>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-light">
+              <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-light">
                 Interactive spherical event capture engineered for full immersion across smartphones, desktop browsers, and VR headsets.
               </p>
             </div>
 
-            <div className="pt-6 mt-6 border-t border-black/10 dark:border-white/10 flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400">
+            <div className="pt-6 mt-6 border-t border-black/10 dark:border-white/10 flex items-center justify-between text-[11px] font-mono text-neutral-600 dark:text-neutral-400">
               <span>Mobile Gyro · VR Box</span>
               <span className="text-[#0A0A0C] dark:text-white font-medium">Special Upgrade</span>
             </div>
@@ -420,7 +420,7 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavi
             Upward trajectory vector line with smooth data nodes
         ========================================================================= */}
         <TiltCard className="h-full">
-          <div className="h-full p-8 rounded-2xl editorial-glass flex flex-col justify-between group">
+          <div className="h-full p-6 sm:p-8 rounded-2xl editorial-glass flex flex-col justify-between group">
             <div>
               <div className="relative w-full aspect-[16/9] rounded-xl overflow-hidden mb-6 bg-black/[0.02] dark:bg-white/[0.02] border border-black/10 dark:border-white/10 flex items-center justify-center p-4">
                 <svg

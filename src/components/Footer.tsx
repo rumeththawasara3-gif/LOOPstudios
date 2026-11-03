@@ -18,7 +18,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuoteModal, is
 
   return (
     <footer className="relative border-t border-black/10 dark:border-white/10 bg-[#F1F3F5] dark:bg-[#08090C] text-slate-600 dark:text-slate-400 text-xs overflow-hidden z-10 transition-colors">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 sm:py-20">
+      <div className="max-w-6xl mx-auto px-5 sm:px-8 md:px-12 py-16 sm:py-20">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-14">
           {/* Brand Statement */}
           <div className="md:col-span-5 space-y-4">
@@ -91,6 +91,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuoteModal, is
                   className="text-slate-600 dark:text-slate-400 hover:text-black dark:hover:text-white transition-colors relative group py-0.5"
                 >
                   <span>Digital Marketing Retainers</span>
+                  <span className="block max-w-0 group-hover:max-w-full transition-all duration-300 h-[1px] bg-black dark:bg-white" />
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('portal')}
+                  className="text-blue-600 dark:text-blue-400 hover:text-black dark:hover:text-white transition-colors relative group py-0.5 font-semibold"
+                >
+                  <span>Client Review & Asset Portal</span>
                   <span className="block max-w-0 group-hover:max-w-full transition-all duration-300 h-[1px] bg-black dark:bg-white" />
                 </button>
               </li>

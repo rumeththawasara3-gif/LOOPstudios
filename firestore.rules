@@ -1,0 +1,116 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default Deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Global security helpers
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // Projects Collection
+    match /projects/{projectId} {
+      function isProjectOwner() {
+        return isSignedIn() && (
+          resource.data.clientId == request.auth.uid ||
+          (resource.data.clientEmail is string && resource.data.clientEmail == request.auth.token.email)
+        );
+      }
+
+      function isValidProject(data) {
+        return data.clientId is string &&
+          data.clientId.size() > 0 &&
+          data.clientId.size() <= 128 &&
+          data.title is string &&
+          data.title.size() <= 150 &&
+          data.currentStage is number &&
+          data.currentStage >= 1 &&
+          data.currentStage <= 4;
+      }
+
+      // Clients can only read their designated projects
+      allow get: if isProjectOwner();
+      allow list: if isSignedIn() && (
+        resource.data.clientId == request.auth.uid ||
+        (resource.data.clientEmail is string && resource.data.clientEmail == request.auth.token.email)
+      );
+
+      // Authenticated users can seed their sample project on first onboarding
+      allow create: if isSignedIn() &&
+        isValidId(projectId) &&
+        incoming().clientId == request.auth.uid &&
+        isValidProject(incoming()) &&
+        incoming().keys().hasAll(['clientId', 'title', 'currentStage', 'createdAt']) &&
+        incoming().keys().hasOnly([
+          'id', 'clientId', 'clientEmail', 'clientName', 'title',
+          'eventType', 'currentStage', 'videoPreviewUrl',
+          'photoGalleryUrl', 'spatialVrUrl', 'shortFormEdits',
+          'createdAt', 'updatedAt'
+        ]);
+
+      // Only stage/notes or owner fields can be updated
+      allow update: if isProjectOwner() &&
+        incoming().clientId == existing().clientId &&
+        incoming().createdAt == existing().createdAt &&
+        incoming().diff(existing()).affectedKeys().hasOnly([
+          'currentStage', 'clientName', 'title', 'videoPreviewUrl',
+          'photoGalleryUrl', 'spatialVrUrl', 'shortFormEdits', 'updatedAt'
+        ]);
+
+      // Video Revision Notes Subcollection
+      match /revision_notes/{noteId} {
+        function isValidRevisionNote(data) {
+          return data.projectId == projectId &&
+            data.authorId == request.auth.uid &&
+            data.note is string &&
+            data.note.size() >= 2 &&
+            data.note.size() <= 1000 &&
+            data.timestampSeconds is number &&
+            data.timestampSeconds >= 0 &&
+            data.timestampFormatted is string &&
+            data.timestampFormatted.size() <= 10 &&
+            data.status in ['pending', 'reviewed', 'completed'];
+        }
+
+        // Project owners and note authors can view revision notes
+        allow get, list: if isSignedIn();
+
+        allow create: if isSignedIn() &&
+          isValidId(noteId) &&
+          isValidRevisionNote(incoming()) &&
+          incoming().keys().hasAll([
+            'projectId', 'timestampSeconds', 'timestampFormatted',
+            'note', 'authorId', 'status', 'createdAt'
+          ]) &&
+          incoming().keys().hasOnly([
+            'id', 'projectId', 'timestampSeconds', 'timestampFormatted',
+            'note', 'authorId', 'authorEmail', 'status', 'createdAt'
+          ]);
+
+        allow update: if isSignedIn() &&
+          incoming().authorId == existing().authorId &&
+          incoming().projectId == existing().projectId &&
+          incoming().createdAt == existing().createdAt &&
+          incoming().diff(existing()).affectedKeys().hasOnly(['status', 'note']);
+
+        allow delete: if isSignedIn() && resource.data.authorId == request.auth.uid;
+      }
+    }
+  }
+}

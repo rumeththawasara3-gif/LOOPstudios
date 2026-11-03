@@ -10,6 +10,7 @@ import {
   OpticsSnapAnimationBlock,
   EditingTimelineAnimationBlock,
 } from '../components/ContextualAnimations.tsx';
+import { VenueLocatorMap } from '../components/VenueLocatorMap.tsx';
 
 interface ServicesViewProps {
   onOpenQuoteModal: (serviceId?: string) => void;
@@ -107,20 +108,20 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
   const totalLKR = activeTier.priceLKR * batchCount;
 
   return (
-    <div className="relative z-10 pt-24 sm:pt-28 pb-24 overflow-hidden">
-      {/* Header */}
-      <section className="relative px-6 lg:px-8 max-w-7xl mx-auto pt-8 pb-16">
+    <div className="relative z-10 overflow-hidden">
+      {/* Header with explicit top padding pt-28 md:pt-40 */}
+      <section className="relative px-5 sm:px-8 md:px-12 max-w-6xl mx-auto pt-28 md:pt-40 pb-16 md:pb-24">
         <div className="max-w-3xl space-y-4">
-          <div className="text-xs font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400">
+          <div className="text-xs font-mono uppercase tracking-widest text-neutral-600 dark:text-neutral-400">
             Services & Pricing
           </div>
-          <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[#0A0A0C] dark:text-white leading-[1.05]">
+          <h1 className="font-display text-3xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-[#0A0A0C] dark:text-white leading-tight">
             Bespoke Production. <br />
-            <span className="text-slate-500 dark:text-slate-400 font-normal">
+            <span className="text-neutral-600 dark:text-neutral-400 font-normal">
               Transparent Rate Cards.
             </span>
           </h1>
-          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 font-light max-w-xl leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg text-neutral-600 dark:text-neutral-400 font-light max-w-xl leading-relaxed">
             From multi-crew event coverage available by bespoke custom quote to transparent per-video rate cards and turnkey social management retainers.
           </p>
         </div>
@@ -131,33 +132,33 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
           (NO Camera Brand Names, NO Public Shooting Prices)
           Featuring the 4 Contextual Bidirectional Animations on scroll!
       ========================================================================= */}
-      <section id="event-visuals" className="relative px-6 lg:px-8 max-w-7xl mx-auto py-16 sm:py-20 border-t border-black/10 dark:border-white/10">
-        <div className="mb-14 max-w-3xl space-y-4">
-          <div className="text-xs font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400">
+      <section id="event-visuals" className="relative px-5 sm:px-8 md:px-12 max-w-6xl mx-auto py-16 md:py-32 border-t border-black/10 dark:border-white/10">
+        <div className="mb-12 sm:mb-14 max-w-3xl space-y-3">
+          <div className="text-xs font-mono uppercase tracking-widest text-neutral-600 dark:text-neutral-400">
             Section A · Bespoke Event Media
           </div>
-          <h2 className="font-display text-3xl sm:text-5xl font-bold text-[#0A0A0C] dark:text-white tracking-tight">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-bold text-[#0A0A0C] dark:text-white tracking-tight">
             Event Visual Production
           </h2>
-          <p className="text-sm text-slate-600 dark:text-slate-300 font-light leading-relaxed max-w-2xl">
+          <p className="text-xs sm:text-sm md:text-base text-neutral-600 dark:text-neutral-400 font-light leading-relaxed max-w-2xl">
             Framed as an exclusive bespoke service where clients request custom event quotes based on venue scale and production requirements. No public shooting prices, no camera brand name clutter.
           </p>
         </div>
 
         {/* 1. Full-Crew Deployment with Drone & Aerial Animation */}
-        <div className="space-y-8 mb-12">
+        <div className="space-y-6 sm:space-y-8 mb-10 sm:mb-12">
           {/* Contextual Animation 1: Drone & Aerial */}
           <DroneAnimationBlock />
 
-          <div className="p-8 sm:p-9 rounded-2xl editorial-glass flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="p-6 sm:p-8 rounded-2xl editorial-glass flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
             <div className="space-y-2 max-w-2xl">
               <span className="text-[10px] font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400">
                 01 · UNIFIED DEPLOYMENT
               </span>
-              <h3 className="text-xl sm:text-2xl font-bold text-[#0A0A0C] dark:text-white">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#0A0A0C] dark:text-white">
                 Full-Crew Event Coverage
               </h3>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-light">
+              <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-light">
                 Unified deployment: Videographers, Photographers, and Drone operators working in unison. Complete event documentation with aerial coverage and fine-art candids.
               </p>
             </div>
@@ -165,7 +166,7 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
               href={getWhatsAppUrl(`Hi Loop Studios, I'd like to check event availability for Full-Crew Event Coverage (Videographers + Photographers + Drones).`)}
               target="_blank"
               rel="noopener noreferrer"
-              className="shrink-0 inline-flex items-center gap-2 px-6 py-3 text-xs sm:text-sm font-semibold rounded-full bg-[#0A0A0C] text-white dark:bg-white dark:text-black hover:opacity-90 transition-all shadow-md whitespace-nowrap"
+              className="w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] text-xs sm:text-sm font-semibold rounded-full bg-[#0A0A0C] text-white dark:bg-white dark:text-black hover:opacity-90 transition-all shadow-md whitespace-nowrap active:scale-95"
             >
               <span>Check Event Availability</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -174,18 +175,18 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
         </div>
 
         {/* 2. Cinematic Videography with Gimbal & Cinema Motion Animation */}
-        <div className="space-y-8 mb-12">
+        <div className="space-y-6 sm:space-y-8 mb-10 sm:mb-12">
           <CinemaGimbalAnimationBlock />
 
-          <div className="p-8 sm:p-9 rounded-2xl editorial-glass flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="p-6 sm:p-8 rounded-2xl editorial-glass flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
             <div className="space-y-2 max-w-2xl">
               <span className="text-[10px] font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400">
                 02 · NARRATIVE CAPTURE
               </span>
-              <h3 className="text-xl sm:text-2xl font-bold text-[#0A0A0C] dark:text-white">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#0A0A0C] dark:text-white">
                 Cinematic Videography & Recap Films
               </h3>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-light">
+              <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-light">
                 Narrative event storytelling, highlight reels, and aerial coverage. Dynamic pacing paired with master color grading and licensed scores.
               </p>
             </div>
@@ -193,7 +194,7 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
               href={getWhatsAppUrl(`Hi Loop Studios, I'd like to request a bespoke quote for Cinematic Videography & Recap Films.`)}
               target="_blank"
               rel="noopener noreferrer"
-              className="shrink-0 inline-flex items-center gap-2 px-6 py-3 text-xs sm:text-sm font-semibold rounded-full bg-[#0A0A0C] text-white dark:bg-white dark:text-black hover:opacity-90 transition-all shadow-md whitespace-nowrap"
+              className="w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] text-xs sm:text-sm font-semibold rounded-full bg-[#0A0A0C] text-white dark:bg-white dark:text-black hover:opacity-90 transition-all shadow-md whitespace-nowrap active:scale-95"
             >
               <span>Request Cinema Quote</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -202,18 +203,18 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
         </div>
 
         {/* 3. Signature Event Photography with Optics Snap Animation */}
-        <div className="space-y-8 mb-12">
+        <div className="space-y-6 sm:space-y-8 mb-10 sm:mb-12">
           <OpticsSnapAnimationBlock />
 
-          <div className="p-8 sm:p-9 rounded-2xl editorial-glass flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="p-6 sm:p-8 rounded-2xl editorial-glass flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
             <div className="space-y-2 max-w-2xl">
               <span className="text-[10px] font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400">
                 03 · EDITORIAL STILLS
               </span>
-              <h3 className="text-xl sm:text-2xl font-bold text-[#0A0A0C] dark:text-white">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#0A0A0C] dark:text-white">
                 Signature Event Photography
               </h3>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-light">
+              <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-light">
                 High-detail candids, stage moments, and advanced editorial retouching. Private proofing galleries delivered with rapid social press teasers.
               </p>
             </div>
@@ -221,7 +222,7 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
               href={getWhatsAppUrl(`Hi Loop Studios, I'd like to request a bespoke quote for Signature Event Photography.`)}
               target="_blank"
               rel="noopener noreferrer"
-              className="shrink-0 inline-flex items-center gap-2 px-6 py-3 text-xs sm:text-sm font-semibold rounded-full bg-[#0A0A0C] text-white dark:bg-white dark:text-black hover:opacity-90 transition-all shadow-md whitespace-nowrap"
+              className="w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] text-xs sm:text-sm font-semibold rounded-full bg-[#0A0A0C] text-white dark:bg-white dark:text-black hover:opacity-90 transition-all shadow-md whitespace-nowrap active:scale-95"
             >
               <span>Request Stills Quote</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -230,18 +231,18 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
         </div>
 
         {/* 4. 360° Immersive Capture with VR Headset Animation */}
-        <div className="space-y-8 mb-6">
+        <div className="space-y-6 sm:space-y-8 mb-6">
           <VRHeadsetAnimationBlock />
 
-          <div className="p-8 sm:p-9 rounded-2xl editorial-glass flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="p-6 sm:p-8 rounded-2xl editorial-glass flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
             <div className="space-y-2 max-w-2xl">
               <span className="text-[10px] font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400">
                 04 · EXCLUSIVE NEW UPGRADE
               </span>
-              <h3 className="text-xl sm:text-2xl font-bold text-[#0A0A0C] dark:text-white">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#0A0A0C] dark:text-white">
                 360° Immersive Capture
               </h3>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-light">
+              <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-light">
                 Full-sphere event documentation playable across mobile devices, web browsers, and VR headsets. Viewers control their perspective anywhere in the room.
               </p>
             </div>
@@ -249,7 +250,7 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
               href={getWhatsAppUrl(`Hi Loop Studios, I'd like to add 360° Immersive Capture to our upcoming event.`)}
               target="_blank"
               rel="noopener noreferrer"
-              className="shrink-0 inline-flex items-center gap-2 px-6 py-3 text-xs sm:text-sm font-semibold rounded-full bg-[#0A0A0C] text-white dark:bg-white dark:text-black hover:opacity-90 transition-all shadow-md whitespace-nowrap"
+              className="w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] text-xs sm:text-sm font-semibold rounded-full bg-[#0A0A0C] text-white dark:bg-white dark:text-black hover:opacity-90 transition-all shadow-md whitespace-nowrap active:scale-95"
             >
               <span>Add 360° VR to Your Event</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -262,30 +263,30 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
           SECTION B: SHORT-FORM VIDEO EDITING (TRANSPARENT RATE CARD)
           Featuring the 5th Animation: Editing Timeline Slice on Scroll!
       ========================================================================= */}
-      <section id="rates" className="relative px-6 lg:px-8 max-w-7xl mx-auto py-16 sm:py-20 border-t border-black/10 dark:border-white/10">
-        <div className="mb-12">
+      <section id="rates" className="relative px-5 sm:px-8 md:px-12 max-w-6xl mx-auto py-16 md:py-32 border-t border-black/10 dark:border-white/10">
+        <div className="mb-10 sm:mb-12">
           {/* Contextual Animation 5: Editing & Post-Production Timeline Slices */}
           <EditingTimelineAnimationBlock />
         </div>
 
-        <div className="mb-14 max-w-3xl space-y-3">
-          <div className="text-xs font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400">
+        <div className="mb-12 sm:mb-14 max-w-3xl space-y-3">
+          <div className="text-xs font-mono uppercase tracking-widest text-neutral-600 dark:text-neutral-400">
             Section B · Transparent Rate Card
           </div>
-          <h2 className="font-display text-3xl sm:text-5xl font-bold text-[#0A0A0C] dark:text-white tracking-tight">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-bold text-[#0A0A0C] dark:text-white tracking-tight">
             Short-Form Video Editing
           </h2>
-          <p className="text-sm text-slate-600 dark:text-slate-300 font-light leading-relaxed max-w-xl">
+          <p className="text-xs sm:text-sm md:text-base text-neutral-600 dark:text-neutral-400 font-light leading-relaxed max-w-xl">
             Clean 3-tier grid for short-form edits up to 60s runtime for TikTok, Instagram Reels, and YouTube Shorts. Transparent pricing with clear deliverables.
           </p>
         </div>
 
-        {/* 3-Tier Rate Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch mb-16">
+        {/* 3-Tier Rate Cards (grid-cols-1 md:grid-cols-3 gap-6) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch mb-12 sm:mb-16">
           {SHORT_FORM_TIERS.map((tier) => (
             <TiltCard key={tier.id} className="h-full">
               <div
-                className={`h-full p-8 rounded-2xl flex flex-col justify-between transition-all ${
+                className={`h-full p-6 sm:p-8 rounded-2xl flex flex-col justify-between transition-all ${
                   tier.isPopular
                     ? 'editorial-glass border-2 border-black/30 dark:border-white/40 shadow-xl'
                     : 'editorial-glass'
@@ -293,7 +294,7 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-4">
-                    <span className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+                    <span className="text-xs font-mono text-neutral-600 dark:text-neutral-400 uppercase tracking-widest">
                       {tier.level}
                     </span>
                     {tier.badge && (
@@ -303,22 +304,22 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
                     )}
                   </div>
 
-                  <h3 className="text-2xl font-bold text-[#0A0A0C] dark:text-white mb-2">{tier.title}</h3>
+                  <h3 className="text-xl sm:text-2xl font-bold text-[#0A0A0C] dark:text-white mb-2">{tier.title}</h3>
 
                   <div className="flex items-baseline gap-2 mb-2">
-                    <span className="text-3xl sm:text-4xl font-bold text-[#0A0A0C] dark:text-white font-display tabular-nums">
+                    <span className="text-2xl sm:text-3xl font-bold text-[#0A0A0C] dark:text-white font-mono tabular-nums">
                       LKR {tier.priceLKR.toLocaleString()}
                     </span>
-                    <span className="text-xs text-slate-500 dark:text-slate-400 font-mono">/ video</span>
+                    <span className="text-xs text-neutral-600 dark:text-neutral-400 font-mono">/ video</span>
                   </div>
 
-                  <div className="text-[11px] font-mono text-slate-500 dark:text-slate-400 mb-6">
+                  <div className="text-[11px] font-mono text-neutral-600 dark:text-neutral-400 mb-6">
                     {tier.runtime}
                   </div>
 
                   <div className="space-y-3 pt-6 border-t border-black/10 dark:border-white/10">
                     {tier.deliverables.map((item, idx) => (
-                      <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-700 dark:text-slate-300 font-light">
+                      <div key={idx} className="flex items-start gap-2.5 text-xs text-neutral-700 dark:text-neutral-300 font-light">
                         <Check className="w-3.5 h-3.5 text-current shrink-0 mt-0.5" />
                         <span>{item}</span>
                       </div>
@@ -326,14 +327,14 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
                   </div>
                 </div>
 
-                <div className="pt-8 mt-8 border-t border-black/10 dark:border-white/10">
+                <div className="pt-6 sm:pt-8 mt-6 sm:mt-8 border-t border-black/10 dark:border-white/10">
                   <a
                     href={getWhatsAppUrl(
                       `Hi Loop Studios, I'd like to order "${tier.title}" (${tier.level}) for short-form video editing at LKR ${tier.priceLKR.toLocaleString()} / video.`
                     )}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`w-full py-3 text-xs font-semibold rounded-full flex items-center justify-center gap-2 transition-all ${
+                    className={`w-full min-h-[44px] py-3 text-xs font-semibold rounded-full flex items-center justify-center gap-2 transition-all active:scale-95 ${
                       tier.isPopular
                         ? 'bg-[#0A0A0C] text-white dark:bg-white dark:text-black hover:opacity-90'
                         : 'bg-black/5 dark:bg-white/10 text-[#0A0A0C] dark:text-white hover:bg-black/10 dark:hover:bg-white/20'
@@ -349,21 +350,21 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
         </div>
 
         {/* Batch Estimator */}
-        <div className="p-7 sm:p-9 rounded-2xl editorial-glass">
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-2">
+        <div className="p-6 sm:p-8 rounded-2xl editorial-glass">
+          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-neutral-600 dark:text-neutral-400 mb-2">
             <Calculator className="w-3.5 h-3.5" />
             <span>Batch Content Calculator</span>
           </div>
-          <h3 className="text-xl font-bold text-[#0A0A0C] dark:text-white mb-2">
+          <h3 className="text-lg sm:text-xl font-bold text-[#0A0A0C] dark:text-white mb-2">
             Estimate Your Monthly Video Batch
           </h3>
-          <p className="text-xs text-slate-600 dark:text-slate-400 mb-6 max-w-xl font-light">
+          <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mb-6 max-w-xl font-light">
             Select editing level and video volume. Master files delivered in cloud drive folders ready for distribution.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
             <div className="md:col-span-5 space-y-2">
-              <label className="block text-xs font-mono uppercase text-slate-500 dark:text-slate-400">
+              <label className="block text-xs font-mono uppercase text-neutral-600 dark:text-neutral-400">
                 Tier
               </label>
               <div className="grid grid-cols-3 gap-2">
@@ -371,9 +372,9 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
                   <button
                     key={t.id}
                     onClick={() => setSelectedTierId(t.id)}
-                    className={`p-2.5 rounded-xl border text-center transition-all ${
+                    className={`p-2 sm:p-2.5 rounded-xl border text-center transition-all cursor-pointer ${
                       selectedTierId === t.id
-                        ? 'bg-[#0A0A0C] text-white dark:bg-white dark:text-black border-transparent'
+                        ? 'bg-[#0A0A0C] text-white dark:bg-white dark:text-black border-transparent shadow-sm'
                         : 'bg-black/5 dark:bg-white/5 border-black/10 dark:border-white/10 text-slate-600 dark:text-slate-400 hover:text-black dark:hover:text-white'
                     }`}
                   >
@@ -385,7 +386,7 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
             </div>
 
             <div className="md:col-span-4 space-y-2">
-              <div className="flex justify-between items-center text-xs font-mono uppercase text-slate-500 dark:text-slate-400">
+              <div className="flex justify-between items-center text-xs font-mono uppercase text-neutral-600 dark:text-neutral-400">
                 <span>Quantity</span>
                 <span className="text-[#0A0A0C] dark:text-white font-bold">{batchCount} Videos</span>
               </div>
@@ -395,9 +396,9 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
                 max="30"
                 value={batchCount}
                 onChange={(e) => setBatchCount(Number(e.target.value))}
-                className="w-full accent-black dark:accent-white bg-black/10 dark:bg-white/10 rounded-lg cursor-pointer h-1.5"
+                className="w-full accent-black dark:accent-white bg-black/10 dark:bg-white/10 rounded-lg cursor-pointer h-2"
               />
-              <div className="flex justify-between text-[10px] font-mono text-slate-500">
+              <div className="flex justify-between text-[10px] font-mono text-neutral-500">
                 <span>1 video</span>
                 <span>15 videos</span>
                 <span>30 videos</span>
@@ -406,8 +407,8 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
 
             <div className="md:col-span-3 p-4 rounded-xl bg-black/5 dark:bg-white/[0.02] border border-black/10 dark:border-white/10 flex flex-col justify-between">
               <div>
-                <span className="text-[10px] font-mono uppercase text-slate-500 dark:text-slate-400">Total Investment</span>
-                <div className="text-2xl font-bold text-[#0A0A0C] dark:text-white font-display tabular-nums">
+                <span className="text-[10px] font-mono uppercase text-neutral-600 dark:text-neutral-400">Total Investment</span>
+                <div className="text-2xl sm:text-3xl font-bold text-[#0A0A0C] dark:text-white font-mono tabular-nums">
                   LKR {totalLKR.toLocaleString()}
                 </div>
               </div>
@@ -418,10 +419,10 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
                   )}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-1.5 py-2 text-xs font-semibold rounded-full bg-[#0A0A0C] text-white dark:bg-white dark:text-black hover:opacity-90 transition-colors"
+                  className="w-full min-h-[44px] inline-flex items-center justify-center gap-1.5 py-2.5 text-xs font-semibold rounded-full bg-[#0A0A0C] text-white dark:bg-white dark:text-black hover:opacity-90 transition-colors active:scale-95"
                 >
                   <span>Book Batch</span>
-                  <ArrowUpRight className="w-3 h-3" />
+                  <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
               </div>
             </div>
@@ -432,30 +433,30 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
       {/* =========================================================================
           SECTION C: DIGITAL MARKETING & SOCIAL RETAINERS
       ========================================================================= */}
-      <section id="retainers" className="relative px-6 lg:px-8 max-w-7xl mx-auto py-16 sm:py-20 border-t border-black/10 dark:border-white/10">
-        <div className="mb-14 max-w-3xl space-y-4">
-          <div className="text-xs font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400">
+      <section id="retainers" className="relative px-5 sm:px-8 md:px-12 max-w-6xl mx-auto py-16 md:py-32 border-t border-black/10 dark:border-white/10">
+        <div className="mb-12 sm:mb-14 max-w-3xl space-y-3">
+          <div className="text-xs font-mono uppercase tracking-widest text-neutral-600 dark:text-neutral-400">
             Section C · Growth Retainers
           </div>
-          <h2 className="font-display text-3xl sm:text-5xl font-bold text-[#0A0A0C] dark:text-white tracking-tight">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-bold text-[#0A0A0C] dark:text-white tracking-tight">
             Digital Marketing & Social Retainers
           </h2>
-          <p className="text-sm text-slate-600 dark:text-slate-300 font-light leading-relaxed max-w-2xl">
+          <p className="text-xs sm:text-sm md:text-base text-neutral-600 dark:text-neutral-400 font-light leading-relaxed max-w-2xl">
             Structured monthly management packages tailored for tuition classes and growing brands. We handle shooting, editing, branded posts, and WhatsApp group management.
           </p>
 
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full editorial-glass text-[#0A0A0C] dark:text-white text-xs font-mono font-medium">
-            <Sparkles className="w-3.5 h-3.5" />
+            <Sparkles className="w-3.5 h-3.5 shrink-0" />
             <span>Partnership Offer: 5% discount on continuous 3-month commitments.</span>
           </div>
         </div>
 
-        {/* 2 Retainer Packages */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch mb-12">
+        {/* 2 Retainer Packages (grid-cols-1 lg:grid-cols-2 gap-6) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch mb-10 sm:mb-12">
           {RETAINER_PACKAGES.map((pkg) => (
             <TiltCard key={pkg.id} className="h-full">
               <div
-                className={`h-full p-8 sm:p-9 rounded-2xl flex flex-col justify-between transition-all ${
+                className={`h-full p-6 sm:p-8 rounded-2xl flex flex-col justify-between transition-all ${
                   pkg.isPopular
                     ? 'editorial-glass border-2 border-black/30 dark:border-white/40 shadow-xl'
                     : 'editorial-glass'
@@ -463,7 +464,7 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
               >
                 <div>
                   <div className="flex items-center justify-between gap-4 mb-4">
-                    <span className="text-xs font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400">
+                    <span className="text-xs font-mono uppercase tracking-widest text-neutral-600 dark:text-neutral-400">
                       Monthly Package
                     </span>
                     {pkg.isPopular && (
@@ -473,27 +474,27 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
                     )}
                   </div>
 
-                  <h3 className="text-2xl sm:text-3xl font-bold text-[#0A0A0C] dark:text-white mb-2">{pkg.title}</h3>
-                  <p className="text-xs text-slate-600 dark:text-slate-300 mb-6 font-light leading-relaxed">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#0A0A0C] dark:text-white mb-2">{pkg.title}</h3>
+                  <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mb-6 font-light leading-relaxed">
                     {pkg.description}
                   </p>
 
                   <div className="flex items-baseline gap-2 mb-6">
-                    <span className="text-3xl sm:text-4xl font-bold text-[#0A0A0C] dark:text-white font-display tabular-nums">
+                    <span className="text-2xl sm:text-3xl font-bold text-[#0A0A0C] dark:text-white font-mono tabular-nums">
                       LKR {pkg.priceLKR.toLocaleString()}
                     </span>
-                    <span className="text-xs text-slate-500 dark:text-slate-400 font-mono">/ month</span>
+                    <span className="text-xs text-neutral-600 dark:text-neutral-400 font-mono">/ month</span>
                   </div>
 
                   <div className="mb-6">
-                    <div className="text-[10px] font-mono uppercase text-slate-500 dark:text-slate-400 mb-2">
+                    <div className="text-[10px] font-mono uppercase text-neutral-600 dark:text-neutral-400 mb-2">
                       Platforms Included:
                     </div>
                     <div className="flex flex-wrap gap-1.5">
                       {pkg.channels.map((ch, i) => (
                         <span
                           key={i}
-                          className="text-xs px-2.5 py-1 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-slate-700 dark:text-slate-300"
+                          className="text-xs px-2.5 py-1 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-neutral-700 dark:text-neutral-300"
                         >
                           {ch}
                         </span>
@@ -503,7 +504,7 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
 
                   <div className="space-y-3 pt-6 border-t border-black/10 dark:border-white/10">
                     {pkg.features.map((feat, idx) => (
-                      <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-700 dark:text-slate-300 font-light">
+                      <div key={idx} className="flex items-start gap-2.5 text-xs text-neutral-700 dark:text-neutral-300 font-light">
                         <Check className="w-3.5 h-3.5 text-current shrink-0 mt-0.5" />
                         <span>{feat}</span>
                       </div>
@@ -511,14 +512,14 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
                   </div>
                 </div>
 
-                <div className="pt-8 mt-8 border-t border-black/10 dark:border-white/10">
+                <div className="pt-6 sm:pt-8 mt-6 sm:mt-8 border-t border-black/10 dark:border-white/10">
                   <a
                     href={getWhatsAppUrl(
                       `Hi Loop Studios, I'd like to book the "${pkg.title}" (LKR ${pkg.priceLKR.toLocaleString()} / month) for our brand/classes.`
                     )}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`w-full py-3.5 text-xs font-semibold rounded-full flex items-center justify-center gap-2 transition-all ${
+                    className={`w-full min-h-[44px] py-3.5 text-xs font-semibold rounded-full flex items-center justify-center gap-2 transition-all active:scale-95 ${
                       pkg.isPopular
                         ? 'bg-[#0A0A0C] text-white dark:bg-white dark:text-black hover:opacity-90'
                         : 'bg-black/5 dark:bg-white/10 text-[#0A0A0C] dark:text-white hover:bg-black/10 dark:hover:bg-white/20'
@@ -534,15 +535,15 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
         </div>
 
         {/* Available Add-Ons Note */}
-        <div className="p-7 rounded-2xl editorial-glass flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div className="p-6 sm:p-8 rounded-2xl editorial-glass flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
           <div className="space-y-1">
-            <div className="text-xs font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400">
+            <div className="text-xs font-mono uppercase tracking-widest text-neutral-600 dark:text-neutral-400">
               Modular Scaling
             </div>
-            <h4 className="text-base font-bold text-[#0A0A0C] dark:text-white">
+            <h4 className="text-sm sm:text-base font-bold text-[#0A0A0C] dark:text-white">
               Available Add-Ons Upon Request
             </h4>
-            <p className="text-xs text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed font-light">
+            <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 max-w-2xl leading-relaxed font-light">
               Additional video edits, extra on-site shoots, extra presenter bookings, and bulk WhatsApp outreach campaigns can be added to any package seamlessly.
             </p>
           </div>
@@ -551,12 +552,34 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
             href={getWhatsAppUrl(`Hi Loop Studios, I'm interested in adding custom modular add-ons to our retainer.`)}
             target="_blank"
             rel="noopener noreferrer"
-            className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold rounded-full bg-black/5 dark:bg-white/10 text-[#0A0A0C] dark:text-white hover:bg-black/10 dark:hover:bg-white/20 border border-black/10 dark:border-white/15 transition-all"
+            className="w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-2 px-5 py-3 min-h-[44px] text-xs font-semibold rounded-full bg-black/5 dark:bg-white/10 text-[#0A0A0C] dark:text-white hover:bg-black/10 dark:hover:bg-white/20 border border-black/10 dark:border-white/15 transition-all active:scale-95"
           >
             <span>Inquire for Add-On Rates</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
           </a>
         </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION D: GOOGLE MAPS LOCATION GROUNDING & EVENT DISPATCH ESTIMATOR
+      ========================================================================= */}
+      <section
+        id="venue-locator"
+        className="relative px-5 sm:px-8 md:px-12 max-w-6xl mx-auto py-16 md:py-24 border-t border-black/10 dark:border-white/10"
+      >
+        <div className="mb-8 sm:mb-10 max-w-2xl space-y-3">
+          <div className="text-xs font-mono uppercase tracking-widest text-neutral-600 dark:text-neutral-400">
+            Islandwide Production Logistics
+          </div>
+          <h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-bold text-[#0A0A0C] dark:text-white tracking-tight leading-tight">
+            Event Venue Locator & Travel Estimator.
+          </h2>
+          <p className="text-xs sm:text-sm md:text-base text-neutral-600 dark:text-neutral-400 font-light leading-relaxed">
+            Pin your landmark hotel or private venue across Sri Lanka. Our Google Maps integration calculates travel vectors from our Western Province base, verifies multi-van full-crew deployment availability, and prepares your WhatsApp date reservation instant quote.
+          </p>
+        </div>
+
+        <VenueLocatorMap isDark={isDark} />
       </section>
     </div>
   );

@@ -6,7 +6,10 @@ import { Navbar } from './components/Navbar.tsx';
 import { Footer } from './components/Footer.tsx';
 import { HomeView } from './views/HomeView.tsx';
 import { ServicesView } from './views/ServicesView.tsx';
+import { ClientPortalView } from './views/ClientPortalView.tsx';
 import { EventQuoteModal } from './components/EventQuoteModal.tsx';
+import { GeminiChatWidget } from './components/GeminiChatWidget.tsx';
+import { testConnection } from './firebase.ts';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageView>('home');
@@ -36,11 +39,22 @@ export default function App() {
     setIsDark((prev) => !prev);
   };
 
+  useEffect(() => {
+    testConnection();
+  }, []);
+
   // Handle URL hash changes or routing
   useEffect(() => {
     const handleHash = () => {
       const hash = window.location.hash.toLowerCase();
       if (
+        hash.includes('portal') ||
+        hash.includes('review') ||
+        hash.includes('deliverables') ||
+        hash.includes('client')
+      ) {
+        setCurrentPage('portal');
+      } else if (
         hash.includes('services') ||
         hash.includes('rates') ||
         hash.includes('rate-card') ||
@@ -109,10 +123,15 @@ export default function App() {
             onOpenQuoteModal={() => handleOpenQuoteModal()}
             isDark={isDark}
           />
-        ) : (
+        ) : currentPage === 'services' ? (
           <ServicesView
             onOpenQuoteModal={(serviceId) => handleOpenQuoteModal(serviceId)}
             isDark={isDark}
+          />
+        ) : (
+          <ClientPortalView
+            isDark={isDark}
+            onOpenVRViewer={() => handleNavigate('home', '360-vr')}
           />
         )}
       </main>
@@ -130,6 +149,9 @@ export default function App() {
         onClose={handleCloseQuoteModal}
         preselectedService={quoteServiceId}
       />
+
+      {/* Floating Gemini AI Studio Assistant Widget */}
+      <GeminiChatWidget isDark={isDark} />
     </div>
   );
 }
