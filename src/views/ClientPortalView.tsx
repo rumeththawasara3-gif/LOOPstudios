@@ -393,22 +393,22 @@ export const ClientPortalView: React.FC<ClientPortalViewProps> = ({ isDark, onOp
         <div className="w-full rounded-3xl p-8 sm:p-12 editorial-glass border border-black/10 dark:border-white/10 text-center relative overflow-hidden shadow-2xl">
           <div className="absolute top-0 right-0 p-32 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 font-mono text-xs mb-6">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 font-mono text-xs mb-6">
             <Lock className="w-3.5 h-3.5" />
-            <span>Dedicated Client Space</span>
+            <span className="tracking-wider uppercase font-semibold">Dedicated Client Vault</span>
           </div>
 
-          <h1 className="font-display text-3xl sm:text-5xl font-bold tracking-tight mb-4">
+          <h1 className="font-display text-3xl sm:text-5xl font-extrabold tracking-tight mb-4 cinema-gradient-text">
             Loop Studios Client Portal
           </h1>
-          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-lg mx-auto mb-8 leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-lg mx-auto mb-8 leading-relaxed font-light">
             Real-time milestone tracking, interactive timestamped video review, and instant 4K master downloads for our brand partners and event clients.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
             <button
               onClick={() => setIsAuthModalOpen(true)}
-              className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#0A0A0C] text-white dark:bg-white dark:text-black font-semibold text-sm hover:opacity-90 transition-all shadow-lg active:scale-95 flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-bold text-sm shadow-[0_0_25px_rgba(0,242,254,0.35)] hover:shadow-[0_0_35px_rgba(0,242,254,0.6)] transition-all active:scale-95 flex items-center justify-center gap-2 cursor-pointer"
             >
               <span>Sign In / Client Access</span>
               <ArrowRight className="w-4 h-4" />
@@ -416,9 +416,9 @@ export const ClientPortalView: React.FC<ClientPortalViewProps> = ({ isDark, onOp
 
             <button
               onClick={() => setIsDemoMode(true)}
-              className="w-full sm:w-auto px-6 py-3.5 rounded-full border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 font-mono text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full sm:w-auto px-6 py-3.5 rounded-full border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 font-mono text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer text-[#0A0A0C] dark:text-white"
             >
-              <Eye className="w-4 h-4 text-blue-500" />
+              <Eye className="w-4 h-4 text-cyan-400" />
               <span>Explore Live Demo Space</span>
             </button>
           </div>

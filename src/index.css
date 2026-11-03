@@ -7,27 +7,32 @@
     --font-display: 'Syne', 'Plus Jakarta Sans', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
 
-    /* Light Mode Default Variables */
+    /* Light Mode Variables */
     --bg-canvas: #F8F9FA;
     --text-primary: #0A0A0C;
     --text-secondary: #64748B;
-    --border-subtle: rgba(0, 0, 0, 0.06);
-    --glass-bg: rgba(255, 255, 255, 0.82);
+    --border-subtle: rgba(0, 0, 0, 0.08);
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border-top: rgba(0, 0, 0, 0.12);
     --glass-border: rgba(0, 0, 0, 0.08);
-    --card-surface: #FFFFFF;
-    --card-border: rgba(0, 0, 0, 0.07);
+    --accent-cyan: #0284C7;
+    --accent-blue: #2563EB;
+    --accent-violet: #7C3AED;
   }
 
   .dark {
-    /* Dark Mode Variables */
-    --bg-canvas: #08090C;
+    /* Deepest Cinematic Obsidian Canvas */
+    --bg-canvas: #050608;
     --text-primary: #FFFFFF;
     --text-secondary: #94A3B8;
     --border-subtle: rgba(255, 255, 255, 0.08);
-    --glass-bg: rgba(255, 255, 255, 0.03);
-    --glass-border: rgba(255, 255, 255, 0.08);
-    --card-surface: #0D0E12;
-    --card-border: rgba(255, 255, 255, 0.08);
+    --glass-bg: rgba(255, 255, 255, 0.025);
+    --glass-border-top: rgba(255, 255, 255, 0.22);
+    --glass-border: rgba(255, 255, 255, 0.07);
+    --accent-cyan: #00F2FE;
+    --accent-blue: #4FACFE;
+    --accent-violet: #7F00FF;
+    --accent-magenta: #E100FF;
   }
 
   body {
@@ -35,7 +40,7 @@
     background-color: var(--bg-canvas);
     color: var(--text-primary);
     overflow-x: hidden;
-    transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   h1, h2, h3, .font-display {
@@ -56,31 +61,204 @@
   background: var(--bg-canvas);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.3);
+  background: rgba(0, 242, 254, 0.25);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(148, 163, 184, 0.5);
+  background: rgba(0, 242, 254, 0.5);
 }
 
-/* Frosted glass luxury surfaces with day/night adaptation */
+/* Luminous Glassmorphism with Top-Lit Highlight Borders */
 .editorial-glass {
   background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid var(--glass-border-top);
+  border-left: 1px solid var(--glass-border);
+  border-right: 1px solid var(--glass-border);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
 }
 
 .editorial-glass-hover {
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .editorial-glass-hover:hover {
-  border-color: rgba(148, 163, 184, 0.3);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.25);
+  border-top-color: rgba(0, 242, 254, 0.4);
+  box-shadow: 0 20px 40px -15px rgba(0, 242, 254, 0.15);
 }
 
-/* Clean text selection */
+/* Cinema Display Headline Gradient */
+.cinema-gradient-text {
+  background: linear-gradient(135deg, #FFFFFF 20%, #E2E8F0 55%, #00F2FE 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark .cinema-gradient-text {
+  background: linear-gradient(135deg, #FFFFFF 15%, #CBD5E1 50%, #00F2FE 85%, #E100FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Neon Glow Utilities */
+.glow-cyan-box {
+  box-shadow: 0 0 35px -5px rgba(0, 242, 254, 0.35), inset 0 0 15px rgba(0, 242, 254, 0.1);
+}
+
+.glow-magenta-box {
+  box-shadow: 0 0 35px -5px rgba(225, 0, 255, 0.35), inset 0 0 15px rgba(225, 0, 255, 0.1);
+}
+
+.glow-text-cyan {
+  text-shadow: 0 0 20px rgba(0, 242, 254, 0.6);
+}
+
+/* Continuous Infinite Velocity Marquee */
+@keyframes marquee-drift {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-drift 32s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Ambient Drifting Aura Pulsing */
+@keyframes aura-drift-1 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.22;
+  }
+  50% {
+    transform: translate(60px, -40px) scale(1.15);
+    opacity: 0.35;
+  }
+}
+
+@keyframes aura-drift-2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.20;
+  }
+  50% {
+    transform: translate(-50px, 50px) scale(1.2);
+    opacity: 0.32;
+  }
+}
+
+@keyframes aura-drift-3 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.18;
+  }
+  50% {
+    transform: translate(40px, 60px) scale(1.1);
+    opacity: 0.28;
+  }
+}
+
+.animate-aura-1 {
+  animation: aura-drift-1 16s ease-in-out infinite;
+}
+
+.animate-aura-2 {
+  animation: aura-drift-2 20s ease-in-out infinite;
+}
+
+.animate-aura-3 {
+  animation: aura-drift-3 18s ease-in-out infinite;
+}
+
+/* Radar Sweep Keyframe */
+@keyframes radar-sweep {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-radar {
+  animation: radar-sweep 4s linear infinite;
+  transform-origin: center center;
+}
+
+/* 3D Wireframe Gyro Sphere Rotation */
+@keyframes gyro-spin {
+  0% {
+    transform: rotateY(0deg) rotateX(15deg);
+  }
+  100% {
+    transform: rotateY(360deg) rotateX(15deg);
+  }
+}
+
+.animate-gyro {
+  animation: gyro-spin 12s linear infinite;
+  transform-style: preserve-3d;
+}
+
+/* VU Meter Audio Bars Bounce */
+@keyframes vu-bounce-1 {
+  0%, 100% { height: 25%; }
+  50% { height: 95%; }
+}
+@keyframes vu-bounce-2 {
+  0%, 100% { height: 45%; }
+  50% { height: 80%; }
+}
+@keyframes vu-bounce-3 {
+  0%, 100% { height: 70%; }
+  50% { height: 30%; }
+}
+@keyframes vu-bounce-4 {
+  0%, 100% { height: 35%; }
+  50% { height: 100%; }
+}
+
+.animate-vu-1 { animation: vu-bounce-1 0.7s ease-in-out infinite; }
+.animate-vu-2 { animation: vu-bounce-2 0.5s ease-in-out infinite 0.1s; }
+.animate-vu-3 { animation: vu-bounce-3 0.8s ease-in-out infinite 0.2s; }
+.animate-vu-4 { animation: vu-bounce-4 0.6s ease-in-out infinite 0.15s; }
+
+/* Pulse Red REC Dot */
+@keyframes rec-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+.animate-rec-blink {
+  animation: rec-blink 1.2s ease-in-out infinite;
+}
+
+/* Shimmer Highlight for Popular Rate Card */
+@keyframes shimmer-glow {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-shimmer {
+  background-size: 200% 200%;
+  animation: shimmer-glow 4s ease infinite;
+}
+
+/* Clean electric text selection */
 ::selection {
-  background-color: rgba(148, 163, 184, 0.25);
-  color: inherit;
+  background-color: rgba(0, 242, 254, 0.3);
+  color: #FFFFFF;
 }

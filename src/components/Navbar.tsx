@@ -29,7 +29,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <header className="fixed top-0 left-0 right-0 z-50 transition-all">
       {/* Mobile Bar (< md): Clean full-width top bar with high opacity blur */}
-      <div className="md:hidden w-full backdrop-blur-xl bg-white/90 dark:bg-[#08090C]/90 border-b border-black/5 dark:border-white/10 px-4 py-3 flex items-center justify-between">
+      <div className="md:hidden w-full backdrop-blur-xl bg-white/90 dark:bg-[#050608]/90 border-b border-black/5 dark:border-white/10 px-4 py-3 flex items-center justify-between">
         {/* Brand Logo & Name */}
         <button
           onClick={() => handleNavClick('home')}
@@ -96,7 +96,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Desktop Floating Pill (md:flex): Centered horizontally */}
       <div className="hidden md:flex justify-center pt-4 px-6 pointer-events-none">
-        <div className="pointer-events-auto rounded-full editorial-glass shadow-2xl px-7 py-2.5 flex items-center justify-between gap-8 max-w-4xl w-full border border-black/5 dark:border-white/10 backdrop-blur-xl bg-white/85 dark:bg-[#08090C]/85">
+        <div className="pointer-events-auto rounded-full editorial-glass shadow-2xl px-7 py-2.5 flex items-center justify-between gap-8 max-w-4xl w-full border border-black/5 dark:border-white/10 dark:border-t-white/20 backdrop-blur-xl bg-white/85 dark:bg-[#050608]/85">
           {/* Left: Brand Logo */}
           <div className="flex items-center gap-3 shrink-0">
             <button

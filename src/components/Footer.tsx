@@ -17,7 +17,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuoteModal, is
   const [logoError, setLogoError] = useState(false);
 
   return (
-    <footer className="relative border-t border-black/10 dark:border-white/10 bg-[#F1F3F5] dark:bg-[#08090C] text-slate-600 dark:text-slate-400 text-xs overflow-hidden z-10 transition-colors">
+    <footer className="relative border-t border-black/10 dark:border-white/10 bg-[#F1F3F5] dark:bg-[#050608] text-slate-600 dark:text-slate-400 text-xs overflow-hidden z-10 transition-colors">
       <div className="max-w-6xl mx-auto px-5 sm:px-8 md:px-12 py-16 sm:py-20">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-14">
           {/* Brand Statement */}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { PageView } from './types.ts';
 import { ParticleBackground } from './components/ParticleBackground.tsx';
+import { AmbientAuraAndGrain } from './components/AmbientAuraAndGrain.tsx';
 import { CustomCursor } from './components/CustomCursor.tsx';
 import { Navbar } from './components/Navbar.tsx';
 import { Footer } from './components/Footer.tsx';
@@ -99,8 +100,11 @@ export default function App() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#F8F9FA] dark:bg-[#08090C] text-[#0A0A0C] dark:text-white transition-colors duration-300 overflow-x-hidden selection:bg-slate-300 dark:selection:bg-white/20">
-      {/* Minimalist floating light grain canvas */}
+    <div className="relative min-h-screen bg-[#F8F9FA] dark:bg-[#050608] text-[#0A0A0C] dark:text-white transition-colors duration-300 overflow-x-hidden selection:bg-cyan-500/30 selection:text-white">
+      {/* Animated Luminous Aura Drifting Orbs & 35mm Film Grain */}
+      <AmbientAuraAndGrain isDark={isDark} />
+
+      {/* Minimalist floating light particle canvas */}
       <ParticleBackground isDark={isDark} />
 
       {/* Custom magnetic cursor with physics and tactile shimmer */}

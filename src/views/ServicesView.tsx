@@ -112,12 +112,13 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
       {/* Header with explicit top padding pt-28 md:pt-40 */}
       <section className="relative px-5 sm:px-8 md:px-12 max-w-6xl mx-auto pt-28 md:pt-40 pb-16 md:pb-24">
         <div className="max-w-3xl space-y-4">
-          <div className="text-xs font-mono uppercase tracking-widest text-neutral-600 dark:text-neutral-400">
-            Services & Pricing
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 font-mono text-[10px] md:text-xs tracking-[0.25em] uppercase font-semibold">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+            Rate Cards & Retainers
           </div>
-          <h1 className="font-display text-3xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-[#0A0A0C] dark:text-white leading-tight">
+          <h1 className="font-display text-3xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-tight cinema-gradient-text">
             Bespoke Production. <br />
-            <span className="text-neutral-600 dark:text-neutral-400 font-normal">
+            <span className="text-neutral-500 dark:text-neutral-400 font-normal">
               Transparent Rate Cards.
             </span>
           </h1>
@@ -134,10 +135,10 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
       ========================================================================= */}
       <section id="event-visuals" className="relative px-5 sm:px-8 md:px-12 max-w-6xl mx-auto py-16 md:py-32 border-t border-black/10 dark:border-white/10">
         <div className="mb-12 sm:mb-14 max-w-3xl space-y-3">
-          <div className="text-xs font-mono uppercase tracking-widest text-neutral-600 dark:text-neutral-400">
-            Section A · Bespoke Event Media
+          <div className="text-cyan-400 font-mono text-[10px] md:text-xs tracking-[0.25em] uppercase font-semibold">
+            SECTION A // BESPOKE EVENT MEDIA
           </div>
-          <h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-bold text-[#0A0A0C] dark:text-white tracking-tight">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight cinema-gradient-text">
             Event Visual Production
           </h2>
           <p className="text-xs sm:text-sm md:text-base text-neutral-600 dark:text-neutral-400 font-light leading-relaxed max-w-2xl">
@@ -284,60 +285,76 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
         {/* 3-Tier Rate Cards (grid-cols-1 md:grid-cols-3 gap-6) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch mb-12 sm:mb-16">
           {SHORT_FORM_TIERS.map((tier) => (
-            <TiltCard key={tier.id} className="h-full">
+            <TiltCard
+              key={tier.id}
+              className="h-full"
+              spotlightColor={tier.isPopular ? 'rgba(0, 242, 254, 0.25)' : 'rgba(255, 255, 255, 0.08)'}
+            >
               <div
-                className={`h-full p-6 sm:p-8 rounded-2xl flex flex-col justify-between transition-all ${
+                className={`h-full p-6 sm:p-8 rounded-2xl flex flex-col justify-between transition-all relative ${
                   tier.isPopular
-                    ? 'editorial-glass border-2 border-black/30 dark:border-white/40 shadow-xl'
+                    ? 'editorial-glass border-2 border-cyan-400/80 shadow-[0_0_40px_rgba(0,242,254,0.3)] bg-gradient-to-b from-cyan-950/20 via-black/40 to-black/60'
                     : 'editorial-glass'
                 }`}
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-4">
-                    <span className="text-xs font-mono text-neutral-600 dark:text-neutral-400 uppercase tracking-widest">
+                    <span className="text-xs font-mono text-cyan-400 uppercase tracking-widest font-semibold">
                       {tier.level}
                     </span>
-                    {tier.badge && (
-                      <span className="text-[10px] font-mono uppercase px-2.5 py-0.5 rounded-full bg-[#0A0A0C] text-white dark:bg-white dark:text-black font-bold">
-                        {tier.badge}
-                      </span>
+                    {tier.isPopular ? (
+                      <div className="px-3 py-1 rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 text-black font-extrabold text-[9px] font-mono tracking-wider uppercase animate-shimmer shadow-[0_0_15px_rgba(0,242,254,0.6)]">
+                        MOST POPULAR CREATOR CHOICE
+                      </div>
+                    ) : (
+                      tier.badge && (
+                        <span className="text-[10px] font-mono uppercase px-2.5 py-0.5 rounded-full bg-white/10 text-white font-bold border border-white/10">
+                          {tier.badge}
+                        </span>
+                      )
                     )}
                   </div>
 
-                  <h3 className="text-xl sm:text-2xl font-bold text-[#0A0A0C] dark:text-white mb-2">{tier.title}</h3>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">{tier.title}</h3>
 
                   <div className="flex items-baseline gap-2 mb-2">
-                    <span className="text-2xl sm:text-3xl font-bold text-[#0A0A0C] dark:text-white font-mono tabular-nums">
+                    <span
+                      className={`text-3xl sm:text-4xl font-extrabold font-mono tabular-nums ${
+                        tier.isPopular
+                          ? 'text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-cyan-400 drop-shadow-[0_0_20px_rgba(0,242,254,0.5)]'
+                          : 'text-white'
+                      }`}
+                    >
                       LKR {tier.priceLKR.toLocaleString()}
                     </span>
-                    <span className="text-xs text-neutral-600 dark:text-neutral-400 font-mono">/ video</span>
+                    <span className="text-xs text-slate-400 font-mono">/ video</span>
                   </div>
 
-                  <div className="text-[11px] font-mono text-neutral-600 dark:text-neutral-400 mb-6">
+                  <div className="text-[11px] font-mono text-cyan-400/80 mb-6">
                     {tier.runtime}
                   </div>
 
-                  <div className="space-y-3 pt-6 border-t border-black/10 dark:border-white/10">
+                  <div className="space-y-3 pt-6 border-t border-white/10">
                     {tier.deliverables.map((item, idx) => (
-                      <div key={idx} className="flex items-start gap-2.5 text-xs text-neutral-700 dark:text-neutral-300 font-light">
-                        <Check className="w-3.5 h-3.5 text-current shrink-0 mt-0.5" />
+                      <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-300 font-light">
+                        <Check className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
                         <span>{item}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="pt-6 sm:pt-8 mt-6 sm:mt-8 border-t border-black/10 dark:border-white/10">
+                <div className="pt-6 sm:pt-8 mt-6 sm:mt-8 border-t border-white/10">
                   <a
                     href={getWhatsAppUrl(
                       `Hi Loop Studios, I'd like to order "${tier.title}" (${tier.level}) for short-form video editing at LKR ${tier.priceLKR.toLocaleString()} / video.`
                     )}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`w-full min-h-[44px] py-3 text-xs font-semibold rounded-full flex items-center justify-center gap-2 transition-all active:scale-95 ${
+                    className={`w-full min-h-[46px] py-3 text-xs font-semibold rounded-full flex items-center justify-center gap-2 transition-all active:scale-95 ${
                       tier.isPopular
-                        ? 'bg-[#0A0A0C] text-white dark:bg-white dark:text-black hover:opacity-90'
-                        : 'bg-black/5 dark:bg-white/10 text-[#0A0A0C] dark:text-white hover:bg-black/10 dark:hover:bg-white/20'
+                        ? 'bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 text-black font-bold shadow-[0_0_25px_rgba(0,242,254,0.45)] hover:brightness-110'
+                        : 'bg-white/10 hover:bg-white/15 text-white border border-white/15 shadow-md'
                     }`}
                   >
                     <span>Order on WhatsApp</span>
@@ -435,18 +452,18 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
       ========================================================================= */}
       <section id="retainers" className="relative px-5 sm:px-8 md:px-12 max-w-6xl mx-auto py-16 md:py-32 border-t border-black/10 dark:border-white/10">
         <div className="mb-12 sm:mb-14 max-w-3xl space-y-3">
-          <div className="text-xs font-mono uppercase tracking-widest text-neutral-600 dark:text-neutral-400">
-            Section C · Growth Retainers
+          <div className="text-cyan-400 font-mono text-[10px] md:text-xs tracking-[0.25em] uppercase font-semibold">
+            SECTION C // GROWTH RETAINERS
           </div>
-          <h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-bold text-[#0A0A0C] dark:text-white tracking-tight">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight cinema-gradient-text">
             Digital Marketing & Social Retainers
           </h2>
           <p className="text-xs sm:text-sm md:text-base text-neutral-600 dark:text-neutral-400 font-light leading-relaxed max-w-2xl">
             Structured monthly management packages tailored for tuition classes and growing brands. We handle shooting, editing, branded posts, and WhatsApp group management.
           </p>
 
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full editorial-glass text-[#0A0A0C] dark:text-white text-xs font-mono font-medium">
-            <Sparkles className="w-3.5 h-3.5 shrink-0" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-xs font-mono font-medium">
+            <Sparkles className="w-3.5 h-3.5 shrink-0 text-cyan-400" />
             <span>Partnership Offer: 5% discount on continuous 3-month commitments.</span>
           </div>
         </div>
@@ -456,19 +473,23 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
           {RETAINER_PACKAGES.map((pkg) => (
             <TiltCard key={pkg.id} className="h-full">
               <div
-                className={`h-full p-6 sm:p-8 rounded-2xl flex flex-col justify-between transition-all ${
+                className={`h-full p-6 sm:p-8 rounded-2xl flex flex-col justify-between transition-all relative overflow-hidden ${
                   pkg.isPopular
-                    ? 'editorial-glass border-2 border-black/30 dark:border-white/40 shadow-xl'
-                    : 'editorial-glass'
+                    ? 'bg-[#080B11]/90 border border-cyan-400/50 shadow-[0_0_50px_rgba(0,242,254,0.15)] ring-1 ring-cyan-400/30'
+                    : 'editorial-glass border border-black/10 dark:border-white/10 dark:border-t-white/20'
                 }`}
               >
+                {pkg.isPopular && (
+                  <div className="absolute -top-24 -right-24 w-48 h-48 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none" />
+                )}
+
                 <div>
                   <div className="flex items-center justify-between gap-4 mb-4">
-                    <span className="text-xs font-mono uppercase tracking-widest text-neutral-600 dark:text-neutral-400">
+                    <span className="text-[10px] md:text-xs font-mono uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400">
                       Monthly Package
                     </span>
                     {pkg.isPopular && (
-                      <span className="text-[10px] font-mono uppercase px-2.5 py-0.5 rounded-full bg-[#0A0A0C] text-white dark:bg-white dark:text-black font-bold">
+                      <span className="text-[10px] font-mono uppercase px-3 py-1 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-extrabold tracking-wider shadow-[0_0_15px_rgba(0,242,254,0.4)]">
                         Most Popular
                       </span>
                     )}
@@ -480,21 +501,25 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
                   </p>
 
                   <div className="flex items-baseline gap-2 mb-6">
-                    <span className="text-2xl sm:text-3xl font-bold text-[#0A0A0C] dark:text-white font-mono tabular-nums">
+                    <span className={`text-2xl sm:text-3xl font-bold font-mono tabular-nums ${
+                      pkg.isPopular
+                        ? 'text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-200 to-cyan-400 drop-shadow-[0_0_12px_rgba(0,242,254,0.3)]'
+                        : 'text-[#0A0A0C] dark:text-white'
+                    }`}>
                       LKR {pkg.priceLKR.toLocaleString()}
                     </span>
                     <span className="text-xs text-neutral-600 dark:text-neutral-400 font-mono">/ month</span>
                   </div>
 
                   <div className="mb-6">
-                    <div className="text-[10px] font-mono uppercase text-neutral-600 dark:text-neutral-400 mb-2">
+                    <div className="text-[10px] font-mono uppercase tracking-wider text-neutral-600 dark:text-neutral-400 mb-2">
                       Platforms Included:
                     </div>
                     <div className="flex flex-wrap gap-1.5">
                       {pkg.channels.map((ch, i) => (
                         <span
                           key={i}
-                          className="text-xs px-2.5 py-1 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-neutral-700 dark:text-neutral-300"
+                          className="text-xs px-2.5 py-1 rounded-full bg-cyan-500/10 dark:bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 font-mono"
                         >
                           {ch}
                         </span>
@@ -505,7 +530,7 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
                   <div className="space-y-3 pt-6 border-t border-black/10 dark:border-white/10">
                     {pkg.features.map((feat, idx) => (
                       <div key={idx} className="flex items-start gap-2.5 text-xs text-neutral-700 dark:text-neutral-300 font-light">
-                        <Check className="w-3.5 h-3.5 text-current shrink-0 mt-0.5" />
+                        <Check className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
                         <span>{feat}</span>
                       </div>
                     ))}
@@ -521,7 +546,7 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
                     rel="noopener noreferrer"
                     className={`w-full min-h-[44px] py-3.5 text-xs font-semibold rounded-full flex items-center justify-center gap-2 transition-all active:scale-95 ${
                       pkg.isPopular
-                        ? 'bg-[#0A0A0C] text-white dark:bg-white dark:text-black hover:opacity-90'
+                        ? 'bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-bold shadow-[0_0_20px_rgba(0,242,254,0.35)] hover:shadow-[0_0_30px_rgba(0,242,254,0.6)]'
                         : 'bg-black/5 dark:bg-white/10 text-[#0A0A0C] dark:text-white hover:bg-black/10 dark:hover:bg-white/20'
                     }`}
                   >
