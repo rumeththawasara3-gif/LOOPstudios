@@ -1,34 +1,34 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
-  ASSET_DRONE,
-  ASSET_VR,
-  ASSET_GIMBAL,
-  ASSET_CAMERA,
+  STUDIO_PHOTO_DRONE,
+  STUDIO_PHOTO_VR,
+  STUDIO_PHOTO_GIMBAL,
+  STUDIO_PHOTO_CAMERA,
 } from '../types.ts';
 
 gsap.registerPlugin(ScrollTrigger);
 
 // =========================================================================
 // 1. DRONE & AERIAL SECTION
-// Custom PNG: Transparent DJI Drone
+// Generated Studio Photography: Cinema Drone
 // Start: y: -140px, scale: 0.7, rotation: -12deg, opacity: 0
 // End: y: 0, scale: 1, rotation: 0deg, opacity: 1
-// Text: "Drone & Scale Capture"
 // =========================================================================
 export const DroneAnimationBlock: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const droneImgRef = useRef<HTMLImageElement | null>(null);
+  const droneVisualRef = useRef<HTMLDivElement | null>(null);
   const textRef = useRef<HTMLDivElement | null>(null);
+  const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
-    if (!containerRef.current || !droneImgRef.current || !textRef.current) return;
+    if (!containerRef.current || !droneVisualRef.current || !textRef.current) return;
 
     const ctx = gsap.context(() => {
       // Drone sweeps down, levels off, and scales up
       gsap.fromTo(
-        droneImgRef.current,
+        droneVisualRef.current,
         {
           y: -140,
           scale: 0.7,
@@ -93,17 +93,41 @@ export const DroneAnimationBlock: React.FC = () => {
         <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-light">
           Fluid multi-axis altitude sweeps and high-altitude architectural venue perspectives deployed seamlessly by licensed pilots.
         </p>
+        <div className="pt-2 flex items-center gap-2 text-[10px] font-mono text-slate-500 dark:text-slate-400">
+          <span className="px-2 py-0.5 rounded bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10">
+            4K 60P HDR
+          </span>
+          <span className="px-2 py-0.5 rounded bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10">
+            D-LOG M 10-BIT
+          </span>
+          <span className="px-2 py-0.5 rounded bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10">
+            WIND CLASS 5
+          </span>
+        </div>
       </div>
 
-      {/* Custom Transparent PNG Asset: Drone */}
+      {/* Generated Studio Photography Visual: Cinema Drone */}
       <div className="w-full md:w-auto flex items-center justify-center shrink-0">
-        <div className="relative w-64 sm:w-80 max-w-[340px] aspect-[4/3] flex items-center justify-center">
-          <img
-            ref={droneImgRef}
-            src={ASSET_DRONE}
-            alt="Loop Studios Aerial Drone"
-            className="w-full h-full object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.4)] dark:drop-shadow-[0_25px_40px_rgba(255,255,255,0.08)] will-change-transform"
-          />
+        <div
+          ref={droneVisualRef}
+          className="relative w-64 sm:w-80 max-w-[340px] aspect-[4/3] rounded-2xl overflow-hidden p-3 flex items-center justify-center will-change-transform"
+        >
+          {/* Studio Backdrop & Subtle Ambient Light */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/[0.04] to-black/[0.08] dark:from-white/[0.03] dark:to-transparent rounded-2xl border border-black/10 dark:border-white/10" />
+
+          {!imgError ? (
+            <img
+              src={STUDIO_PHOTO_DRONE}
+              alt="Cinema Drone in Flight Studio Photography"
+              referrerPolicy="no-referrer"
+              onError={() => setImgError(true)}
+              className="relative z-10 w-full h-full object-contain filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.35)] dark:drop-shadow-[0_25px_40px_rgba(255,255,255,0.08)] pointer-events-none"
+            />
+          ) : (
+            <div className="relative z-10 flex flex-col items-center justify-center text-center p-4">
+              <span className="text-xs font-mono uppercase text-slate-400">Studio Drone Capture</span>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -112,23 +136,23 @@ export const DroneAnimationBlock: React.FC = () => {
 
 // =========================================================================
 // 2. 360° & VR IMMERSION SECTION
-// Custom PNG: Transparent VR Box Headset
+// Generated Studio Photography: Spatial VR Headset
 // Start: rotationY: 180deg, rotationZ: -10deg, scale: 0.75, opacity: 0
 // End: rotationY: 0deg, rotationZ: 0deg, scale: 1, opacity: 1
-// Text: "360° VR Immersion"
 // =========================================================================
 export const VRHeadsetAnimationBlock: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const vrImgRef = useRef<HTMLImageElement | null>(null);
+  const vrVisualRef = useRef<HTMLDivElement | null>(null);
   const textRef = useRef<HTMLDivElement | null>(null);
+  const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
-    if (!containerRef.current || !vrImgRef.current || !textRef.current) return;
+    if (!containerRef.current || !vrVisualRef.current || !textRef.current) return;
 
     const ctx = gsap.context(() => {
       // 3D Spatial rotation into normal view
       gsap.fromTo(
-        vrImgRef.current,
+        vrVisualRef.current,
         {
           rotateY: 180,
           rotateZ: -10,
@@ -194,20 +218,42 @@ export const VRHeadsetAnimationBlock: React.FC = () => {
         <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-light">
           Full-sphere event recordings enabling attendees and stakeholders to relive the venue in interactive 360° via mobile gyroscopes, desktop click-drag, or VR headsets.
         </p>
+        <div className="pt-2 flex items-center gap-2 text-[10px] font-mono text-slate-500 dark:text-slate-400">
+          <span className="px-2 py-0.5 rounded bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10">
+            8K SPATIAL 360°
+          </span>
+          <span className="px-2 py-0.5 rounded bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10">
+            DUAL FISHEYE
+          </span>
+          <span className="px-2 py-0.5 rounded bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10">
+            SPATIAL AUDIO
+          </span>
+        </div>
       </div>
 
-      {/* Custom Transparent PNG Asset: VR Headset */}
+      {/* Generated Studio Photography Visual: Spatial VR Headset */}
       <div className="w-full md:w-auto flex items-center justify-center shrink-0">
         <div
-          className="relative w-64 sm:w-80 max-w-[340px] aspect-[4/3] flex items-center justify-center"
+          ref={vrVisualRef}
+          className="relative w-64 sm:w-80 max-w-[340px] aspect-[4/3] rounded-2xl overflow-hidden p-3 flex items-center justify-center will-change-transform"
           style={{ perspective: '1000px' }}
         >
-          <img
-            ref={vrImgRef}
-            src={ASSET_VR}
-            alt="Loop Studios 360 VR Headset"
-            className="w-full h-full object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.4)] dark:drop-shadow-[0_25px_40px_rgba(255,255,255,0.08)] will-change-transform"
-          />
+          {/* Studio Backdrop */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/[0.04] to-black/[0.08] dark:from-white/[0.03] dark:to-transparent rounded-2xl border border-black/10 dark:border-white/10" />
+
+          {!imgError ? (
+            <img
+              src={STUDIO_PHOTO_VR}
+              alt="Spatial VR Headset Studio Photography"
+              referrerPolicy="no-referrer"
+              onError={() => setImgError(true)}
+              className="relative z-10 w-full h-full object-contain filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.35)] dark:drop-shadow-[0_25px_40px_rgba(255,255,255,0.08)] pointer-events-none"
+            />
+          ) : (
+            <div className="relative z-10 flex flex-col items-center justify-center text-center p-4">
+              <span className="text-xs font-mono uppercase text-slate-400">Spatial VR Immersion</span>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -216,23 +262,23 @@ export const VRHeadsetAnimationBlock: React.FC = () => {
 
 // =========================================================================
 // 3. CINEMA VIDEOGRAPHY SECTION
-// Custom PNG: Transparent Gimbal + Camera Rig
+// Generated Studio Photography: Cinema Camera on Motorized 3-Axis Gimbal
 // Start: x: -120px, rotation: -18deg, filter: blur(8px), opacity: 0
 // End: x: 0px, rotation: 0deg, filter: blur(0px), opacity: 1
-// Text: "Cinema Videography"
 // =========================================================================
 export const CinemaGimbalAnimationBlock: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const gimbalImgRef = useRef<HTMLImageElement | null>(null);
+  const gimbalVisualRef = useRef<HTMLDivElement | null>(null);
   const textRef = useRef<HTMLDivElement | null>(null);
+  const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
-    if (!containerRef.current || !gimbalImgRef.current || !textRef.current) return;
+    if (!containerRef.current || !gimbalVisualRef.current || !textRef.current) return;
 
     const ctx = gsap.context(() => {
       // Glides across, stabilizes to level axis, and unblurs
       gsap.fromTo(
-        gimbalImgRef.current,
+        gimbalVisualRef.current,
         {
           x: -120,
           rotation: -18,
@@ -297,17 +343,41 @@ export const CinemaGimbalAnimationBlock: React.FC = () => {
         <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-light">
           Fluid multi-axis mechanical stabilization, narrative highlight recaps, intentional anamorphic framing, and venue-grade audio calibration.
         </p>
+        <div className="pt-2 flex items-center gap-2 text-[10px] font-mono text-slate-500 dark:text-slate-400">
+          <span className="px-2 py-0.5 rounded bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10">
+            3-AXIS GYRO STABILIZED
+          </span>
+          <span className="px-2 py-0.5 rounded bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10">
+            TITANIUM CARBON
+          </span>
+          <span className="px-2 py-0.5 rounded bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10">
+            ACTIVE TRACKING
+          </span>
+        </div>
       </div>
 
-      {/* Custom Transparent PNG Asset: Gimbal Rig */}
+      {/* Generated Studio Photography Visual: Gimbal + Cinema Camera Rig */}
       <div className="w-full md:w-auto flex items-center justify-center shrink-0">
-        <div className="relative w-56 sm:w-72 max-w-[320px] h-[260px] sm:h-[300px] flex items-center justify-center">
-          <img
-            ref={gimbalImgRef}
-            src={ASSET_GIMBAL}
-            alt="Loop Studios 3-Axis Gimbal Rig"
-            className="w-full h-full object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.4)] dark:drop-shadow-[0_25px_40px_rgba(255,255,255,0.08)] will-change-transform"
-          />
+        <div
+          ref={gimbalVisualRef}
+          className="relative w-56 sm:w-72 max-w-[320px] h-[260px] sm:h-[300px] rounded-2xl overflow-hidden p-3 flex items-center justify-center will-change-transform"
+        >
+          {/* Studio Backdrop */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/[0.04] to-black/[0.08] dark:from-white/[0.03] dark:to-transparent rounded-2xl border border-black/10 dark:border-white/10" />
+
+          {!imgError ? (
+            <img
+              src={STUDIO_PHOTO_GIMBAL}
+              alt="Cinema Camera Gimbal Rig Studio Photography"
+              referrerPolicy="no-referrer"
+              onError={() => setImgError(true)}
+              className="relative z-10 w-full h-full object-contain filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.35)] dark:drop-shadow-[0_25px_40px_rgba(255,255,255,0.08)] pointer-events-none"
+            />
+          ) : (
+            <div className="relative z-10 flex flex-col items-center justify-center text-center p-4">
+              <span className="text-xs font-mono uppercase text-slate-400">Cinema Stabilizer</span>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -316,19 +386,19 @@ export const CinemaGimbalAnimationBlock: React.FC = () => {
 
 // =========================================================================
 // 4. SIGNATURE PHOTOGRAPHY SECTION
-// Custom PNG: Transparent Professional Camera Body with Prime Optical Lens
+// Generated Studio Photography: Flagship Camera with Prime Lens & Framing Reticle
 // Start: scale: 0.75, rotation: 14deg, filter: blur(10px), opacity: 0
-// End: scale: 1, rotation: 0deg, filter: blur(0px), opacity: 1, tactile snap pulse
-// Text: "Signature Photography"
+// End: scale: 1, rotation: 0deg, filter: blur(0px), opacity: 1, framing snap
 // =========================================================================
 export const OpticsSnapAnimationBlock: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const cameraImgRef = useRef<HTMLImageElement | null>(null);
+  const cameraVisualRef = useRef<HTMLDivElement | null>(null);
   const textRef = useRef<HTMLDivElement | null>(null);
   const frameBoxRef = useRef<HTMLDivElement | null>(null);
+  const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
-    if (!containerRef.current || !cameraImgRef.current || !textRef.current || !frameBoxRef.current) return;
+    if (!containerRef.current || !cameraVisualRef.current || !textRef.current || !frameBoxRef.current) return;
 
     const ctx = gsap.context(() => {
       // Dynamic focus zoom and frame snap into crisp focus
@@ -343,7 +413,7 @@ export const OpticsSnapAnimationBlock: React.FC = () => {
       });
 
       tl.fromTo(
-        cameraImgRef.current,
+        cameraVisualRef.current,
         {
           scale: 0.75,
           rotation: 14,
@@ -420,15 +490,32 @@ export const OpticsSnapAnimationBlock: React.FC = () => {
         <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-light">
           Editorial candid timing, stage dynamics, and magazine-grade fine-art retouching capturing VIP interactions and decisive atmospheres.
         </p>
+        <div className="pt-2 flex items-center gap-2 text-[10px] font-mono text-slate-500 dark:text-slate-400">
+          <span className="px-2 py-0.5 rounded bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10">
+            FULL-FRAME 45MP
+          </span>
+          <span className="px-2 py-0.5 rounded bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10">
+            f/1.2 PRIME GLASS
+          </span>
+          <span className="px-2 py-0.5 rounded bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10">
+            14-BIT RAW
+          </span>
+        </div>
       </div>
 
-      {/* Custom Transparent PNG Asset: Camera Body + Lens with Framing Reticle */}
+      {/* Generated Studio Photography Visual: Flagship Camera & Optical Lens */}
       <div className="w-full md:w-auto flex items-center justify-center shrink-0">
-        <div className="relative w-64 sm:w-80 max-w-[340px] aspect-[4/3] flex items-center justify-center p-2">
+        <div
+          ref={cameraVisualRef}
+          className="relative w-64 sm:w-80 max-w-[340px] aspect-[4/3] rounded-2xl overflow-hidden p-3 flex items-center justify-center will-change-transform"
+        >
+          {/* Studio Backdrop */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/[0.04] to-black/[0.08] dark:from-white/[0.03] dark:to-transparent rounded-2xl border border-black/10 dark:border-white/10" />
+
           {/* Viewfinder Framing Lines */}
           <div
             ref={frameBoxRef}
-            className="absolute inset-2 border border-black/20 dark:border-white/25 rounded-xl pointer-events-none will-change-transform"
+            className="absolute inset-3 border border-black/20 dark:border-white/25 rounded-xl pointer-events-none z-20 will-change-transform"
           >
             <div className="absolute top-2 left-2 w-3 h-3 border-t-2 border-l-2 border-black/50 dark:border-white/60" />
             <div className="absolute top-2 right-2 w-3 h-3 border-t-2 border-r-2 border-black/50 dark:border-white/60" />
@@ -436,12 +523,19 @@ export const OpticsSnapAnimationBlock: React.FC = () => {
             <div className="absolute bottom-2 right-2 w-3 h-3 border-b-2 border-r-2 border-black/50 dark:border-white/60" />
           </div>
 
-          <img
-            ref={cameraImgRef}
-            src={ASSET_CAMERA}
-            alt="Loop Studios Signature Camera & Lens"
-            className="relative z-10 w-full h-full object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.4)] dark:drop-shadow-[0_25px_40px_rgba(255,255,255,0.08)] will-change-transform"
-          />
+          {!imgError ? (
+            <img
+              src={STUDIO_PHOTO_CAMERA}
+              alt="Signature Optics Camera Studio Photography"
+              referrerPolicy="no-referrer"
+              onError={() => setImgError(true)}
+              className="relative z-10 w-full h-full object-contain filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.35)] dark:drop-shadow-[0_25px_40px_rgba(255,255,255,0.08)] pointer-events-none"
+            />
+          ) : (
+            <div className="relative z-10 flex flex-col items-center justify-center text-center p-4">
+              <span className="text-xs font-mono uppercase text-slate-400">Signature Optics</span>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -451,7 +545,6 @@ export const OpticsSnapAnimationBlock: React.FC = () => {
 // =========================================================================
 // 5. EDITING & POST-PRODUCTION ANIMATION
 // "VIRAL SHORT-FORM EDITING" slices horizontally with rapid dynamic cuts
-// that assemble and lock into place over timeline tracks
 // =========================================================================
 export const EditingTimelineAnimationBlock: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -519,7 +612,7 @@ export const EditingTimelineAnimationBlock: React.FC = () => {
         {
           scaleX: 1,
           opacity: 1,
-          ease: 'power2.out',
+          ease: 'power3.out',
           scrollTrigger: {
             trigger: containerRef.current,
             start: 'top 80%',
@@ -537,62 +630,67 @@ export const EditingTimelineAnimationBlock: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="relative p-6 sm:p-8 rounded-2xl editorial-glass flex flex-col md:flex-row items-center justify-between gap-8 overflow-hidden select-none"
+      className="editing-block relative p-6 sm:p-8 rounded-2xl editorial-glass flex flex-col md:flex-row items-center justify-between gap-8 overflow-hidden select-none"
     >
-      <div className="space-y-3 max-w-xl">
+      <div className="space-y-2 max-w-xl">
         <span className="text-[11px] font-mono tracking-widest uppercase text-slate-500 dark:text-slate-400">
-          TIMELINE ARCHITECTURE
+          RETENTION SCIENCE
         </span>
-
-        {/* Sliced Dynamic Title */}
-        <div className="overflow-hidden">
-          <div ref={slice1Ref} className="will-change-transform">
-            <h3 className="font-display text-2xl sm:text-4xl font-bold tracking-tight text-[#0A0A0C] dark:text-white">
-              VIRAL SHORT-FORM
-            </h3>
-          </div>
-          <div ref={slice2Ref} className="will-change-transform mt-0.5">
-            <h3 className="font-display text-2xl sm:text-4xl font-bold tracking-tight text-slate-500 dark:text-slate-400">
-              EDITING & RETENTION
-            </h3>
-          </div>
-        </div>
-
+        <h3 className="font-display text-2xl sm:text-4xl font-bold tracking-tight text-[#0A0A0C] dark:text-white">
+          Short-Form Video Editing
+        </h3>
         <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-light">
-          Sub-second visual hooks, kinetic animated subtitles, impact SFX placement, and seamless audio loops engineered to maximize algorithmic completion rates.
+          Frame-by-frame pacing, kinetic animated subtitles, impact SFX, and psychological hooks engineered specifically to prevent user swipe-away.
         </p>
       </div>
 
-      {/* Keyframe Timeline Vector */}
-      <div
-        ref={timelineRef}
-        className="w-48 sm:w-60 h-36 flex items-center justify-center shrink-0 will-change-transform"
-      >
-        <svg
-          viewBox="0 0 200 130"
-          fill="none"
-          stroke="currentColor"
-          className="w-full h-full text-slate-800 dark:text-slate-200"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <rect x="25" y="32" width="150" height="66" rx="4" />
-          <line x1="25" y1="46" x2="175" y2="46" strokeWidth="1" />
-          <line x1="45" y1="40" x2="45" y2="46" />
-          <line x1="75" y1="36" x2="75" y2="46" strokeWidth="1.5" />
-          <line x1="105" y1="40" x2="105" y2="46" />
-          <line x1="135" y1="36" x2="135" y2="46" strokeWidth="1.5" />
-          <line x1="165" y1="40" x2="165" y2="46" />
+      {/* Sliced Kinetic Typography Display & Dynamic Timeline Graphic */}
+      <div className="w-full md:w-auto flex flex-col items-center justify-center shrink-0">
+        <div className="relative w-64 sm:w-80 max-w-[340px] aspect-[4/3] rounded-2xl overflow-hidden p-5 flex flex-col justify-between bg-black/[0.04] dark:bg-white/[0.02] border border-black/10 dark:border-white/10">
+          {/* Sliced Kinetic Typography */}
+          <div className="relative pt-2 space-y-1">
+            <div
+              ref={slice1Ref}
+              className="text-lg sm:text-xl font-display font-black tracking-tight text-[#0A0A0C] dark:text-white uppercase leading-none will-change-transform"
+            >
+              VIRAL SHORT-FORM
+            </div>
+            <div
+              ref={slice2Ref}
+              className="text-lg sm:text-xl font-display font-black tracking-tight text-blue-600 dark:text-blue-400 uppercase leading-none will-change-transform"
+            >
+              RETENTION PACING
+            </div>
+          </div>
 
-          <rect x="32" y="52" width="36" height="16" rx="2" className="fill-current opacity-20" />
-          <rect x="72" y="52" width="48" height="16" rx="2" className="fill-current opacity-30" />
-          <rect x="124" y="52" width="44" height="16" rx="2" className="fill-current opacity-20" />
+          {/* Slicing Playhead & Timeline Tracks */}
+          <div ref={timelineRef} className="space-y-2 pt-4 will-change-transform origin-left">
+            <div className="flex items-center justify-between text-[9px] font-mono text-slate-500 dark:text-slate-400">
+              <span>00:00:03:12</span>
+              <span className="text-emerald-500 font-semibold">HOOK PEAK · 88%</span>
+            </div>
 
-          <path d="M 32 82 Q 40 74 48 82 T 64 82 T 80 82 T 96 82 T 112 82 T 128 82 T 144 82 T 168 82" />
-          <line x1="72" y1="26" x2="72" y2="104" strokeWidth="2" className="stroke-current" />
-          <polygon points="68,26 76,26 72,32" className="fill-current" />
-        </svg>
+            {/* Video track */}
+            <div className="h-4 rounded bg-black/10 dark:bg-white/10 relative overflow-hidden flex items-center px-2">
+              <div className="w-1/3 h-full bg-blue-500/30 rounded-sm" />
+              <div className="w-1/4 h-full bg-purple-500/30 rounded-sm ml-1" />
+              <div className="w-1/3 h-full bg-emerald-500/30 rounded-sm ml-1" />
+              {/* Playhead red line */}
+              <div className="absolute top-0 bottom-0 left-[48%] w-0.5 bg-red-500 shadow-[0_0_8px_#ef4444]" />
+            </div>
+
+            {/* Audio waveform track */}
+            <div className="h-3 rounded bg-black/5 dark:bg-white/5 flex items-center gap-0.5 px-2">
+              {[4, 8, 12, 6, 14, 10, 4, 16, 8, 12, 14, 6, 10, 16, 12, 8, 4].map((h, i) => (
+                <div
+                  key={i}
+                  style={{ height: `${h}px` }}
+                  className="w-1 bg-slate-400 dark:bg-slate-500 rounded-full"
+                />
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -3,12 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight } from 'lucide-react';
 import { TiltCard } from './TiltCard.tsx';
-import {
-  PageView,
-  ASSET_DRONE,
-  ASSET_VR,
-  ASSET_GIMBAL,
-} from '../types.ts';
+import { PageView } from '../types.ts';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,17 +15,17 @@ interface CapabilitiesSectionProps {
 export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavigate, isDark = true }) => {
   const sectionRef = useRef<HTMLDivElement | null>(null);
 
-  // Pillar 1: Drone asset convergence
-  const p1DroneRef = useRef<HTMLImageElement | null>(null);
-  const p1GimbalRef = useRef<HTMLImageElement | null>(null);
+  // Pillar 1: Drone & Camera Gimbal elements
+  const p1DroneRef = useRef<SVGGElement | null>(null);
+  const p1CameraRef = useRef<SVGGElement | null>(null);
 
   // Pillar 2: Timeline playhead & waveforms
   const p2PlayheadRef = useRef<SVGLineElement | null>(null);
   const p2WaveRef = useRef<SVGPathElement | null>(null);
 
-  // Pillar 3: 360 VR coordinate ring & VR PNG
+  // Pillar 3: 360 VR coordinate ring & VR visor
   const p3RingRef = useRef<SVGGElement | null>(null);
-  const p3HeadsetRef = useRef<HTMLImageElement | null>(null);
+  const p3HeadsetRef = useRef<SVGGElement | null>(null);
 
   // Pillar 4: Trajectory growth curve
   const p4CurveRef = useRef<SVGPathElement | null>(null);
@@ -42,16 +37,15 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavi
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      // 1. Pillar 1: Drone & Camera Gimbal converge on scroll down
-      if (p1DroneRef.current && p1GimbalRef.current) {
+      // 1. Pillar 1: Drone & Camera converge on scroll down
+      if (p1DroneRef.current && p1CameraRef.current) {
         gsap.fromTo(
           p1DroneRef.current,
-          { y: -60, scale: 0.8, opacity: 0.2, rotation: -8 },
+          { y: -40, scale: 0.85, opacity: 0.2 },
           {
             y: 0,
             scale: 1,
             opacity: 1,
-            rotation: 0,
             ease: 'power3.out',
             scrollTrigger: {
               trigger: p1DroneRef.current,
@@ -64,15 +58,15 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavi
         );
 
         gsap.fromTo(
-          p1GimbalRef.current,
-          { x: 50, scale: 0.8, opacity: 0.2 },
+          p1CameraRef.current,
+          { x: 40, scale: 0.85, opacity: 0.2 },
           {
             x: 0,
             scale: 1,
             opacity: 1,
             ease: 'power3.out',
             scrollTrigger: {
-              trigger: p1GimbalRef.current,
+              trigger: p1CameraRef.current,
               start: 'top 80%',
               end: 'center center',
               scrub: 1,
@@ -118,7 +112,7 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavi
         );
       }
 
-      // 3. Pillar 3: 360-degree rotational coordinate ring & VR headset PNG
+      // 3. Pillar 3: 360-degree rotational coordinate ring & VR headset
       if (p3RingRef.current && p3HeadsetRef.current) {
         gsap.fromTo(
           p3RingRef.current,
@@ -140,10 +134,10 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavi
         gsap.fromTo(
           p3HeadsetRef.current,
           {
-            rotateY: 140,
-            scale: 0.75,
-            opacity: 0.2,
-            transformPerspective: 1000,
+            rotateY: 120,
+            scale: 0.8,
+            opacity: 0.3,
+            transformPerspective: 800,
           },
           {
             rotateY: 0,
@@ -241,30 +235,44 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavi
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
         {/* =========================================================================
             PILLAR 1: Full-Spectrum Event Coverage
-            Synchronized drone & camera assets aligning on scroll
+            Synchronized drone & camera studio vector outlines aligning on scroll
         ========================================================================= */}
         <TiltCard className="h-full">
           <div className="h-full p-8 rounded-2xl editorial-glass flex flex-col justify-between group">
             <div>
-              {/* Converging Custom Drone & Camera Asset Visual */}
               <div className="relative w-full aspect-[16/9] rounded-xl overflow-hidden mb-6 bg-black/[0.02] dark:bg-white/[0.02] border border-black/10 dark:border-white/10 flex items-center justify-center p-4">
-                {/* Subtle telemetry circle */}
-                <div className="absolute inset-4 rounded-full border border-black/10 dark:border-white/10 opacity-30 pointer-events-none" />
+                <svg
+                  viewBox="0 0 240 140"
+                  fill="none"
+                  stroke="currentColor"
+                  className="w-full h-full text-slate-800 dark:text-slate-200"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <circle cx="120" cy="70" r="54" opacity="0.15" strokeDasharray="3 3" />
 
-                <div className="relative w-full h-full flex items-center justify-center gap-4">
-                  <img
-                    ref={p1DroneRef}
-                    src={ASSET_DRONE}
-                    alt="Loop Studios Drone"
-                    className="w-36 sm:w-44 h-auto object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.4)] dark:drop-shadow-[0_20px_30px_rgba(255,255,255,0.06)] will-change-transform"
-                  />
-                  <img
-                    ref={p1GimbalRef}
-                    src={ASSET_GIMBAL}
-                    alt="Loop Studios Gimbal Rig"
-                    className="w-24 sm:w-28 h-auto object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.4)] dark:drop-shadow-[0_20px_30px_rgba(255,255,255,0.06)] will-change-transform"
-                  />
-                </div>
+                  {/* Drone Model (converges from top) */}
+                  <g ref={p1DroneRef} className="will-change-transform">
+                    <rect x="106" y="32" width="28" height="18" rx="4" className="fill-current opacity-20" />
+                    <ellipse cx="86" cy="24" rx="14" ry="4" opacity="0.6" />
+                    <ellipse cx="154" cy="24" rx="14" ry="4" opacity="0.6" />
+                    <line x1="106" y1="38" x2="86" y2="24" strokeDasharray="2 2" />
+                    <line x1="134" y1="38" x2="154" y2="24" strokeDasharray="2 2" />
+                    <circle cx="120" cy="41" r="2.5" className="fill-current" />
+                  </g>
+
+                  {/* Camera & Lens Mount (converges from right) */}
+                  <g ref={p1CameraRef} className="will-change-transform">
+                    <rect x="76" y="66" width="46" height="34" rx="4" className="fill-current opacity-15" />
+                    <rect x="88" y="58" width="20" height="8" rx="2" />
+                    <circle cx="85" cy="74" r="2.5" />
+                    <circle cx="122" cy="83" r="14" strokeDasharray="2 2" />
+                    <rect x="122" y="72" width="26" height="22" rx="2" className="fill-current opacity-25" />
+                    <rect x="148" y="68" width="14" height="30" rx="2" />
+                    <circle cx="155" cy="83" r="7" />
+                  </g>
+                </svg>
               </div>
 
               <div className="text-[11px] font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-1.5">
@@ -352,38 +360,41 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavi
 
         {/* =========================================================================
             PILLAR 3: Spatial & 360° VR Immersion
-            Custom VR Box Headset rotating inside coordinate ring
+            Spatial VR headset rotating inside coordinate ring
         ========================================================================= */}
         <TiltCard className="h-full">
           <div className="h-full p-8 rounded-2xl editorial-glass flex flex-col justify-between group">
             <div>
               <div className="relative w-full aspect-[16/9] rounded-xl overflow-hidden mb-6 bg-black/[0.02] dark:bg-white/[0.02] border border-black/10 dark:border-white/10 flex items-center justify-center p-4">
-                {/* 360-degree Rotational Coordinate Ring SVG */}
                 <svg
                   viewBox="0 0 240 140"
                   fill="none"
                   stroke="currentColor"
-                  className="absolute inset-0 w-full h-full text-slate-800 dark:text-slate-200"
-                  strokeWidth="1.2"
+                  className="w-full h-full text-slate-800 dark:text-slate-200"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
+                  {/* 360-degree Rotational Coordinate Ring */}
                   <g ref={p3RingRef} className="will-change-transform">
-                    <ellipse cx="120" cy="70" rx="95" ry="36" strokeDasharray="4 4" opacity="0.3" />
-                    <circle cx="25" cy="70" r="3" className="fill-current" />
-                    <circle cx="215" cy="70" r="3" className="fill-current" />
-                    <line x1="120" y1="28" x2="120" y2="34" strokeWidth="2" />
-                    <line x1="120" y1="106" x2="120" y2="112" strokeWidth="2" />
+                    <ellipse cx="120" cy="70" rx="90" ry="34" strokeDasharray="4 4" opacity="0.35" />
+                    <circle cx="30" cy="70" r="3" className="fill-current" />
+                    <circle cx="210" cy="70" r="3" className="fill-current" />
+                    <line x1="120" y1="30" x2="120" y2="36" strokeWidth="2" />
+                    <line x1="120" y1="104" x2="120" y2="110" strokeWidth="2" />
+                  </g>
+
+                  {/* Stylized VR Headset Outline */}
+                  <g ref={p3HeadsetRef} className="will-change-transform">
+                    <rect x="68" y="44" width="104" height="52" rx="16" className="fill-current opacity-15" />
+                    <path d="M 68 70 Q 120 84 172 70" opacity="0.25" strokeDasharray="3 3" />
+                    <circle cx="92" cy="58" r="4" />
+                    <circle cx="148" cy="58" r="4" />
+                    <circle cx="92" cy="80" r="4" />
+                    <circle cx="148" cy="80" r="4" />
+                    <circle cx="120" cy="69" r="2.5" className="fill-current" />
                   </g>
                 </svg>
-
-                {/* Custom Transparent VR Headset PNG */}
-                <div className="relative z-10 w-44 sm:w-52 h-auto flex items-center justify-center">
-                  <img
-                    ref={p3HeadsetRef}
-                    src={ASSET_VR}
-                    alt="Loop Studios VR Headset"
-                    className="w-full h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.4)] dark:drop-shadow-[0_20px_30px_rgba(255,255,255,0.06)] will-change-transform"
-                  />
-                </div>
               </div>
 
               <div className="text-[11px] font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-1.5">
@@ -406,7 +417,7 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavi
 
         {/* =========================================================================
             PILLAR 4: Strategic Digital Distribution & Growth
-            Clean upward trajectory vector line with smooth data nodes
+            Upward trajectory vector line with smooth data nodes
         ========================================================================= */}
         <TiltCard className="h-full">
           <div className="h-full p-8 rounded-2xl editorial-glass flex flex-col justify-between group">

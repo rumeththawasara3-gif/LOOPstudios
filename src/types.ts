@@ -5,11 +5,10 @@ export const BRAND_STATEMENT = 'Loop Studios — Full-stack visual content and s
 export const BRAND_PRESENCE = 'Based in Sri Lanka · Available Worldwide';
 export const LOGO_PATH = '/public/assets/aistudio/Gemini_Generated_Image_c49f7uc49f7uc49f-removebg-preview_da24f11c.png';
 
-// Custom High-Res Transparent PNG Assets
-export const ASSET_DRONE = '/public/assets/aistudio/Transparent_DJI_drone-removebg-preview_6cbc3189.png';
-export const ASSET_VR = '/public/assets/aistudio/VR_box_4764-removebg-preview_9916191b.png';
-export const ASSET_GIMBAL = '/public/assets/aistudio/DJI_RS_4_Review__Is_This_3kg_Camera_Gimbal_Worth_It_for_Serious_Creators___-removebg-preview_95872c53.png';
-export const ASSET_CAMERA = '/public/assets/aistudio/Iray__Software_Development_Kit___Siemens_Software-removebg-preview_72e71686.png';
+export const STUDIO_PHOTO_DRONE = '/assets/generated/cinema-drone.png';
+export const STUDIO_PHOTO_VR = '/assets/generated/spatial-vr.png';
+export const STUDIO_PHOTO_GIMBAL = '/assets/generated/cinema-gimbal.png';
+export const STUDIO_PHOTO_CAMERA = '/assets/generated/signature-camera.png';
 
 export function getWhatsAppUrl(customMessage?: string): string {
   const defaultText = `Hi Loop Studios, I'd like to discuss a project with your team.`;
