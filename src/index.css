@@ -1,0 +1,86 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-display: 'Syne', 'Plus Jakarta Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* Light Mode Default Variables */
+    --bg-canvas: #F8F9FA;
+    --text-primary: #0A0A0C;
+    --text-secondary: #64748B;
+    --border-subtle: rgba(0, 0, 0, 0.06);
+    --glass-bg: rgba(255, 255, 255, 0.82);
+    --glass-border: rgba(0, 0, 0, 0.08);
+    --card-surface: #FFFFFF;
+    --card-border: rgba(0, 0, 0, 0.07);
+  }
+
+  .dark {
+    /* Dark Mode Variables */
+    --bg-canvas: #08090C;
+    --text-primary: #FFFFFF;
+    --text-secondary: #94A3B8;
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --card-surface: #0D0E12;
+    --card-border: rgba(255, 255, 255, 0.08);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.025em;
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+}
+
+/* Minimalist luxury scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-canvas);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.5);
+}
+
+/* Frosted glass luxury surfaces with day/night adaptation */
+.editorial-glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+}
+
+.editorial-glass-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.editorial-glass-hover:hover {
+  border-color: rgba(148, 163, 184, 0.3);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.25);
+}
+
+/* Clean text selection */
+::selection {
+  background-color: rgba(148, 163, 184, 0.25);
+  color: inherit;
+}
