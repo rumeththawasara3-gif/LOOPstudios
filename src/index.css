@@ -22,13 +22,13 @@
 
   .dark {
     /* Deepest Cinematic Obsidian Canvas */
-    --bg-canvas: #050608;
+    --bg-canvas: #060709;
     --text-primary: #FFFFFF;
     --text-secondary: #94A3B8;
     --border-subtle: rgba(255, 255, 255, 0.08);
     --glass-bg: rgba(255, 255, 255, 0.025);
-    --glass-border-top: rgba(255, 255, 255, 0.22);
-    --glass-border: rgba(255, 255, 255, 0.07);
+    --glass-border-top: rgba(255, 255, 255, 0.20);
+    --glass-border: rgba(255, 255, 255, 0.05);
     --accent-cyan: #00F2FE;
     --accent-blue: #4FACFE;
     --accent-violet: #7F00FF;
@@ -68,15 +68,15 @@
   background: rgba(0, 242, 254, 0.5);
 }
 
-/* Luminous Glassmorphism with Top-Lit Highlight Borders */
+/* Luminous Glassmorphism with Top-Lit Hairline Borders */
 .editorial-glass {
   background: var(--glass-bg);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
   border-top: 1px solid var(--glass-border-top);
   border-left: 1px solid var(--glass-border);
   border-right: 1px solid var(--glass-border);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid transparent;
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
 }
 
@@ -88,7 +88,30 @@
   box-shadow: 0 20px 40px -15px rgba(0, 242, 254, 0.15);
 }
 
-/* Cinema Display Headline Gradient */
+/* Tactile Press Physics for Interactive Controls */
+button:not(:disabled),
+a,
+.interactive-tactile {
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+button:not(:disabled):active,
+a:active,
+.interactive-tactile:active {
+  transform: scale(0.96);
+}
+
+/* Cinema Display Headline Metallic / Silver Sheen */
+.headline-sheen {
+  background: linear-gradient(135deg, #FFFFFF 10%, #E2E8F0 50%, #94A3B8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.dark .headline-sheen {
+  background: linear-gradient(135deg, #FFFFFF 0%, #F1F5F9 45%, #CBD5E1 75%, #00F2FE 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .cinema-gradient-text {
   background: linear-gradient(135deg, #FFFFFF 20%, #E2E8F0 55%, #00F2FE 100%);
   -webkit-background-clip: text;

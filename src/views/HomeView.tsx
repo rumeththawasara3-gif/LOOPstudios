@@ -102,7 +102,13 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenQuoteModal
         ref={heroRef}
         className="relative min-h-[75vh] flex flex-col justify-center px-5 sm:px-8 md:px-12 max-w-5xl mx-auto pt-28 md:pt-40 pb-16 md:pb-24"
       >
-        <div className="space-y-6 sm:space-y-8">
+        {/* Soft Ambient Light Bloom behind Hero headline */}
+        <div
+          className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[360px] rounded-full blur-[130px] bg-cyan-500/10 pointer-events-none -z-10"
+          aria-hidden="true"
+        />
+
+        <div className="space-y-6 sm:space-y-8 relative z-10">
           {/* Subtle Metadata Eyebrow with Ultra-Wide Tracking */}
           <div className="hero-fade-item inline-flex flex-wrap items-center gap-2 sm:gap-3 font-mono text-[10px] md:text-xs tracking-[0.25em] text-cyan-400 uppercase font-semibold">
             <span>High-End Event Media</span>
@@ -112,8 +118,8 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenQuoteModal
             <span className="text-white">Available Worldwide</span>
           </div>
 
-          {/* Primary High-Impact Typography with Cinema Gradient */}
-          <h1 className="hero-fade-item font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight cinema-gradient-text leading-[1.06] [text-wrap:balance]">
+          {/* Primary High-Impact Typography with Metallic / Silver Sheen */}
+          <h1 className="hero-fade-item font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight bg-gradient-to-r from-white via-neutral-100 to-neutral-400 bg-clip-text text-transparent leading-[1.06] [text-wrap:balance]">
             Cinema-Grade Production. <br />
             <span className="font-normal text-slate-300">
               Engineered for Viral Growth.

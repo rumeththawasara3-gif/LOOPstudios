@@ -11,6 +11,8 @@ import {
   EditingTimelineAnimationBlock,
 } from '../components/ContextualAnimations.tsx';
 import { VenueLocatorMap } from '../components/VenueLocatorMap.tsx';
+import { PackagePricingCalculator } from '../components/PackagePricingCalculator.tsx';
+import { AnimatedCounter } from '../components/AnimatedCounter.tsx';
 
 interface ServicesViewProps {
   onOpenQuoteModal: (serviceId?: string) => void;
@@ -101,12 +103,6 @@ const RETAINER_PACKAGES: RetainerTier[] = [
 ];
 
 export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, isDark = true }) => {
-  const [selectedTierId, setSelectedTierId] = useState<string>('social-edit');
-  const [batchCount, setBatchCount] = useState<number>(5);
-
-  const activeTier = SHORT_FORM_TIERS.find((t) => t.id === selectedTierId) || SHORT_FORM_TIERS[1];
-  const totalLKR = activeTier.priceLKR * batchCount;
-
   return (
     <div className="relative z-10 overflow-hidden">
       {/* Header with explicit top padding pt-28 md:pt-40 */}
@@ -282,169 +278,100 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
           </p>
         </div>
 
-        {/* 3-Tier Rate Cards (grid-cols-1 md:grid-cols-3 gap-6) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch mb-12 sm:mb-16">
-          {SHORT_FORM_TIERS.map((tier) => (
-            <TiltCard
-              key={tier.id}
-              className="h-full"
-              spotlightColor={tier.isPopular ? 'rgba(0, 242, 254, 0.25)' : 'rgba(255, 255, 255, 0.08)'}
-            >
-              <div
-                className={`h-full p-6 sm:p-8 rounded-2xl flex flex-col justify-between transition-all relative ${
-                  tier.isPopular
-                    ? 'editorial-glass border-2 border-cyan-400/80 shadow-[0_0_40px_rgba(0,242,254,0.3)] bg-gradient-to-b from-cyan-950/20 via-black/40 to-black/60'
-                    : 'editorial-glass'
-                }`}
+        {/* 3-Tier Rate Cards (with soft ambient aurora bloom behind key pricing tiers) */}
+        <div className="relative mb-12 sm:mb-16">
+          {/* Ambient Light Bloom behind key pricing tiers */}
+          <div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] rounded-full blur-[130px] bg-cyan-500/10 pointer-events-none -z-10"
+            aria-hidden="true"
+          />
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+            {SHORT_FORM_TIERS.map((tier) => (
+              <TiltCard
+                key={tier.id}
+                className="h-full"
+                spotlightColor={tier.isPopular ? 'rgba(0, 242, 254, 0.3)' : 'rgba(255, 255, 255, 0.08)'}
               >
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-4">
-                    <span className="text-xs font-mono text-cyan-400 uppercase tracking-widest font-semibold">
-                      {tier.level}
-                    </span>
-                    {tier.isPopular ? (
-                      <div className="px-3 py-1 rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 text-black font-extrabold text-[9px] font-mono tracking-wider uppercase animate-shimmer shadow-[0_0_15px_rgba(0,242,254,0.6)]">
-                        MOST POPULAR CREATOR CHOICE
-                      </div>
-                    ) : (
-                      tier.badge && (
-                        <span className="text-[10px] font-mono uppercase px-2.5 py-0.5 rounded-full bg-white/10 text-white font-bold border border-white/10">
-                          {tier.badge}
-                        </span>
-                      )
-                    )}
+                <div
+                  className={`h-full p-6 sm:p-8 rounded-2xl md:rounded-3xl flex flex-col justify-between transition-all relative ${
+                    tier.isPopular
+                      ? 'editorial-glass border-2 border-cyan-400/90 shadow-[0_0_50px_rgba(0,242,254,0.35)] bg-gradient-to-b from-cyan-950/30 via-black/40 to-black/70'
+                      : 'editorial-glass'
+                  }`}
+                >
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-4">
+                      <span className="text-xs font-mono text-cyan-400 uppercase tracking-widest font-semibold">
+                        {tier.level}
+                      </span>
+                      {tier.isPopular ? (
+                        <div className="px-3 py-1 rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 text-black font-extrabold text-[9px] font-mono tracking-wider uppercase animate-shimmer shadow-[0_0_20px_rgba(0,242,254,0.7)]">
+                          MOST POPULAR CREATOR CHOICE
+                        </div>
+                      ) : (
+                        tier.badge && (
+                          <span className="text-[10px] font-mono uppercase px-2.5 py-0.5 rounded-full bg-white/10 text-white font-bold border border-white/10">
+                            {tier.badge}
+                          </span>
+                        )
+                      )}
+                    </div>
+
+                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">{tier.title}</h3>
+
+                    <div className="flex items-baseline gap-2 mb-2">
+                      <span
+                        className={`text-3xl sm:text-4xl font-extrabold font-mono tabular-nums ${
+                          tier.isPopular
+                            ? 'text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-cyan-400 drop-shadow-[0_0_20px_rgba(0,242,254,0.5)]'
+                            : 'text-white'
+                        }`}
+                      >
+                        <AnimatedCounter value={tier.priceLKR} prefix="LKR " />
+                      </span>
+                      <span className="text-xs text-slate-400 font-mono">/ video</span>
+                    </div>
+
+                    <div className="text-[11px] font-mono text-cyan-400/80 mb-6">
+                      {tier.runtime}
+                    </div>
+
+                    <div className="space-y-3 pt-6 border-t border-white/10">
+                      {tier.deliverables.map((item, idx) => (
+                        <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-300 font-light">
+                          <Check className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
+                          <span>{item}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
 
-                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">{tier.title}</h3>
-
-                  <div className="flex items-baseline gap-2 mb-2">
-                    <span
-                      className={`text-3xl sm:text-4xl font-extrabold font-mono tabular-nums ${
+                  <div className="pt-6 sm:pt-8 mt-6 sm:mt-8 border-t border-white/10">
+                    <a
+                      href={getWhatsAppUrl(
+                        `Hi Loop Studios, I'd like to order "${tier.title}" (${tier.level}) for short-form video editing at LKR ${tier.priceLKR.toLocaleString()} / video.`
+                      )}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`w-full min-h-[46px] py-3 text-xs font-semibold rounded-full flex items-center justify-center gap-2 transition-all active:scale-95 cursor-pointer ${
                         tier.isPopular
-                          ? 'text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-cyan-400 drop-shadow-[0_0_20px_rgba(0,242,254,0.5)]'
-                          : 'text-white'
+                          ? 'bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 text-black font-bold shadow-[0_0_25px_rgba(0,242,254,0.45)] hover:brightness-110'
+                          : 'bg-white/10 hover:bg-white/15 text-white border border-white/15 shadow-md'
                       }`}
                     >
-                      LKR {tier.priceLKR.toLocaleString()}
-                    </span>
-                    <span className="text-xs text-slate-400 font-mono">/ video</span>
-                  </div>
-
-                  <div className="text-[11px] font-mono text-cyan-400/80 mb-6">
-                    {tier.runtime}
-                  </div>
-
-                  <div className="space-y-3 pt-6 border-t border-white/10">
-                    {tier.deliverables.map((item, idx) => (
-                      <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-300 font-light">
-                        <Check className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
-                        <span>{item}</span>
-                      </div>
-                    ))}
+                      <span>Order on WhatsApp</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
                   </div>
                 </div>
-
-                <div className="pt-6 sm:pt-8 mt-6 sm:mt-8 border-t border-white/10">
-                  <a
-                    href={getWhatsAppUrl(
-                      `Hi Loop Studios, I'd like to order "${tier.title}" (${tier.level}) for short-form video editing at LKR ${tier.priceLKR.toLocaleString()} / video.`
-                    )}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`w-full min-h-[46px] py-3 text-xs font-semibold rounded-full flex items-center justify-center gap-2 transition-all active:scale-95 ${
-                      tier.isPopular
-                        ? 'bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 text-black font-bold shadow-[0_0_25px_rgba(0,242,254,0.45)] hover:brightness-110'
-                        : 'bg-white/10 hover:bg-white/15 text-white border border-white/15 shadow-md'
-                    }`}
-                  >
-                    <span>Order on WhatsApp</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </a>
-                </div>
-              </div>
-            </TiltCard>
-          ))}
-        </div>
-
-        {/* Batch Estimator */}
-        <div className="p-6 sm:p-8 rounded-2xl editorial-glass">
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-neutral-600 dark:text-neutral-400 mb-2">
-            <Calculator className="w-3.5 h-3.5" />
-            <span>Batch Content Calculator</span>
-          </div>
-          <h3 className="text-lg sm:text-xl font-bold text-[#0A0A0C] dark:text-white mb-2">
-            Estimate Your Monthly Video Batch
-          </h3>
-          <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mb-6 max-w-xl font-light">
-            Select editing level and video volume. Master files delivered in cloud drive folders ready for distribution.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-            <div className="md:col-span-5 space-y-2">
-              <label className="block text-xs font-mono uppercase text-neutral-600 dark:text-neutral-400">
-                Tier
-              </label>
-              <div className="grid grid-cols-3 gap-2">
-                {SHORT_FORM_TIERS.map((t) => (
-                  <button
-                    key={t.id}
-                    onClick={() => setSelectedTierId(t.id)}
-                    className={`p-2 sm:p-2.5 rounded-xl border text-center transition-all cursor-pointer ${
-                      selectedTierId === t.id
-                        ? 'bg-[#0A0A0C] text-white dark:bg-white dark:text-black border-transparent shadow-sm'
-                        : 'bg-black/5 dark:bg-white/5 border-black/10 dark:border-white/10 text-slate-600 dark:text-slate-400 hover:text-black dark:hover:text-white'
-                    }`}
-                  >
-                    <div className="text-[10px] font-mono">{t.level}</div>
-                    <div className="text-xs font-bold truncate">{t.title}</div>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="md:col-span-4 space-y-2">
-              <div className="flex justify-between items-center text-xs font-mono uppercase text-neutral-600 dark:text-neutral-400">
-                <span>Quantity</span>
-                <span className="text-[#0A0A0C] dark:text-white font-bold">{batchCount} Videos</span>
-              </div>
-              <input
-                type="range"
-                min="1"
-                max="30"
-                value={batchCount}
-                onChange={(e) => setBatchCount(Number(e.target.value))}
-                className="w-full accent-black dark:accent-white bg-black/10 dark:bg-white/10 rounded-lg cursor-pointer h-2"
-              />
-              <div className="flex justify-between text-[10px] font-mono text-neutral-500">
-                <span>1 video</span>
-                <span>15 videos</span>
-                <span>30 videos</span>
-              </div>
-            </div>
-
-            <div className="md:col-span-3 p-4 rounded-xl bg-black/5 dark:bg-white/[0.02] border border-black/10 dark:border-white/10 flex flex-col justify-between">
-              <div>
-                <span className="text-[10px] font-mono uppercase text-neutral-600 dark:text-neutral-400">Total Investment</span>
-                <div className="text-2xl sm:text-3xl font-bold text-[#0A0A0C] dark:text-white font-mono tabular-nums">
-                  LKR {totalLKR.toLocaleString()}
-                </div>
-              </div>
-              <div className="pt-3 mt-3 border-t border-black/10 dark:border-white/10">
-                <a
-                  href={getWhatsAppUrl(
-                    `Hi Loop Studios, I'd like to book a batch of ${batchCount} videos under "${activeTier.title}" totaling LKR ${totalLKR.toLocaleString()}.`
-                  )}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full min-h-[44px] inline-flex items-center justify-center gap-1.5 py-2.5 text-xs font-semibold rounded-full bg-[#0A0A0C] text-white dark:bg-white dark:text-black hover:opacity-90 transition-colors active:scale-95"
-                >
-                  <span>Book Batch</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                </a>
-              </div>
-            </div>
+              </TiltCard>
+            ))}
           </div>
         </div>
+
+        {/* Interactive Package Pricing Calculator */}
+        <PackagePricingCalculator />
       </section>
 
       {/* =========================================================================
@@ -506,7 +433,7 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
                         ? 'text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-200 to-cyan-400 drop-shadow-[0_0_12px_rgba(0,242,254,0.3)]'
                         : 'text-[#0A0A0C] dark:text-white'
                     }`}>
-                      LKR {pkg.priceLKR.toLocaleString()}
+                      <AnimatedCounter value={pkg.priceLKR} prefix="LKR " />
                     </span>
                     <span className="text-xs text-neutral-600 dark:text-neutral-400 font-mono">/ month</span>
                   </div>
