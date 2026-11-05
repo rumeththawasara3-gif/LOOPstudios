@@ -12,7 +12,7 @@ const SERVICE_OPTIONS = [
   { id: 'full-crew', label: 'Full-Crew Event Coverage (Videographers + Photographers + Drones)' },
   { id: 'cinematic-film', label: 'Cinematic Videography & Recap Films' },
   { id: 'signature-photo', label: 'Signature Event Photography & Retouching' },
-  { id: '360-vr', label: '360° Immersive Capture (Exclusive New Upgrade)' },
+  { id: '360-vr', label: '360° Memory Capture (Recorded Video & Playback Anywhere)' },
 ];
 
 export const EventQuoteModal: React.FC<EventQuoteModalProps> = ({

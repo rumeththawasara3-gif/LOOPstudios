@@ -47,14 +47,16 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuoteModal, is
               Loop Studios — Full-stack visual content and strategic growth agency.
             </p>
 
-            <div className="text-xs font-mono text-slate-500 dark:text-slate-400">
+            <div className="pt-1">
               <a
                 href="https://maps.app.goo.gl/kzwf9SkoCJSia1J37"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:underline flex items-center gap-1.5 transition-colors"
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 dark:text-cyan-300 hover:bg-cyan-500/20 text-[11px] font-mono tracking-wide transition-all shadow-sm group"
+                title="Open Studio Base Location on Google Maps"
               >
-                📍 Based in Sri Lanka · Available Worldwide
+                <span>📍 Base: Sri Lanka · Islandwide & Global On-Site Dispatch</span>
+                <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
             </div>
           </div>

@@ -257,8 +257,23 @@
   animation: shimmer-glow 4s ease infinite;
 }
 
+/* Equipment Rig Soft Floating Animation */
+@keyframes gear-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0.8deg);
+  }
+}
+
+.animate-gear-float {
+  animation: gear-float 4.5s ease-in-out infinite;
+}
+
 /* Clean electric text selection */
 ::selection {
   background-color: rgba(0, 242, 254, 0.3);
   color: #FFFFFF;
 }
+

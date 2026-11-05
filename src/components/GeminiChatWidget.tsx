@@ -17,6 +17,7 @@ import {
   AudioLines,
 } from 'lucide-react';
 import { DISPLAY_PHONE, WHATSAPP_NUMBER, getWhatsAppUrl } from '../types.ts';
+import { sendDirectGeminiChat } from '../geminiClient.ts';
 
 interface ChatMessage {
   id: string;
@@ -422,25 +423,10 @@ export const GeminiChatWidget: React.FC<GeminiChatWidgetProps> = ({ isDark = tru
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          messages: newHistory.map((m) => ({
-            role: m.role,
-            text: m.text,
-          })),
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`Server returned ${response.status}`);
-      }
-
-      const data = await response.json();
-      const aiReply =
-        data.reply ||
-        `Thanks for inquiring. Reach out directly to our team on WhatsApp: https://wa.me/${WHATSAPP_NUMBER}`;
+      const aiReply = await sendDirectGeminiChat(
+        newHistory.map((m) => ({ role: m.role, text: m.text })),
+        text
+      );
 
       setMessages((prev) => [
         ...prev,

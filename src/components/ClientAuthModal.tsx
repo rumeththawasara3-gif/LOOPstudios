@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import { X, Lock, Mail, ShieldCheck, ArrowRight, Sparkles, AlertCircle } from 'lucide-react';
 import {
   auth,
+  db,
+  doc,
+  setDoc,
   googleProvider,
   signInWithPopup,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  updateProfile,
 } from '../firebase.ts';
 import { LOGO_PATH } from '../types.ts';
 
@@ -23,6 +27,7 @@ export const ClientAuthModal: React.FC<ClientAuthModalProps> = ({
   onSuccess,
 }) => {
   const [mode, setMode] = useState<'signin' | 'signup'>('signin');
+  const [clientName, setClientName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -30,11 +35,34 @@ export const ClientAuthModal: React.FC<ClientAuthModalProps> = ({
 
   if (!isOpen) return null;
 
+  const saveUserProfile = async (uid: string, userEmail: string, displayName?: string, photoURL?: string) => {
+    try {
+      await setDoc(
+        doc(db, 'users', uid),
+        {
+          uid,
+          email: userEmail || '',
+          displayName: displayName || userEmail.split('@')[0],
+          photoURL: photoURL || '',
+          role: 'client',
+          updatedAt: new Date().toISOString(),
+          createdAt: new Date().toISOString(),
+        },
+        { merge: true }
+      );
+    } catch (err) {
+      console.warn('Failed to save user profile to users collection:', err);
+    }
+  };
+
   const handleGoogleSignIn = async () => {
     setIsLoading(true);
     setErrorMsg(null);
     try {
-      await signInWithPopup(auth, googleProvider);
+      const res = await signInWithPopup(auth, googleProvider);
+      if (res.user) {
+        await saveUserProfile(res.user.uid, res.user.email || '', res.user.displayName || '', res.user.photoURL || '');
+      }
       onSuccess?.();
       onClose();
     } catch (err: unknown) {
@@ -58,9 +86,20 @@ export const ClientAuthModal: React.FC<ClientAuthModalProps> = ({
     setErrorMsg(null);
     try {
       if (mode === 'signin') {
-        await signInWithEmailAndPassword(auth, email, password);
+        const res = await signInWithEmailAndPassword(auth, email, password);
+        if (res.user) {
+          await saveUserProfile(res.user.uid, res.user.email || '', res.user.displayName || '');
+        }
       } else {
-        await createUserWithEmailAndPassword(auth, email, password);
+        const res = await createUserWithEmailAndPassword(auth, email, password);
+        if (res.user) {
+          if (clientName.trim()) {
+            try {
+              await updateProfile(res.user, { displayName: clientName.trim() });
+            } catch {}
+          }
+          await saveUserProfile(res.user.uid, res.user.email || '', clientName.trim() || res.user.displayName || '');
+        }
       }
       onSuccess?.();
       onClose();
@@ -160,6 +199,24 @@ export const ClientAuthModal: React.FC<ClientAuthModalProps> = ({
 
         {/* Email & Password Form */}
         <form onSubmit={handleEmailAuth} className="space-y-3">
+          {mode === 'signup' && (
+            <div>
+              <label className="block text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">
+                Client / Brand Name
+              </label>
+              <div className="relative">
+                <Sparkles className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-cyan-400" />
+                <input
+                  type="text"
+                  value={clientName}
+                  onChange={(e) => setClientName(e.target.value)}
+                  placeholder="e.g. Acme Media or John Silva"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-xl text-xs sm:text-sm bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 focus:outline-none focus:border-cyan-500 dark:focus:border-cyan-400 transition-colors"
+                />
+              </div>
+            </div>
+          )}
+
           <div>
             <label className="block text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">
               Client Email

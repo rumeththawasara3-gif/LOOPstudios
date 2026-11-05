@@ -27,39 +27,39 @@ interface Hotspot {
 const HOTSPOTS: Hotspot[] = [
   {
     id: 'stage',
-    name: 'Main Keynote Arena & Stage',
+    name: 'Front Row & Stage View',
     phi: Math.PI / 2,
     theta: Math.PI * 0.25,
-    description: 'Dynamic focal position capturing main presentations, keynote speakers, and audience reaction in one continuous 360° spherical master.',
-    badge: 'Stage Coverage',
-    coordsText: 'ZONE 01 · 45° EAST',
+    description: 'Experience what the audience felt right in front of the main stage, or look around to see the crowd reaction.',
+    badge: 'Stage Perspective',
+    coordsText: 'Front Row View',
   },
   {
     id: 'vip',
-    name: 'Executive & Private Lounge',
+    name: 'VIP Guest & Networking Lounge',
     phi: Math.PI / 2.05,
     theta: Math.PI * 0.85,
-    description: 'Ambient spatial lighting and intimate networking coverage for distinguished corporate gatherings and VIPs.',
-    badge: 'Ambient Lounge',
-    coordsText: 'ZONE 02 · 155° SOUTH',
+    description: 'Relive the energy and candid atmosphere in the hospitality lounge as guests celebrate.',
+    badge: 'Lounge Perspective',
+    coordsText: 'Guest Area',
   },
   {
     id: 'deck',
-    name: 'Optical & Sound Control Deck',
+    name: 'Sound & Production Booth',
     phi: Math.PI / 1.95,
     theta: Math.PI * 1.45,
-    description: 'Master multi-angle synchronization point ensuring frame-accurate audio and visual calibration.',
-    badge: 'Master Sync',
-    coordsText: 'ZONE 03 · 265° WEST',
+    description: 'A behind-the-scenes vantage point capturing all stage lighting, sound engineering, and keynote pacing.',
+    badge: 'Director Angle',
+    coordsText: 'Control Booth',
   },
   {
     id: 'atrium',
-    name: 'Grand Architectural Atrium',
+    name: 'Full Venue Architecture',
     phi: Math.PI / 2.02,
     theta: Math.PI * 1.85,
-    description: 'Full-height spatial sweep documenting guest arrival momentum and grand venue architecture.',
-    badge: 'Spatial Sweep',
-    coordsText: 'ZONE 04 · 335° NORTH',
+    description: 'Look all the way up to the ceiling trusses and around to take in the full architectural scale of the setting.',
+    badge: 'Panoramic Angle',
+    coordsText: 'Full Atrium',
   },
 ];
 
@@ -132,10 +132,10 @@ function generateProcedural360Texture(): HTMLCanvasElement {
   ctx.font = 'bold 24px monospace';
   ctx.fillStyle = '#ffffff';
   ctx.textAlign = 'center';
-  ctx.fillText('LOOP STUDIOS · 360 SPATIAL LIVE', stageX, 520);
+  ctx.fillText('LOOP STUDIOS · 360° RECORDED EXPERIENCE', stageX, 520);
   ctx.font = '14px monospace';
   ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-  ctx.fillText('4K 60P HDR SPHERICAL CAPTURE', stageX, 550);
+  ctx.fillText('RELIVE THE MOMENT FROM ANY ANGLE', stageX, 550);
 
   // Zone 02: Executive Lounge Mezzanine (around x = width * 0.48)
   const loungeX = width * 0.48;
@@ -504,24 +504,24 @@ export const Panorama360Viewer: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative w-full rounded-2xl overflow-hidden border border-black/10 dark:border-white/10 bg-[#070709] shadow-2xl select-none">
-      {/* Minimalist Top Control Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-4 px-5 sm:px-6 py-4 border-b border-black/10 dark:border-white/10 bg-[#090A0E]/85 backdrop-blur-xl">
+    <div className="relative w-full rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 bg-[#070709] shadow-2xl select-none">
+      {/* Clean Top Control Bar */}
+      <div className="flex flex-wrap items-center justify-between gap-4 px-5 sm:px-6 py-4 border-b border-white/10 bg-[#090A0E]/90 backdrop-blur-xl">
         <div className="flex items-center gap-3">
-          <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white/5 border border-white/10 text-white shrink-0">
-            <Compass className="w-4 h-4 text-blue-400" />
+          <div className="flex items-center justify-center w-8 h-8 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 shrink-0">
+            <Compass className="w-4 h-4" />
           </div>
           <div>
             <div className="flex items-center gap-2">
               <span className="text-xs font-mono uppercase tracking-wider text-white font-semibold">
-                Three.js 360° Spherical Event Projection
+                Recorded 360° Review Player
               </span>
-              <span className="text-[9px] font-mono px-1.5 py-0.5 rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30">
-                Inverted Normals
+              <span className="text-[9px] font-mono px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 font-medium">
+                Cloud Hosted · No App Required
               </span>
             </div>
-            <div className="text-[11px] text-slate-400">
-              Spherical projection · Drag or swipe to orbit venue in full 360°
+            <div className="text-[11px] text-slate-400 font-light">
+              Click & drag or tilt your device to look around naturally in 360°
             </div>
           </div>
         </div>
@@ -533,10 +533,10 @@ export const Panorama360Viewer: React.FC = () => {
             onClick={() => setVrViewMode(!vrViewMode)}
             className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono rounded-full border transition-all cursor-pointer min-h-[36px] ${
               vrViewMode
-                ? 'bg-blue-600 text-white border-blue-500 shadow-lg'
+                ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white border-purple-400 shadow-lg shadow-purple-500/20'
                 : 'bg-white/5 text-slate-300 border-white/10 hover:bg-white/10'
             }`}
-            title="Simulate VR Headset Stereoscopic Dual-Lens View"
+            title="Simulate VR Headset Dual-Lens Experience"
           >
             <Glasses className="w-3.5 h-3.5" />
             <span>{vrViewMode ? 'VR Mode: Dual-Lens' : 'Simulate VR View'}</span>
@@ -550,9 +550,10 @@ export const Panorama360Viewer: React.FC = () => {
                 ? 'bg-white text-black border-white'
                 : 'bg-white/5 text-slate-300 border-white/10 hover:bg-white/10'
             }`}
+            title="Toggle Automatic 360° Pan"
           >
             <RotateCw className={`w-3 h-3 ${autoRotate ? 'animate-spin' : ''}`} />
-            <span>{autoRotate ? 'Orbit: Auto' : 'Orbit: Paused'}</span>
+            <span>{autoRotate ? 'Auto-Pan: On' : 'Auto-Pan: Off'}</span>
           </button>
 
           {/* Zoom In/Out */}
@@ -580,29 +581,34 @@ export const Panorama360Viewer: React.FC = () => {
         ref={mountRef}
         className="relative w-full h-[380px] sm:h-[460px] md:h-[500px] cursor-grab active:cursor-grabbing select-none overflow-hidden"
       >
-        {/* Telemetry HUD Badge */}
-        <div className="absolute top-4 left-4 pointer-events-none flex items-center gap-3 text-[11px] font-mono text-slate-300 bg-black/75 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/10 z-10">
-          <span>YAW: {yaw}°</span>
-          <span>·</span>
-          <span>PITCH: {pitch}°</span>
-          <span>·</span>
-          <span>FOV: {Math.round(zoomFov)}°</span>
+        {/* Clean Status Pill with Emerald Signal */}
+        <div className="absolute top-4 left-4 pointer-events-none flex items-center gap-2 text-xs text-white bg-black/75 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/15 z-10 shadow-lg">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="font-medium">360° Interactive Experience</span>
+          <span className="text-slate-500">·</span>
+          <span className="text-[11px] text-cyan-300 font-mono">Any Device</span>
         </div>
 
-        {/* Stereoscopic Center Divider & Circular Lens Distortions (Only in VR Mode) */}
+        {/* Rotating Navigation Compass Indicator on Top Right */}
+        <div className="hidden sm:flex absolute top-4 right-4 pointer-events-none items-center gap-2 text-[11px] font-mono text-cyan-300 bg-black/75 backdrop-blur-md px-3 py-1.5 rounded-full border border-cyan-500/20 z-10 shadow-lg">
+          <RotateCw className="w-3 h-3 text-cyan-400 animate-spin" style={{ animationDuration: '6s' }} />
+          <span>Click & Drag to Look Around</span>
+        </div>
+
+        {/* Stereoscopic Center Divider (VR Mode) */}
         {vrViewMode && (
           <div className="absolute inset-0 pointer-events-none z-10 flex">
             {/* Center Split Line */}
             <div className="w-[2px] h-full bg-white/20 mx-auto shadow-[0_0_8px_rgba(255,255,255,0.4)]" />
 
             {/* Left Eye Label */}
-            <div className="absolute top-4 left-8 text-[10px] font-mono uppercase tracking-widest text-blue-400 bg-black/60 px-2 py-0.5 rounded border border-blue-500/30">
-              Left Eye (IPD -64mm)
+            <div className="absolute top-4 left-8 text-[10px] font-mono uppercase tracking-widest text-purple-400 bg-black/70 px-2.5 py-1 rounded-full border border-purple-500/30">
+              Left Eye View
             </div>
 
             {/* Right Eye Label */}
-            <div className="absolute top-4 right-8 text-[10px] font-mono uppercase tracking-widest text-blue-400 bg-black/60 px-2 py-0.5 rounded border border-blue-500/30">
-              Right Eye (IPD +64mm)
+            <div className="absolute top-4 right-8 text-[10px] font-mono uppercase tracking-widest text-purple-400 bg-black/70 px-2.5 py-1 rounded-full border border-purple-500/30">
+              Right Eye View
             </div>
 
             {/* Circular Vignette Overlay simulating Headset Optics */}
@@ -610,11 +616,11 @@ export const Panorama360Viewer: React.FC = () => {
           </div>
         )}
 
-        {/* Interaction Hint */}
+        {/* Dynamic Rotating Navigation Arrows Hint when Idle */}
         {!isDragging && (
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 pointer-events-none flex items-center gap-2 text-xs text-slate-200 bg-black/75 backdrop-blur-md px-4 py-2 rounded-full border border-white/15 z-10">
-            <Eye className="w-3.5 h-3.5 text-blue-400" />
-            <span>Click & drag to explore · Select glowing hotspots for zone details</span>
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 pointer-events-none flex items-center gap-2.5 text-xs text-white bg-black/85 backdrop-blur-md px-4 py-2 rounded-full border border-cyan-400/40 shadow-[0_0_25px_rgba(0,242,254,0.25)] z-10 animate-pulse">
+            <span className="text-cyan-400 font-bold">↺ ↻</span>
+            <span className="font-medium">Click & drag in any direction to explore the space</span>
           </div>
         )}
 
@@ -623,7 +629,7 @@ export const Panorama360Viewer: React.FC = () => {
           <div className="absolute bottom-6 right-6 max-w-sm w-full bg-[#0B0C10]/95 border border-white/20 rounded-2xl p-5 shadow-2xl backdrop-blur-xl animate-in fade-in duration-200 z-20">
             <div className="flex items-start justify-between gap-3 mb-2">
               <div className="flex items-center gap-2">
-                <span className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded bg-blue-500/20 text-blue-400 border border-blue-500/30 font-semibold">
+                <span className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 font-semibold">
                   {activeHotspot.badge}
                 </span>
                 <span className="text-[10px] font-mono text-slate-400">
@@ -643,42 +649,58 @@ export const Panorama360Viewer: React.FC = () => {
               {activeHotspot.description}
             </p>
             <a
-              href={getWhatsAppUrl(`Hi Loop Studios, I'd like to book 360° VR Spatial Capture for: ${activeHotspot.name}`)}
+              href={getWhatsAppUrl(`Hi Loop Studios, I'd like to book 360° Memory Capture for: ${activeHotspot.name}`)}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 w-full py-2.5 text-xs font-semibold rounded-xl bg-white text-black hover:bg-slate-200 transition-colors shadow-md cursor-pointer"
             >
-              <span>Inquire for 360° Venue Booking</span>
+              <span>Inquire for 360° Event Recording</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </a>
           </div>
         )}
       </div>
 
-      {/* Teaser Footer Bar */}
-      <div className="p-6 bg-[#070709] border-t border-black/10 dark:border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-        <div className="space-y-1">
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-neutral-400">
-            <Sparkles className="w-3.5 h-3.5 text-blue-400" />
-            <span>Multi-Platform Spatial Reality</span>
+      {/* Review Footer Bar & CTA */}
+      <div className="p-6 sm:p-8 bg-[#070709] border-t border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div className="space-y-1.5 max-w-xl">
+          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-cyan-400 font-semibold">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Instant Web Delivery · Zero Apps Required</span>
           </div>
           <h3 className="text-lg md:text-xl font-bold text-white tracking-tight">
-            Step Inside the Venue from Any Smartphone, Desktop, or VR Headset.
+            Relive Every Angle of Your Event, Exactly as It Happened.
           </h3>
-          <p className="text-xs sm:text-sm text-slate-400 max-w-2xl leading-relaxed font-light">
-            Record complete spherical video permitting clients, attendees, and sponsors to relive your event in interactive 360° via mobile gyroscopes, desktop click-drag, or VR box.
+          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light">
+            We record on-site with cinema 360° optical rigs and deliver a private, hosted interactive link. Anyone with the link can re-watch on their phone, computer, or VR headset anytime.
           </p>
         </div>
 
-        <a
-          href={getWhatsAppUrl(`Hi Loop Studios, I'd like to add 360° Immersive Event Capture to our upcoming event.`)}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-full md:w-auto shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] text-xs sm:text-sm font-semibold rounded-full bg-white text-black hover:bg-slate-200 transition-all active:scale-95 whitespace-nowrap"
-        >
-          <span>Add 360° VR to Your Event</span>
-          <ArrowRight className="w-4 h-4" />
-        </a>
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto shrink-0">
+          <button
+            type="button"
+            onClick={() => {
+              setAutoRotate(true);
+              setVrViewMode(false);
+              setZoomFov(75);
+            }}
+            className="inline-flex items-center justify-center gap-2 px-5 py-3 text-xs sm:text-sm font-semibold rounded-full bg-white/10 hover:bg-white/15 text-white border border-white/15 transition-all cursor-pointer min-h-[44px]"
+            title="Start automatic rotating preview"
+          >
+            <RotateCw className="w-3.5 h-3.5 text-cyan-400" />
+            <span>Watch a 360° Sample</span>
+          </button>
+
+          <a
+            href={getWhatsAppUrl(`Hi Loop Studios, I'd like to book 360° Memory Capture & Recorded Video for our upcoming event.`)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] text-xs sm:text-sm font-semibold rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 text-black hover:opacity-95 shadow-[0_0_25px_rgba(0,242,254,0.3)] transition-all active:scale-95 whitespace-nowrap font-display"
+          >
+            <span>Book 360° Memory Capture</span>
+            <ArrowRight className="w-4 h-4 text-black" />
+          </a>
+        </div>
       </div>
     </div>
   );

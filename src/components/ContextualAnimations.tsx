@@ -1,26 +1,18 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import {
-  DroneRadarHUD,
-  SpatialGyroHUD,
-  CinemaCameraHUD,
-  RetentionWaveformHUD,
-} from './CinemaHUDs.tsx';
+import { EditorialPhotoFrame } from './EditorialPhotoFrame.tsx';
 
 gsap.registerPlugin(ScrollTrigger);
 
 // =========================================================================
 // 1. DRONE & AERIAL SECTION
-// Director HUD: Drone Flight Radar Grid, Altitude Telemetry, Compass Rings
-// Start: y: -120px, scale: 0.75, rotation: -10deg, opacity: 0
-// End: y: 0, scale: 1, rotation: 0deg, opacity: 1 (scrub: 1)
+// Luxury Editorial Photo Card with smooth parallax reveal
 // =========================================================================
 export const DroneAnimationBlock: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const visualRef = useRef<HTMLDivElement | null>(null);
   const textRef = useRef<HTMLDivElement | null>(null);
-  const [rotation, setRotation] = useState(0);
 
   useEffect(() => {
     if (!containerRef.current || !visualRef.current || !textRef.current) return;
@@ -29,15 +21,13 @@ export const DroneAnimationBlock: React.FC = () => {
       gsap.fromTo(
         visualRef.current,
         {
-          y: -120,
-          scale: 0.75,
-          rotation: -10,
+          y: -40,
+          scale: 0.95,
           opacity: 0,
         },
         {
           y: 0,
           scale: 1,
-          rotation: 0,
           opacity: 1,
           ease: 'power3.out',
           scrollTrigger: {
@@ -46,9 +36,6 @@ export const DroneAnimationBlock: React.FC = () => {
             end: 'center center',
             scrub: 1,
             toggleActions: 'play reverse play reverse',
-            onUpdate: (self) => {
-              setRotation(self.progress * 360);
-            },
           },
         }
       );
@@ -56,14 +43,12 @@ export const DroneAnimationBlock: React.FC = () => {
       gsap.fromTo(
         textRef.current,
         {
-          y: 35,
+          y: 30,
           opacity: 0,
-          filter: 'blur(8px)',
         },
         {
           y: 0,
           opacity: 1,
-          filter: 'blur(0px)',
           ease: 'power2.out',
           scrollTrigger: {
             trigger: containerRef.current,
@@ -82,23 +67,31 @@ export const DroneAnimationBlock: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="drone-block relative p-6 sm:p-8 rounded-2xl editorial-glass flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 overflow-hidden select-none"
+      className="drone-block relative p-6 sm:p-8 rounded-2xl md:rounded-3xl editorial-glass flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 overflow-hidden select-none transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/10"
     >
       <div className="order-1 md:order-2 w-full md:w-[48%] flex items-center justify-center shrink-0">
         <div ref={visualRef} className="w-full will-change-transform">
-          <DroneRadarHUD scrollRotation={rotation} />
+          <EditorialPhotoFrame
+            src="/images/service-aerial.jpg"
+            fallbackSrc="https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&w=1600&auto=format&fit=crop"
+            alt="Aerial Cinematic Perspectives"
+            badge="AERIAL CINEMA"
+            gearCutoutSrc="/drone.png"
+            gearName="4K HDR Aerial Cinema Drone"
+            aspectRatio="cinema"
+          />
         </div>
       </div>
 
-      <div ref={textRef} className="order-2 md:order-1 space-y-3 max-w-xl will-change-[transform,opacity,filter]">
+      <div ref={textRef} className="order-2 md:order-1 space-y-3 max-w-xl will-change-[transform,opacity]">
         <span className="font-mono text-[10px] md:text-xs tracking-[0.25em] text-cyan-400 uppercase font-semibold">
-          AERIAL RECON // PILOT DIRECTIVE
+          CINEMATIC AERIAL PERSPECTIVES
         </span>
         <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white cinema-gradient-text">
           Drone & Scale Capture
         </h3>
         <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light">
-          Fluid multi-axis altitude sweeps, radar-coordinated flight corridors, and high-altitude architectural venue perspectives deployed seamlessly by licensed pilots.
+          Fluid multi-axis altitude sweeps, architectural framing, and high-altitude venue perspectives deployed seamlessly by licensed commercial pilots.
         </p>
         <div className="pt-2 flex flex-wrap items-center gap-2 text-[10px] font-mono text-cyan-400">
           <span className="px-2.5 py-1 rounded bg-cyan-500/10 border border-cyan-500/20 font-bold">
@@ -108,7 +101,7 @@ export const DroneAnimationBlock: React.FC = () => {
             D-LOG M 10-BIT
           </span>
           <span className="px-2.5 py-1 rounded bg-cyan-500/10 border border-cyan-500/20">
-            RADAR RADIAL SYNC
+            ISLANDWIDE DISPATCH
           </span>
         </div>
       </div>
@@ -118,9 +111,6 @@ export const DroneAnimationBlock: React.FC = () => {
 
 // =========================================================================
 // 2. 360° & VR IMMERSION SECTION
-// Director HUD: Rotating Geometric 3D Wireframe Gyro-Sphere
-// Start: rotateY: 180, scale: 0.75, opacity: 0
-// End: rotateY: 0, scale: 1, opacity: 1 (scrub: 1)
 // =========================================================================
 export const VRHeadsetAnimationBlock: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -134,13 +124,10 @@ export const VRHeadsetAnimationBlock: React.FC = () => {
       gsap.fromTo(
         visualRef.current,
         {
-          rotateY: 90,
-          scale: 0.8,
+          scale: 0.92,
           opacity: 0,
-          transformPerspective: 1000,
         },
         {
-          rotateY: 0,
           scale: 1,
           opacity: 1,
           ease: 'power3.out',
@@ -157,9 +144,9 @@ export const VRHeadsetAnimationBlock: React.FC = () => {
       gsap.fromTo(
         textRef.current,
         {
-          scale: 0.94,
+          scale: 0.96,
           opacity: 0,
-          y: 30,
+          y: 25,
         },
         {
           scale: 1,
@@ -183,33 +170,41 @@ export const VRHeadsetAnimationBlock: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="vr-block relative p-6 sm:p-8 rounded-2xl editorial-glass flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 overflow-hidden select-none"
+      className="vr-block relative p-6 sm:p-8 rounded-2xl md:rounded-3xl editorial-glass flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 overflow-hidden select-none transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/10"
     >
       <div className="order-1 md:order-2 w-full md:w-[48%] flex items-center justify-center shrink-0">
         <div ref={visualRef} className="w-full will-change-transform">
-          <SpatialGyroHUD />
+          <EditorialPhotoFrame
+            src="/images/service-360.jpg"
+            fallbackSrc="https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?q=80&w=1600&auto=format&fit=crop"
+            alt="360 Spatial & Virtual Immersion"
+            badge="360° SPATIAL"
+            gearCutoutSrc="/vrbox.png"
+            gearName="8K Spatial Immersion VR Headset"
+            aspectRatio="cinema"
+          />
         </div>
       </div>
 
       <div ref={textRef} className="order-2 md:order-1 space-y-3 max-w-xl will-change-[transform,opacity]">
         <span className="font-mono text-[10px] md:text-xs tracking-[0.25em] text-purple-400 uppercase font-semibold">
-          SPATIAL COMPUTING // 360° FIELD
+          RECORDED 360° VIDEO // SPATIAL IMMERSION
         </span>
         <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white cinema-gradient-text">
-          360° VR Immersion
+          360° Memory Capture
         </h3>
         <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light">
-          Relive your flagship event from any spatial coordinate. Viewers can freely look around via mobile gyroscopes, desktop interaction, or full Apple Vision Pro & Meta Quest 3 stereoscopic immersion.
+          We record your entire event or space in immersive 360° video. We deliver a ready-to-view experience so anyone can re-watch and experience the moment from anywhere, anytime on any smartphone or with a VR headset.
         </p>
         <div className="pt-2 flex flex-wrap items-center gap-2 text-[10px] font-mono text-purple-400">
           <span className="px-2.5 py-1 rounded bg-purple-500/10 border border-purple-500/20 font-bold">
-            8K EQUIRECTANGULAR
+            PLAY ON ANY PHONE
           </span>
           <span className="px-2.5 py-1 rounded bg-purple-500/10 border border-purple-500/20">
-            GYROSCOPE SYNC
+            VR HEADSET READY
           </span>
           <span className="px-2.5 py-1 rounded bg-purple-500/10 border border-purple-500/20">
-            HEADSET READY
+            ONLINE CLOUD HOSTED
           </span>
         </div>
       </div>
@@ -219,9 +214,6 @@ export const VRHeadsetAnimationBlock: React.FC = () => {
 
 // =========================================================================
 // 3. CINEMA VIDEOGRAPHY & GIMBAL SECTION
-// Director HUD: ARRI/RED Anamorphic Scope, Audio VU Meters, Ticking Timecode
-// Start: x: -90px, scale: 0.8, opacity: 0
-// End: x: 0, scale: 1, opacity: 1 (scrub: 1)
 // =========================================================================
 export const CinemaGimbalAnimationBlock: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -235,13 +227,11 @@ export const CinemaGimbalAnimationBlock: React.FC = () => {
       gsap.fromTo(
         visualRef.current,
         {
-          x: -90,
-          scale: 0.8,
+          x: 40,
           opacity: 0,
         },
         {
           x: 0,
-          scale: 1,
           opacity: 1,
           ease: 'power3.out',
           scrollTrigger: {
@@ -257,7 +247,7 @@ export const CinemaGimbalAnimationBlock: React.FC = () => {
       gsap.fromTo(
         textRef.current,
         {
-          x: 35,
+          x: -30,
           opacity: 0,
         },
         {
@@ -281,27 +271,35 @@ export const CinemaGimbalAnimationBlock: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="video-block relative p-6 sm:p-8 rounded-2xl editorial-glass flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 overflow-hidden select-none"
+      className="video-block relative p-6 sm:p-8 rounded-2xl md:rounded-3xl editorial-glass flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 overflow-hidden select-none transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/10"
     >
       <div className="order-1 md:order-2 w-full md:w-[48%] flex items-center justify-center shrink-0">
         <div ref={visualRef} className="w-full will-change-transform">
-          <CinemaCameraHUD />
+          <EditorialPhotoFrame
+            src="/images/service-production.jpg"
+            fallbackSrc="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=1600&auto=format&fit=crop"
+            alt="Cinema Event Production & Videography"
+            badge="EVENT PRODUCTION"
+            gearCutoutSrc="/gimble.png"
+            gearName="DJI RS4 Motorized Cinema Gimbal"
+            aspectRatio="cinema"
+          />
         </div>
       </div>
 
       <div ref={textRef} className="order-2 md:order-1 space-y-3 max-w-xl will-change-[transform,opacity]">
         <span className="font-mono text-[10px] md:text-xs tracking-[0.25em] text-cyan-400 uppercase font-semibold">
-          OPTICAL RIG // 2.39:1 SCOPE
+          CINEMA PRODUCTION // MASTER RECAPS
         </span>
         <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white cinema-gradient-text">
-          Cinema Videography & Recap Films
+          Cinematic Videography & Recap Films
         </h3>
         <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light">
-          3-axis motorized gimbal stabilization, deliberate anamorphic lens selections, stage-matched color profiles, and 32-bit float audio multi-track recording.
+          3-axis motorized gimbal stabilization, deliberate anamorphic prime focal lengths, stage-matched color profiles, and 32-bit float audio multi-track recording.
         </p>
         <div className="pt-2 flex flex-wrap items-center gap-2 text-[10px] font-mono text-cyan-400">
           <span className="px-2.5 py-1 rounded bg-cyan-500/10 border border-cyan-500/20 font-bold">
-            PRORES 4444 XQ
+            PRORES 422 HQ
           </span>
           <span className="px-2.5 py-1 rounded bg-cyan-500/10 border border-cyan-500/20">
             32-BIT FLOAT AUDIO
@@ -317,9 +315,6 @@ export const CinemaGimbalAnimationBlock: React.FC = () => {
 
 // =========================================================================
 // 4. SIGNATURE PHOTOGRAPHY SECTION
-// Director HUD: Anamorphic Prime Frame & Color Calibration Telemetry
-// Start: scale: 1.25, opacity: 0
-// End: scale: 1, opacity: 1 (scrub: 1)
 // =========================================================================
 export const OpticsSnapAnimationBlock: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -333,7 +328,7 @@ export const OpticsSnapAnimationBlock: React.FC = () => {
       gsap.fromTo(
         visualRef.current,
         {
-          scale: 1.2,
+          scale: 0.95,
           opacity: 0,
         },
         {
@@ -353,7 +348,7 @@ export const OpticsSnapAnimationBlock: React.FC = () => {
       gsap.fromTo(
         textRef.current,
         {
-          y: 35,
+          y: 25,
           opacity: 0,
         },
         {
@@ -377,23 +372,31 @@ export const OpticsSnapAnimationBlock: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="photo-block relative p-6 sm:p-8 rounded-2xl editorial-glass flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 overflow-hidden select-none"
+      className="photo-block relative p-6 sm:p-8 rounded-2xl md:rounded-3xl editorial-glass flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 overflow-hidden select-none transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/10"
     >
       <div className="order-1 md:order-2 w-full md:w-[48%] flex items-center justify-center shrink-0">
         <div ref={visualRef} className="w-full will-change-transform">
-          <CinemaCameraHUD />
+          <EditorialPhotoFrame
+            src="/images/service-production.jpg"
+            fallbackSrc="https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1600&auto=format&fit=crop"
+            alt="Signature Event Photography"
+            badge="FINE-ART STILLS"
+            gearCutoutSrc="/cam.png"
+            gearName="Canon EOS Full-Frame Optical Rig"
+            aspectRatio="cinema"
+          />
         </div>
       </div>
 
       <div ref={textRef} className="order-2 md:order-1 space-y-3 max-w-xl will-change-[transform,opacity]">
         <span className="font-mono text-[10px] md:text-xs tracking-[0.25em] text-purple-400 uppercase font-semibold">
-          SIGNATURE STILLS // 45MP SENSOR
+          FINE-ART EDITORIAL STILLS
         </span>
         <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white cinema-gradient-text">
           Signature Event Photography
         </h3>
         <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light">
-          Fine-art event photography delivering uncompressed RAW assets and master editorial retouches calibrated for keynote speakers, audience energy, and stage lighting.
+          Editorial event photography delivering uncompressed RAW assets and master color retouches calibrated for keynote speakers, audience energy, and stage lighting.
         </p>
         <div className="pt-2 flex flex-wrap items-center gap-2 text-[10px] font-mono text-purple-400">
           <span className="px-2.5 py-1 rounded bg-purple-500/10 border border-purple-500/20 font-bold">
@@ -413,16 +416,21 @@ export const OpticsSnapAnimationBlock: React.FC = () => {
 
 // =========================================================================
 // 5. SHORT-FORM EDITING SECTION
-// Director HUD: Retention Waveform & Timeline Playhead Slices
 // =========================================================================
 export const EditingTimelineAnimationBlock: React.FC = () => {
   return (
-    <div className="relative w-full rounded-2xl editorial-glass p-4 sm:p-6 select-none overflow-hidden border border-cyan-500/20">
-      <div className="mb-3 flex items-center justify-between text-xs font-mono text-cyan-400">
-        <span className="font-bold tracking-wider">POST-PRODUCTION TELEMETRY // REAL-TIME SCRUBBER</span>
-        <span className="text-[10px] text-slate-400">SUB-SECOND HOOK CUT CADENCE</span>
+    <div className="relative w-full rounded-2xl md:rounded-3xl editorial-glass p-4 sm:p-6 select-none overflow-hidden border border-cyan-500/20 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/10">
+      <div className="mb-4 flex items-center justify-between text-xs font-mono text-cyan-400">
+        <span className="font-bold tracking-wider">RETENTION EDITING SUITE // MASTERING</span>
+        <span className="text-[10px] text-slate-400">9:16 VERTICAL HOOKS</span>
       </div>
-      <RetentionWaveformHUD />
+      <EditorialPhotoFrame
+        src="/images/service-editing.jpg"
+        fallbackSrc="https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=1600&auto=format&fit=crop"
+        alt="Viral Retention Editing Suite"
+        badge="VIRAL RETENTION"
+        aspectRatio="cinema"
+      />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowRight, ArrowUpRight, Camera, Sparkles, Check } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Camera, Sparkles, Check, Smartphone, Glasses, Cloud } from 'lucide-react';
 import {
   BRAND_NAME,
   getWhatsAppUrl,
@@ -262,23 +262,126 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenQuoteModal
       <CapabilitiesSection onNavigate={onNavigate} isDark={isDark} />
 
       {/* =========================================================================
-          SECTION D: INNOVATION PREVIEW — 360° SPATIAL FEATURE
+          SECTION D: 360° MEMORY CAPTURE — RECORDED VIDEO & PLAYBACK ANYWHERE
       ========================================================================= */}
-      <section className="relative px-5 sm:px-8 md:px-12 max-w-6xl mx-auto py-16 md:py-32 border-t border-black/10 dark:border-white/10">
-        <div className="mb-10 sm:mb-12 max-w-2xl space-y-3">
-          <div className="text-xs font-mono uppercase tracking-widest text-neutral-600 dark:text-neutral-400">
-            Innovation Preview
+      <section id="360-vr" className="relative px-5 sm:px-8 md:px-12 max-w-6xl mx-auto py-16 md:py-32 border-t border-black/10 dark:border-white/10">
+        {/* Exact Requested Headline & Copy */}
+        <div className="mb-10 sm:mb-14 max-w-3xl space-y-4">
+          <div className="font-mono text-[10px] md:text-xs tracking-[0.25em] text-cyan-400 uppercase font-semibold">
+            Recorded 360° Video & Playback Anywhere
           </div>
-          <h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-bold text-[#0A0A0C] dark:text-white tracking-tight leading-tight">
-            360° Spatial Feature.
+          <h2 className="font-display text-3xl sm:text-4xl md:text-6xl font-bold text-[#0A0A0C] dark:text-white tracking-tight leading-tight cinema-gradient-text">
+            360° Memory Capture
           </h2>
-          <p className="text-xs sm:text-sm md:text-base text-neutral-600 dark:text-neutral-400 font-light leading-relaxed">
-            Experience the entire venue from smartphones (pan/gyro), desktop browsers, or VR headsets. Full spherical coverage preserving every angle of your landmark event.
+          <p className="text-lg sm:text-xl md:text-2xl font-medium text-cyan-400 dark:text-cyan-300">
+            Relive the moment from any angle, any day.
+          </p>
+          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 font-light leading-relaxed max-w-2xl">
+            We record your entire event or space in immersive 360° video. We deliver a ready-to-view experience so you, your guests, or your clients can watch the moment back on any smartphone or with a VR headset—no complicated apps, completely hosted online for you to access from anywhere, anytime.
           </p>
         </div>
 
-        {/* Interactive Horizontal 360 Panoramic Simulator */}
+        {/* 3 Feature Highlights: Simple Mobile Playback, VR Ready, Unlimited Cloud Access */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 mb-10 sm:mb-14">
+          {/* Card 1: Simple Mobile Playback */}
+          <div className="p-6 sm:p-7 rounded-2xl md:rounded-3xl editorial-glass border border-white/10 transition-all duration-300 hover:border-cyan-400/40 hover:-translate-y-1 hover:shadow-xl hover:shadow-cyan-500/10 group">
+            <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+              <Smartphone className="w-6 h-6" />
+            </div>
+            <div className="font-mono text-[10px] tracking-widest text-cyan-400 uppercase font-semibold mb-1.5">
+              Instant Mobile Experience
+            </div>
+            <h3 className="text-lg sm:text-xl font-bold text-[#0A0A0C] dark:text-white mb-2 group-hover:text-cyan-300 transition-colors">
+              Play on Any Phone
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-light leading-relaxed">
+              Just click, drag, or tilt your phone to look around the space naturally in full cinematic 360°.
+            </p>
+          </div>
+
+          {/* Card 2: Virtual Reality Ready */}
+          <div className="p-6 sm:p-7 rounded-2xl md:rounded-3xl editorial-glass border border-white/10 transition-all duration-300 hover:border-purple-400/40 hover:-translate-y-1 hover:shadow-xl hover:shadow-purple-500/10 group">
+            <div className="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+              <Glasses className="w-6 h-6" />
+            </div>
+            <div className="font-mono text-[10px] tracking-widest text-purple-400 uppercase font-semibold mb-1.5">
+              Hardware Independent
+            </div>
+            <h3 className="text-lg sm:text-xl font-bold text-[#0A0A0C] dark:text-white mb-2 group-hover:text-purple-300 transition-colors">
+              VR Immersive Experience
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-light leading-relaxed">
+              Slip on any VR headset to instantly transport back to the center of the crowd.
+            </p>
+          </div>
+
+          {/* Card 3: Unlimited Cloud Access */}
+          <div className="p-6 sm:p-7 rounded-2xl md:rounded-3xl editorial-glass border border-white/10 transition-all duration-300 hover:border-blue-400/40 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 group">
+            <div className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+              <Cloud className="w-6 h-6" />
+            </div>
+            <div className="font-mono text-[10px] tracking-widest text-blue-400 uppercase font-semibold mb-1.5">
+              Hosted Web Link
+            </div>
+            <h3 className="text-lg sm:text-xl font-bold text-[#0A0A0C] dark:text-white mb-2 group-hover:text-blue-300 transition-colors">
+              Access Anywhere, Any Day
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-light leading-relaxed">
+              Your recorded spatial experience is safely stored, ready to show off or relive whenever you want.
+            </p>
+          </div>
+        </div>
+
+        {/* Interactive 360° Review Player with Rotating Navigation Controls */}
         <Panorama360Viewer />
+      </section>
+
+      {/* =========================================================================
+          SECTION E: BASE LOCATION & DIRECT DISPATCH CONTACT
+      ========================================================================= */}
+      <section className="relative px-5 sm:px-8 md:px-12 max-w-6xl mx-auto py-16 md:py-24 border-t border-black/10 dark:border-white/10">
+        <div className="rounded-3xl p-8 sm:p-12 editorial-glass border border-black/10 dark:border-white/10 relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-8 shadow-2xl">
+          <div className="space-y-4 max-w-xl">
+            <div className="flex flex-wrap items-center gap-2">
+              <a
+                href="https://maps.app.goo.gl/kzwf9SkoCJSia1J37"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 dark:text-cyan-300 hover:bg-cyan-500/20 text-xs font-mono tracking-wide transition-all shadow-sm group"
+                title="Open Studio Base Location on Google Maps"
+              >
+                <span>📍 Base: Sri Lanka · Islandwide & Global On-Site Dispatch</span>
+                <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </a>
+            </div>
+
+            <h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight cinema-gradient-text">
+              Lock In Your Event Date.
+            </h2>
+            <p className="text-xs sm:text-sm md:text-base text-slate-300 font-light leading-relaxed">
+              We deploy full multi-crew productions (Videographers, Photographers, 4K Drone Operators, and 360° VR Spatial Engineers) across Colombo, Kandy, Galle, and internationally.
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row md:flex-col gap-3 w-full sm:w-auto shrink-0">
+            <a
+              href={getWhatsAppUrl(`Hi Loop Studios, I'd like to check event availability and request a custom quote.`)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-bold text-sm shadow-[0_0_25px_rgba(0,242,254,0.35)] hover:shadow-[0_0_35px_rgba(0,242,254,0.6)] transition-all active:scale-95"
+            >
+              <span>Connect on WhatsApp</span>
+              <ArrowUpRight className="w-4 h-4" />
+            </a>
+
+            <button
+              onClick={() => onOpenQuoteModal()}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 text-xs font-mono uppercase tracking-wider transition-all text-[#0A0A0C] dark:text-white cursor-pointer"
+            >
+              <span>Request Custom Quote</span>
+            </button>
+          </div>
+        </div>
       </section>
     </div>
   );

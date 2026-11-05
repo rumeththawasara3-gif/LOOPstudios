@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { ArrowUpRight, Sun, Moon, Menu, X } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ArrowUpRight, Sun, Moon, Menu, X, LogOut, User as UserIcon } from 'lucide-react';
 import { LOGO_PATH, getWhatsAppUrl, PageView } from '../types.ts';
 import { Magnetic } from './Magnetic.tsx';
+import { auth, signOut, User } from '../firebase.ts';
 
 interface NavbarProps {
   currentPage: PageView;
@@ -20,6 +21,24 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [logoError, setLogoError] = useState(false);
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((u) => {
+      setCurrentUser(u);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+      setMobileMenuOpen(false);
+      onNavigate('home');
+    } catch (err) {
+      console.error('Sign out error:', err);
+    }
+  };
 
   const handleNavClick = (page: PageView, sectionId?: string) => {
     onNavigate(page, sectionId);
@@ -170,8 +189,29 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
           </nav>
 
-          {/* Right: Day/Night Toggle + Direct DM Pill Button */}
+          {/* Right: Day/Night Toggle + Direct DM Pill Button + Client Profile / Sign Out */}
           <div className="flex items-center gap-3 shrink-0">
+            {currentUser && (
+              <div className="flex items-center gap-1.5 pr-1">
+                <button
+                  onClick={() => handleNavClick('portal')}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 text-xs font-mono transition-colors"
+                  title={`Signed in as ${currentUser.email}`}
+                >
+                  <UserIcon className="w-3.5 h-3.5 text-cyan-400" />
+                  <span className="max-w-[90px] truncate">{currentUser.displayName || currentUser.email?.split('@')[0]}</span>
+                </button>
+                <button
+                  onClick={handleSignOut}
+                  className="p-1.5 rounded-full hover:bg-white/10 text-slate-400 hover:text-rose-400 transition-colors"
+                  title="Sign Out"
+                  aria-label="Sign Out"
+                >
+                  <LogOut className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            )}
+
             <Magnetic strength={0.2}>
               <button
                 onClick={onToggleTheme}
@@ -237,6 +277,22 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span>Client Portal (Review & Milestones)</span>
               <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
             </button>
+
+            {currentUser && (
+              <div className="px-4 py-3 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-between">
+                <div className="flex items-center gap-2 truncate">
+                  <UserIcon className="w-4 h-4 text-cyan-400 shrink-0" />
+                  <span className="text-xs text-cyan-300 truncate">{currentUser.displayName || currentUser.email}</span>
+                </div>
+                <button
+                  onClick={handleSignOut}
+                  className="text-xs text-rose-400 hover:underline shrink-0 font-bold ml-2 cursor-pointer flex items-center gap-1"
+                >
+                  <LogOut className="w-3.5 h-3.5" />
+                  <span>Sign Out</span>
+                </button>
+              </div>
+            )}
 
             <div className="pt-3 border-t border-black/10 dark:border-white/10 flex items-center justify-between px-1">
               <span className="text-[11px] text-slate-500 dark:text-slate-400">Current Theme</span>

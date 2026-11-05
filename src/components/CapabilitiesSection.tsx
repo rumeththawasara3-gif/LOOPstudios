@@ -1,15 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Sparkles } from 'lucide-react';
 import { TiltCard } from './TiltCard.tsx';
-import { PageView } from '../types.ts';
-import {
-  DroneRadarHUD,
-  CinemaCameraHUD,
-  SpatialGyroHUD,
-  RetentionWaveformHUD,
-} from './CinemaHUDs.tsx';
+import { EditorialPhotoFrame } from './EditorialPhotoFrame.tsx';
+import { PageView, getWhatsAppUrl } from '../types.ts';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,44 +15,33 @@ interface CapabilitiesSectionProps {
 
 export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavigate, isDark = true }) => {
   const sectionRef = useRef<HTMLDivElement | null>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Track scroll progress to pass to interactive HUD elements
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: 'top 80%',
-        end: 'bottom 20%',
-        scrub: 1,
-        onUpdate: (self) => {
-          setScrollProgress(self.progress * 360);
-        },
-      });
-
       // Staggered card entrance reveal
-      const cards = sectionRef.current?.querySelectorAll('.capability-card-item');
-      if (cards && cards.length > 0) {
-        gsap.fromTo(
-          cards,
-          { y: 50, opacity: 0, scale: 0.96 },
-          {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            stagger: 0.15,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: 'top 75%',
-              end: 'top 35%',
-              scrub: 1,
-              toggleActions: 'play reverse play reverse',
-            },
-          }
-        );
+      const items = sectionRef.current?.querySelectorAll('.capability-alternating-row');
+      if (items && items.length > 0) {
+        items.forEach((item) => {
+          gsap.fromTo(
+            item,
+            { y: 50, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.8,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: item,
+                start: 'top 85%',
+                end: 'top 45%',
+                scrub: 1,
+                toggleActions: 'play reverse play reverse',
+              },
+            }
+          );
+        });
       }
     }, sectionRef);
 
@@ -70,7 +54,7 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavi
       className="relative px-5 sm:px-8 md:px-12 max-w-6xl mx-auto py-20 md:py-32 border-t border-white/10"
     >
       {/* Header with Cinema Glow */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 sm:mb-20">
         <div className="max-w-2xl space-y-3">
           <div className="font-mono text-[10px] md:text-xs tracking-[0.25em] text-cyan-400 uppercase font-semibold">
             Visual Production Systems
@@ -79,7 +63,7 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavi
             Our Capabilities.
           </h2>
           <p className="text-xs sm:text-sm md:text-base text-slate-400 font-light leading-relaxed">
-            A cohesive 4-pillar production framework unifying on-site cinematography, viral retention engineering, immersive spatial technology, and client growth.
+            A cohesive 4-pillar production framework unifying aerial cinematography, high-end event documentation, 360° spatial immersion, and viral retention engineering.
           </p>
         </div>
 
@@ -92,130 +76,238 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavi
         </button>
       </div>
 
-      {/* 4-Pillar Grid with Dynamic Director HUD Viewfinders */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-stretch">
+      {/* Balanced Alternating Showcase Rows */}
+      <div className="space-y-12 sm:space-y-16">
         {/* =========================================================================
-            PILLAR 1: Full-Spectrum Event Coverage (AERIAL DRONE RADAR HUD)
+            PILLAR 1: Aerial & Cinematic Perspectives (Image on Right)
         ========================================================================= */}
-        <div className="capability-card-item h-full">
-          <TiltCard className="h-full" spotlightColor="rgba(0, 242, 254, 0.15)">
-            <div className="h-full p-6 sm:p-8 rounded-2xl editorial-glass flex flex-col justify-between group">
-              <div>
-                {/* Director's Viewfinder HUD */}
-                <div className="mb-6">
-                  <DroneRadarHUD scrollRotation={scrollProgress} />
+        <div className="capability-alternating-row">
+          <div className="rounded-2xl md:rounded-3xl editorial-glass p-6 sm:p-10 border border-white/10 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-cyan-500/10 group">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              {/* Left Column: Clean Typography */}
+              <div className="lg:col-span-6 space-y-4 order-2 lg:order-1">
+                <div className="font-mono text-[10px] md:text-xs tracking-[0.25em] text-cyan-400 uppercase font-semibold">
+                  PILLAR 01 // CINEMATIC SCALE
+                </div>
+                <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white group-hover:text-cyan-300 transition-colors">
+                  Aerial & Cinematic Perspectives
+                </h3>
+                <p className="text-xs sm:text-sm md:text-base text-slate-300 leading-relaxed font-light">
+                  Smooth high-altitude sweeps, architectural framing, and sweeping establishing shots filmed in 4K HDR. Deployed seamlessly across Sri Lanka and worldwide by licensed commercial pilots.
+                </p>
+
+                <div className="pt-2 flex flex-wrap items-center gap-2 text-[10px] font-mono text-cyan-400">
+                  <span className="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 font-semibold">
+                    4K 60P HDR
+                  </span>
+                  <span className="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20">
+                    D-LOG M 10-BIT
+                  </span>
+                  <span className="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20">
+                    ISLANDWIDE DISPATCH
+                  </span>
                 </div>
 
-                <div className="font-mono text-[10px] md:text-xs tracking-[0.2em] text-cyan-400 uppercase font-semibold mb-1.5">
-                  Pillar 01 · Aerial & Field Recon
+                <div className="pt-4 flex items-center gap-4">
+                  <a
+                    href={getWhatsAppUrl(`Hi Loop Studios, I'd like to inquire about Aerial & Drone filming for our event/project.`)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-cyan-400 hover:text-white transition-colors group/link"
+                  >
+                    <span>Check Flight Availability</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+                  </a>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">
-                  Full-Spectrum Event Coverage
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light">
-                  Coordinated multi-angle deployment pairing high-altitude cinema drone perspectives with low-light camera rigs for unified visual documentation.
-                </p>
               </div>
 
-              <div className="pt-6 mt-6 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-slate-400">
-                <span className="text-cyan-400/80">4K 60P · Multi-Crew Dispatch</span>
-                <span className="text-white font-medium">Bespoke Quote</span>
+              {/* Right Column: Large Luxury Photo Card */}
+              <div className="lg:col-span-6 order-1 lg:order-2">
+                <EditorialPhotoFrame
+                  src="/images/service-aerial.jpg"
+                  fallbackSrc="https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&w=1600&auto=format&fit=crop"
+                  alt="Aerial Cinematic Coverage"
+                  badge="AERIAL CINEMA"
+                  gearCutoutSrc="/drone.png"
+                  gearName="4K HDR Aerial Cinema Drone"
+                  aspectRatio="cinema"
+                />
               </div>
             </div>
-          </TiltCard>
+          </div>
         </div>
 
         {/* =========================================================================
-            PILLAR 2: Viral Retention & Post-Production (RETENTION HUD)
+            PILLAR 2: Full-Crew Event Coverage & Film (Image on Left)
         ========================================================================= */}
-        <div className="capability-card-item h-full">
-          <TiltCard className="h-full" spotlightColor="rgba(79, 172, 254, 0.15)">
-            <div className="h-full p-6 sm:p-8 rounded-2xl editorial-glass flex flex-col justify-between group">
-              <div>
-                {/* Retention Waveform HUD */}
-                <div className="mb-6">
-                  <RetentionWaveformHUD />
-                </div>
-
-                <div className="font-mono text-[10px] md:text-xs tracking-[0.2em] text-cyan-400 uppercase font-semibold mb-1.5">
-                  Pillar 02 · Algorithmic Retention
-                </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">
-                  Viral Retention & Post-Production
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light">
-                  Frame-by-frame sub-second hook framing, dynamic pacing, custom kinetic typography, and high-impact sound design built for TikTok, Reels, and Shorts.
-                </p>
+        <div className="capability-alternating-row">
+          <div className="rounded-2xl md:rounded-3xl editorial-glass p-6 sm:p-10 border border-white/10 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-cyan-500/10 group">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              {/* Left Column (Desktop): Large Luxury Photo Card */}
+              <div className="lg:col-span-6 order-1">
+                <EditorialPhotoFrame
+                  src="/images/service-production.jpg"
+                  fallbackSrc="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=1600&auto=format&fit=crop"
+                  alt="Cinema Event Production"
+                  badge="EVENT PRODUCTION"
+                  gearCutoutSrc="/gimble.png"
+                  gearName="DJI RS4 Motorized Cinema Gimbal"
+                  aspectRatio="cinema"
+                />
               </div>
 
-              <div className="pt-6 mt-6 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-slate-400">
-                <span className="text-cyan-400/80">Sub-Second Hooks · Dynamic Pacing</span>
-                <span className="text-white font-medium">From LKR 1,000</span>
+              {/* Right Column (Desktop): Clean Typography */}
+              <div className="lg:col-span-6 space-y-4 order-2">
+                <div className="font-mono text-[10px] md:text-xs tracking-[0.25em] text-cyan-400 uppercase font-semibold">
+                  PILLAR 02 // UNIFIED DEPLOYMENT
+                </div>
+                <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white group-hover:text-cyan-300 transition-colors">
+                  Full-Crew Event Coverage & Film
+                </h3>
+                <p className="text-xs sm:text-sm md:text-base text-slate-300 leading-relaxed font-light">
+                  Unified multi-camera production uniting principal cinema operators, fine-art portrait photographers, and 32-bit float audio engineering for flawless keynote, stage, and atmosphere preservation.
+                </p>
+
+                <div className="pt-2 flex flex-wrap items-center gap-2 text-[10px] font-mono text-cyan-400">
+                  <span className="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 font-semibold">
+                    MULTI-CREW DISPATCH
+                  </span>
+                  <span className="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20">
+                    FINE-ART CANDIDS
+                  </span>
+                  <span className="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20">
+                    32-BIT FLOAT AUDIO
+                  </span>
+                </div>
+
+                <div className="pt-4 flex items-center gap-4">
+                  <a
+                    href={getWhatsAppUrl(`Hi Loop Studios, I'd like to check event availability for Full-Crew Event Coverage.`)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-cyan-400 hover:text-white transition-colors group/link"
+                  >
+                    <span>Request Custom Event Quote</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+                  </a>
+                </div>
               </div>
             </div>
-          </TiltCard>
+          </div>
         </div>
 
         {/* =========================================================================
-            PILLAR 3: Spatial & 360° VR Immersion (GYRO SPHERE HUD)
+            PILLAR 3: 360° Spatial & Virtual Immersion (Image on Right)
         ========================================================================= */}
-        <div className="capability-card-item h-full">
-          <TiltCard className="h-full" spotlightColor="rgba(225, 0, 255, 0.15)">
-            <div className="h-full p-6 sm:p-8 rounded-2xl editorial-glass flex flex-col justify-between group">
-              <div>
-                {/* 360 Gyro Sphere HUD */}
-                <div className="mb-6">
-                  <SpatialGyroHUD />
+        <div className="capability-alternating-row">
+          <div className="rounded-2xl md:rounded-3xl editorial-glass p-6 sm:p-10 border border-white/10 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-purple-500/10 group">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              {/* Left Column: Clean Typography */}
+              <div className="lg:col-span-6 space-y-4 order-2 lg:order-1">
+                <div className="font-mono text-[10px] md:text-xs tracking-[0.25em] text-purple-400 uppercase font-semibold">
+                  PILLAR 03 // 360° MEMORY CAPTURE
+                </div>
+                <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white group-hover:text-purple-300 transition-colors">
+                  360° Memory Capture & Immersion
+                </h3>
+                <p className="text-xs sm:text-sm md:text-base text-slate-300 leading-relaxed font-light">
+                  We record your entire event or space in immersive 360° video. We deliver a ready-to-view experience so anyone can re-watch the moment back on any smartphone or with a VR headset—no complicated apps, completely hosted online.
+                </p>
+
+                <div className="pt-2 flex flex-wrap items-center gap-2 text-[10px] font-mono text-purple-400">
+                  <span className="px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 font-semibold">
+                    PLAY ON ANY PHONE
+                  </span>
+                  <span className="px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20">
+                    VR HEADSET READY
+                  </span>
+                  <span className="px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20">
+                    ONLINE CLOUD HOSTED
+                  </span>
                 </div>
 
-                <div className="font-mono text-[10px] md:text-xs tracking-[0.2em] text-purple-400 uppercase font-semibold mb-1.5">
-                  Pillar 03 · Spatial Immersion
+                <div className="pt-4 flex items-center gap-4">
+                  <button
+                    onClick={() => onNavigate('home', '360-vr')}
+                    className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-purple-400 hover:text-white transition-colors group/link cursor-pointer"
+                  >
+                    <span>Open 360° Review Player</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+                  </button>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 group-hover:text-purple-300 transition-colors">
-                  Spatial & 360° VR Immersion
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light">
-                  Interactive spherical event capture engineered for full immersion across smartphones (pan/gyro), desktop browsers, or Apple Vision Pro / Meta Quest headsets.
-                </p>
               </div>
 
-              <div className="pt-6 mt-6 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-slate-400">
-                <span className="text-purple-400/80">8K Equirect · Mobile Gyroscope</span>
-                <span className="text-white font-medium">Special Upgrade</span>
+              {/* Right Column: Large Luxury Photo Card */}
+              <div className="lg:col-span-6 order-1 lg:order-2">
+                <EditorialPhotoFrame
+                  src="/images/service-360.jpg"
+                  fallbackSrc="https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?q=80&w=1600&auto=format&fit=crop"
+                  alt="360 Spatial Immersion"
+                  badge="360° SPATIAL"
+                  gearCutoutSrc="/vrbox.png"
+                  gearName="8K Equirectangular Spatial VR Rig"
+                  aspectRatio="cinema"
+                />
               </div>
             </div>
-          </TiltCard>
+          </div>
         </div>
 
         {/* =========================================================================
-            PILLAR 4: Cinema Optics & Gimbal Master (ARRI/RED VIEWFINDER HUD)
+            PILLAR 4: Viral Retention & Short-Form Content (Image on Left)
         ========================================================================= */}
-        <div className="capability-card-item h-full">
-          <TiltCard className="h-full" spotlightColor="rgba(127, 0, 255, 0.15)">
-            <div className="h-full p-6 sm:p-8 rounded-2xl editorial-glass flex flex-col justify-between group">
-              <div>
-                {/* Cinema Viewfinder HUD */}
-                <div className="mb-6">
-                  <CinemaCameraHUD />
-                </div>
-
-                <div className="font-mono text-[10px] md:text-xs tracking-[0.2em] text-purple-400 uppercase font-semibold mb-1.5">
-                  Pillar 04 · Cinema Optics & Rigging
-                </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 group-hover:text-purple-300 transition-colors">
-                  Anamorphic Prime & Gimbal Control
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light">
-                  3-axis motorized gimbal stabilization, deliberate anamorphic focal lengths, stage-matched color profiles, and 32-bit float audio multi-track recording.
-                </p>
+        <div className="capability-alternating-row">
+          <div className="rounded-2xl md:rounded-3xl editorial-glass p-6 sm:p-10 border border-white/10 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-cyan-500/10 group">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              {/* Left Column (Desktop): Large Luxury Photo Card */}
+              <div className="lg:col-span-6 order-1">
+                <EditorialPhotoFrame
+                  src="/images/service-editing.jpg"
+                  fallbackSrc="https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=1600&auto=format&fit=crop"
+                  alt="Short-Form Retention Editing"
+                  badge="VIRAL RETENTION"
+                  gearCutoutSrc="/cam.png"
+                  gearName="Canon EOS Full-Frame Optical Rig"
+                  aspectRatio="cinema"
+                />
               </div>
 
-              <div className="pt-6 mt-6 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-slate-400">
-                <span className="text-purple-400/80">ProRes 4444 · 2.39:1 Scope</span>
-                <span className="text-white font-medium">Custom Ingestion</span>
+              {/* Right Column (Desktop): Clean Typography */}
+              <div className="lg:col-span-6 space-y-4 order-2">
+                <div className="font-mono text-[10px] md:text-xs tracking-[0.25em] text-cyan-400 uppercase font-semibold">
+                  PILLAR 04 // POST-PRODUCTION RETENTION
+                </div>
+                <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white group-hover:text-cyan-300 transition-colors">
+                  Viral Retention & Short-Form Content
+                </h3>
+                <p className="text-xs sm:text-sm md:text-base text-slate-300 leading-relaxed font-light">
+                  Engineered 9:16 vertical reels with sub-second hook framing, dynamic kinetic captions, impact sound design, and color grading for TikTok, Reels, and YouTube Shorts.
+                </p>
+
+                <div className="pt-2 flex flex-wrap items-center gap-2 text-[10px] font-mono text-cyan-400">
+                  <span className="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 font-semibold">
+                    SUB-SECOND HOOKS
+                  </span>
+                  <span className="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20">
+                    KINETIC SUBTITLES
+                  </span>
+                  <span className="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20">
+                    FROM LKR 1,000 / VIDEO
+                  </span>
+                </div>
+
+                <div className="pt-4 flex items-center gap-4">
+                  <button
+                    onClick={() => onNavigate('services', 'rates')}
+                    className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-cyan-400 hover:text-white transition-colors group/link cursor-pointer"
+                  >
+                    <span>View Transparent Rate Cards</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+                  </button>
+                </div>
               </div>
             </div>
-          </TiltCard>
+          </div>
         </div>
       </div>
     </section>

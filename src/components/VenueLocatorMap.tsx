@@ -24,13 +24,15 @@ import {
   Search,
 } from 'lucide-react';
 import { getWhatsAppUrl, WHATSAPP_NUMBER } from '../types.ts';
+import { computeClientSideVenueLogistics } from '../geminiClient.ts';
 
-// Loop Studios Base Location (Western Province, Colombo)
+// Loop Studios Exact Base Location (Nittambuwa, Western Province)
+export const BASE_COORDINATES = { lat: 7.1424, lng: 80.1038 };
 const LOOP_STUDIOS_BASE = {
-  lat: 6.9070,
-  lng: 79.8665,
-  name: 'Loop Studios Base (Western Province)',
-  address: 'Colombo 07, Western Province, Sri Lanka',
+  lat: 7.1424,
+  lng: 80.1038,
+  name: 'Loop Studios HQ',
+  address: 'Nittambuwa, Western Province, Sri Lanka',
 };
 
 // Popular Sri Lankan Venue & Destination Presets
@@ -139,11 +141,41 @@ export const VenueLocatorMap: React.FC<VenueLocatorMapProps> = ({ isDark = true 
   const [groundingChunks, setGroundingChunks] = useState<GroundingChunk[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [suggestionsOpen, setSuggestionsOpen] = useState(false);
+  const [isLocatingUser, setIsLocatingUser] = useState(false);
+  const [locationError, setLocationError] = useState<string | null>(null);
 
   const apiKey = (import.meta as any).env?.VITE_GOOGLE_MAPS_API_KEY || '';
 
-  // Trigger travel and logistics estimate via backend Gemini Maps Grounding
-  const handleEstimateVenue = async (venueName: string, overrideCoords?: { lat: number; lng: number }) => {
+  // Detect dynamic user GPS location on client
+  const handleDetectMyLocation = () => {
+    if (typeof window === 'undefined' || !navigator.geolocation) {
+      setLocationError('Geolocation is not supported by your browser.');
+      return;
+    }
+
+    setIsLocatingUser(true);
+    setLocationError(null);
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setIsLocatingUser(false);
+        const userCoords = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+        handleEstimateVenue('My Current Location (GPS Detected)', userCoords);
+      },
+      (error) => {
+        setIsLocatingUser(false);
+        console.warn('Geolocation detection error:', error);
+        setLocationError('Could not detect location. Please type your venue or select a preset.');
+      },
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
+    );
+  };
+
+  // Compute travel and logistics estimate directly on client without backend route
+  const handleEstimateVenue = (venueName: string, overrideCoords?: { lat: number; lng: number }) => {
     const target = venueName.trim();
     if (!target) return;
 
@@ -152,29 +184,28 @@ export const VenueLocatorMap: React.FC<VenueLocatorMapProps> = ({ isDark = true 
     setSuggestionsOpen(false);
     setIsLoading(true);
 
-    if (overrideCoords) {
-      setVenueCoordinates(overrideCoords);
-    }
-
     try {
-      const response = await fetch('/api/venue-estimate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ venue: target }),
-      });
+      const logistics = computeClientSideVenueLogistics(
+        target,
+        LOOP_STUDIOS_BASE.lat,
+        LOOP_STUDIOS_BASE.lng,
+        overrideCoords
+      );
 
-      if (response.ok) {
-        const data = await response.json();
-        if (data.coordinates && !overrideCoords) {
-          setVenueCoordinates(data.coordinates);
-        }
-        setDistanceKm(data.distanceKm || 15);
-        setTravelTime(data.travelTime || '30 mins');
-        setRouteSummary(data.routeSummary || 'Western Province Transit');
-        setExpressway(data.expressway || 'Arterial Highway');
-        setGroundingSummary(data.groundingSummary || `Full crew coverage confirmed for ${target}.`);
-        setGroundingChunks(data.groundingChunks || []);
-      }
+      setVenueCoordinates(logistics.coordinates);
+      setDistanceKm(logistics.distanceKm);
+      setTravelTime(logistics.travelTime);
+      setRouteSummary(logistics.routeSummary);
+      setExpressway(logistics.expressway);
+      setGroundingSummary(logistics.groundingSummary);
+      setGroundingChunks([
+        {
+          maps: {
+            title: `Loop Studios Dispatch to ${target}`,
+            uri: 'https://maps.app.goo.gl/kzwf9SkoCJSia1J37',
+          },
+        },
+      ]);
     } catch (err) {
       console.error('Failed to estimate venue logistics:', err);
     } finally {
@@ -187,7 +218,7 @@ export const VenueLocatorMap: React.FC<VenueLocatorMapProps> = ({ isDark = true 
     handleEstimateVenue('Shangri-La Colombo', { lat: 6.9271, lng: 79.8612 });
   }, []);
 
-  const whatsAppMessage = `Hi Loop Studios, I'd like to reserve an event date for our venue: "${activeVenue}" (~${distanceKm}km from Colombo base, ETA: ${travelTime}). Please confirm full-crew availability (Videographers, Photographers & Drone).`;
+  const whatsAppMessage = `Hi Loop Studios, I'd like to reserve an event date for our venue: "${activeVenue}" (~${distanceKm}km from Nittambuwa HQ base, ETA: ${travelTime}). Please confirm full-crew availability (Videographers, Photographers & Drone).`;
 
   return (
     <div className="w-full rounded-3xl editorial-glass border border-black/10 dark:border-white/10 overflow-hidden shadow-2xl">
@@ -218,9 +249,27 @@ export const VenueLocatorMap: React.FC<VenueLocatorMapProps> = ({ isDark = true 
           <div className="space-y-5">
             {/* Search Input Box */}
             <div className="relative">
-              <label className="block text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
-                Enter Event Venue / Location
-              </label>
+              <div className="flex items-center justify-between mb-2">
+                <label className="block text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                  Enter Event Venue / Location
+                </label>
+                <button
+                  type="button"
+                  onClick={handleDetectMyLocation}
+                  disabled={isLocatingUser || isLoading}
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 dark:text-cyan-300 text-[11px] font-mono transition-all border border-cyan-500/20 active:scale-95 cursor-pointer disabled:opacity-50"
+                  title="Detect distance from your current GPS location"
+                >
+                  <Navigation className={`w-3 h-3 ${isLocatingUser ? 'animate-spin' : ''}`} />
+                  <span>{isLocatingUser ? 'Detecting GPS...' : 'Detect My Location'}</span>
+                </button>
+              </div>
+
+              {locationError && (
+                <div className="text-[11px] font-mono text-rose-400 mb-2">
+                  {locationError}
+                </div>
+              )}
               <div className="relative flex items-center">
                 <Search className="w-4 h-4 text-slate-400 absolute left-3.5 pointer-events-none" />
                 <input
@@ -418,8 +467,8 @@ export const VenueLocatorMap: React.FC<VenueLocatorMapProps> = ({ isDark = true 
               <div className="w-full h-full min-h-[420px] lg:min-h-[580px]">
                 <GoogleMap
                   mapId={'DEMO_MAP_ID'}
-                  defaultCenter={LOOP_STUDIOS_BASE}
-                  defaultZoom={9}
+                  defaultCenter={BASE_COORDINATES}
+                  defaultZoom={12}
                   gestureHandling={'greedy'}
                   disableDefaultUI={false}
                   styles={isDark ? MAP_DARK_STYLES : MAP_LIGHT_STYLES}
@@ -427,7 +476,7 @@ export const VenueLocatorMap: React.FC<VenueLocatorMapProps> = ({ isDark = true 
                   className="w-full h-full"
                 >
                   {/* Base Marker: Loop Studios HQ */}
-                  <AdvancedMarker position={LOOP_STUDIOS_BASE} title="Loop Studios Base">
+                  <AdvancedMarker position={BASE_COORDINATES} title="Loop Studios HQ">
                     <Pin
                       background={'#2563EB'}
                       borderColor={'#1E40AF'}
@@ -451,7 +500,7 @@ export const VenueLocatorMap: React.FC<VenueLocatorMapProps> = ({ isDark = true 
 
                   {/* Geodesic Radial Route Vector Line */}
                   <RouteVectorOverlay
-                    origin={LOOP_STUDIOS_BASE}
+                    origin={BASE_COORDINATES}
                     destination={venueCoordinates}
                     isDark={isDark}
                   />
@@ -463,21 +512,21 @@ export const VenueLocatorMap: React.FC<VenueLocatorMapProps> = ({ isDark = true 
               <MapPin className="w-10 h-10 mb-3 text-blue-500 animate-bounce" />
               <p className="text-sm font-semibold text-black dark:text-white">Google Maps Interactive Canvas</p>
               <p className="text-xs font-mono max-w-sm mt-1">
-                Visualizing route vector from Colombo Base to {activeVenue} ({distanceKm} km · {travelTime}).
+                Visualizing route vector from Nittambuwa HQ Base to {activeVenue} ({distanceKm} km · {travelTime}).
               </p>
             </div>
           )}
 
           {/* Floating Telemetry Badge Overlay on Map */}
           <div className="absolute top-4 left-4 z-10 px-3.5 py-2 rounded-xl backdrop-blur-xl bg-white/90 dark:bg-[#0A0B0E]/90 border border-black/10 dark:border-white/15 shadow-xl text-xs font-mono space-y-1">
-            <div className="text-[10px] uppercase text-slate-400">Route Vector Telemetry</div>
+            <div className="text-[10px] uppercase text-slate-400 font-semibold tracking-wider">Route Vector Telemetry</div>
             <div className="flex items-center gap-2 text-black dark:text-white font-semibold">
               <span className="w-2 h-2 rounded-full bg-blue-500 inline-block" />
-              <span>Base: Colombo (Western Province)</span>
+              <span>• Base: Nittambuwa / Western Province (Loop Studios Base)</span>
             </div>
             <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-semibold">
               <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" />
-              <span>Target: {activeVenue}</span>
+              <span>• Target: {activeVenue}</span>
             </div>
           </div>
         </div>

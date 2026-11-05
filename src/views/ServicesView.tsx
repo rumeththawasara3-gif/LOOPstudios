@@ -238,22 +238,22 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
           <div className="p-6 sm:p-8 rounded-2xl editorial-glass flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
             <div className="space-y-2 max-w-2xl">
               <span className="text-[10px] font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400">
-                04 · EXCLUSIVE NEW UPGRADE
+                04 · RECORDED 360° VIDEO & IMMERSION
               </span>
               <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#0A0A0C] dark:text-white">
-                360° Immersive Capture
+                360° Memory Capture
               </h3>
               <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-light">
-                Full-sphere event documentation playable across mobile devices, web browsers, and VR headsets. Viewers control their perspective anywhere in the room.
+                We record your entire event or space in immersive 360° video. Delivered ready to view so anyone can re-watch and experience the moment from anywhere, anytime on any smartphone or with a VR headset.
               </p>
             </div>
             <a
-              href={getWhatsAppUrl(`Hi Loop Studios, I'd like to add 360° Immersive Capture to our upcoming event.`)}
+              href={getWhatsAppUrl(`Hi Loop Studios, I'd like to book 360° Memory Capture (Recorded Video & Playback Anywhere) for our upcoming event.`)}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] text-xs sm:text-sm font-semibold rounded-full bg-[#0A0A0C] text-white dark:bg-white dark:text-black hover:opacity-90 transition-all shadow-md whitespace-nowrap active:scale-95"
             >
-              <span>Add 360° VR to Your Event</span>
+              <span>Book 360° Memory Capture</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
             </a>
           </div>
