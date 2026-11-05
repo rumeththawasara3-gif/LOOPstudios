@@ -29,7 +29,7 @@ interface ChatMessage {
 const STARTER_PROMPTS = [
   'Where is your studio located?',
   'What are your video editing rates?',
-  'How does 360° VR event capture work?',
+  'Where can I follow your TikTok & Instagram?',
   'Tell me about tuition/business marketing packages',
   'I want to book a shoot on WhatsApp',
 ];

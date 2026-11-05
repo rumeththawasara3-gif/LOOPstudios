@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowUpRight, Sun, Moon, Menu, X, LogOut, User as UserIcon } from 'lucide-react';
-import { LOGO_PATH, getWhatsAppUrl, PageView } from '../types.ts';
+import { LOGO_PATH, getWhatsAppUrl, PageView, SOCIAL_LINKS } from '../types.ts';
 import { Magnetic } from './Magnetic.tsx';
 import { auth, signOut, User } from '../firebase.ts';
+import { TikTokIcon, InstagramIcon, FacebookIcon } from './SocialIcons.tsx';
 
 interface NavbarProps {
   currentPage: PageView;
@@ -303,6 +304,48 @@ export const Navbar: React.FC<NavbarProps> = ({
                 {isDark ? <Sun className="w-3.5 h-3.5 text-amber-200" /> : <Moon className="w-3.5 h-3.5" />}
                 <span>{isDark ? 'Dark Mode' : 'Light Mode'}</span>
               </button>
+            </div>
+
+            {/* Follow Loop Studio Quick-Link Row */}
+            <div className="pt-3 border-t border-black/10 dark:border-white/10 space-y-2">
+              <div className="flex items-center justify-between px-1">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                  Follow Loop Studio
+                </span>
+                <span className="text-[10px] font-mono text-cyan-400">Official Channels</span>
+              </div>
+              <div className="grid grid-cols-3 gap-2">
+                <a
+                  href={SOCIAL_LINKS.tiktok}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-black/5 dark:bg-white/[0.04] border border-black/10 dark:border-white/10 hover:border-cyan-400/50 hover:bg-cyan-500/10 text-slate-800 dark:text-slate-200 hover:text-cyan-400 transition-all text-[11px] font-mono"
+                  title="TikTok @loop.studio4"
+                >
+                  <TikTokIcon className="w-3.5 h-3.5 shrink-0" />
+                  <span className="truncate">TikTok</span>
+                </a>
+                <a
+                  href={SOCIAL_LINKS.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-black/5 dark:bg-white/[0.04] border border-black/10 dark:border-white/10 hover:border-pink-500/50 hover:bg-pink-500/10 text-slate-800 dark:text-slate-200 hover:text-pink-400 transition-all text-[11px] font-mono"
+                  title="Instagram Loop Studio"
+                >
+                  <InstagramIcon className="w-3.5 h-3.5 shrink-0" />
+                  <span className="truncate">Instagram</span>
+                </a>
+                <a
+                  href={SOCIAL_LINKS.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-black/5 dark:bg-white/[0.04] border border-black/10 dark:border-white/10 hover:border-blue-500/50 hover:bg-blue-500/10 text-slate-800 dark:text-slate-200 hover:text-blue-400 transition-all text-[11px] font-mono"
+                  title="Facebook Loop Studio"
+                >
+                  <FacebookIcon className="w-3.5 h-3.5 shrink-0" />
+                  <span className="truncate">Facebook</span>
+                </a>
+              </div>
             </div>
 
             <div className="pt-2">

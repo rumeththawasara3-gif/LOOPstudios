@@ -6,6 +6,18 @@ export const BRAND_PRESENCE = 'Based in Sri Lanka · Available Worldwide';
 export const GOOGLE_MAPS_LOCATION_URL = 'https://maps.app.goo.gl/kzwf9SkoCJSia1J37';
 export const LOGO_PATH = '/logo.png';
 
+export const SOCIAL_LINKS = {
+  tiktok: 'https://www.tiktok.com/@loop.studio4',
+  tiktokHandle: '@loop.studio4',
+  instagram: 'https://www.instagram.com/invites/contact/?utm_source=ig_contact_invite&utm_medium=copy_link&utm_content=u0beynu',
+  instagramHandle: 'Loop Studio',
+  facebook: 'https://www.facebook.com/share/1EKi9rmJy1/',
+  facebookHandle: 'Loop Studio',
+  whatsapp: 'https://wa.me/94768439916',
+  phone: '+94 76 843 9916',
+  maps: 'https://maps.app.goo.gl/kzwf9SkoCJSia1J37',
+};
+
 export const STUDIO_PHOTO_DRONE = '/assets/generated/cinema-drone.png';
 export const STUDIO_PHOTO_VR = '/assets/generated/spatial-vr.png';
 export const STUDIO_PHOTO_GIMBAL = '/assets/generated/cinema-gimbal.png';

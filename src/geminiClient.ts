@@ -3,6 +3,7 @@ import {
   WHATSAPP_NUMBER,
   DISPLAY_PHONE,
   GOOGLE_MAPS_LOCATION_URL,
+  SOCIAL_LINKS,
 } from './types.ts';
 
 // Extract API Key from Vite env or process env
@@ -47,13 +48,21 @@ Core Studio Knowledge:
 
 5. 360° Spatial & Virtual Immersion:
    - Ultra-high resolution 360° panoramic spatial capture for events, virtual walkthroughs, and VR headsets.
+   - Delivered completely hosted online so anyone can view on any smartphone or VR headset with zero friction.
 
 6. Direct Contact & Booking:
    - Official WhatsApp: ${DISPLAY_PHONE}
    - WhatsApp DM Link: https://wa.me/${WHATSAPP_NUMBER}
    - Encourage clients to connect on WhatsApp to lock in dates, reserve batches, or discuss custom requirements.
 
-Format your responses cleanly. Include markdown links when referencing WhatsApp or location where helpful. Keep responses concise and focused on helping the client take action.
+7. Official Social Media Channels:
+   - TikTok: [TikTok — @loop.studio4](${SOCIAL_LINKS.tiktok})
+   - Instagram: [Instagram — Loop Studio](${SOCIAL_LINKS.instagram})
+   - Facebook: [Facebook — Loop Studio](${SOCIAL_LINKS.facebook})
+   - Studio Base Pin: [📍 Google Maps](${GOOGLE_MAPS_LOCATION_URL})
+   When any visitor asks about our social channels, TikTok reels, Instagram page, Facebook, or where to watch our portfolio, provide these direct links cleanly formatted in markdown.
+
+Format your responses cleanly. Include markdown links when referencing WhatsApp, social channels, or location where helpful. Keep responses concise and focused on helping the client take action.
 `;
 
 // Direct Client-Side Gemini Chat Function
@@ -128,6 +137,17 @@ Subscribe or discuss on WhatsApp: https://wa.me/${WHATSAPP_NUMBER}`;
 
   if (q.includes('360') || q.includes('vr') || q.includes('spatial') || q.includes('virtual') || q.includes('memory')) {
     return `Loop Studios provides 360° Memory Capture & Recorded Video: We record your entire event or space in immersive 360° video. We deliver a ready-to-view experience completely hosted online so you, your guests, or clients can re-watch the moment from anywhere, anytime on any smartphone or with a VR headset (no apps needed). Message our team on WhatsApp (${DISPLAY_PHONE}) at https://wa.me/${WHATSAPP_NUMBER} to request sample experiences or get a custom event quote!`;
+  }
+
+  if (q.includes('social') || q.includes('tiktok') || q.includes('instagram') || q.includes('facebook') || q.includes('ig') || q.includes('fb') || q.includes('follow') || q.includes('channel') || q.includes('page')) {
+    return `Follow Loop Studios on our official channels:
+• **TikTok:** [@loop.studio4](${SOCIAL_LINKS.tiktok})
+• **Instagram:** [Loop Studio](${SOCIAL_LINKS.instagram})
+• **Facebook:** [Loop Studio](${SOCIAL_LINKS.facebook})
+• **Direct WhatsApp:** [${DISPLAY_PHONE}](${SOCIAL_LINKS.whatsapp})
+• **Studio Base:** [📍 Google Maps Coordinates](${GOOGLE_MAPS_LOCATION_URL})
+
+Feel free to browse our viral short-form edits and shoot BTS, or message us on WhatsApp for bookings!`;
   }
 
   if (q.includes('book') || q.includes('date') || q.includes('whatsapp') || q.includes('contact') || q.includes('phone') || q.includes('call')) {
