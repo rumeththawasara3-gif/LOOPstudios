@@ -7,12 +7,12 @@ export const GOOGLE_MAPS_LOCATION_URL = 'https://maps.app.goo.gl/kzwf9SkoCJSia1J
 export const LOGO_PATH = '/logo.png';
 
 export const SOCIAL_LINKS = {
-  tiktok: 'https://www.tiktok.com/@loop.studio4',
-  tiktokHandle: '@loop.studio4',
-  instagram: 'https://www.instagram.com/invites/contact/?utm_source=ig_contact_invite&utm_medium=copy_link&utm_content=u0beynu',
-  instagramHandle: 'KULT Studio',
-  facebook: 'https://www.facebook.com/share/1EKi9rmJy1/',
-  facebookHandle: 'KULT Studio',
+  tiktok: 'https://www.tiktok.com/@kultstudiolk?_r=1&_t=ZS-9BD0NCpGetb',
+  tiktokHandle: '@kultstudiolk',
+  instagram: 'https://www.instagram.com/kultstudiolk?psln=MXB4bmFxcmxrY2x5',
+  instagramHandle: '@kultstudiolk',
+  facebook: 'https://www.facebook.com/share/19hFngTjmk/',
+  facebookHandle: 'KULT Studios',
   whatsapp: 'https://wa.me/94768439916',
   phone: '+94 76 843 9916',
   maps: 'https://maps.app.goo.gl/kzwf9SkoCJSia1J37',

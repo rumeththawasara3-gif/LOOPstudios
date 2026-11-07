@@ -56,9 +56,9 @@ Core Studio Knowledge:
    - Encourage clients to connect on WhatsApp to lock in dates, reserve batches, or discuss custom requirements.
 
 7. Official Social Media Channels:
-   - TikTok: [TikTok — @loop.studio4](${SOCIAL_LINKS.tiktok})
-   - Instagram: [Instagram — KULT Studio](${SOCIAL_LINKS.instagram})
-   - Facebook: [Facebook — KULT Studio](${SOCIAL_LINKS.facebook})
+   - TikTok: [TikTok — @kultstudiolk](${SOCIAL_LINKS.tiktok})
+   - Instagram: [Instagram — @kultstudiolk](${SOCIAL_LINKS.instagram})
+   - Facebook: [Facebook — KULT Studios](${SOCIAL_LINKS.facebook})
    - Studio Base Pin: [📍 Google Maps](${GOOGLE_MAPS_LOCATION_URL})
    When any visitor asks about our social channels, TikTok reels, Instagram page, Facebook, or where to watch our portfolio, provide these direct links cleanly formatted in markdown.
 
@@ -141,9 +141,9 @@ Subscribe or discuss on WhatsApp: https://wa.me/${WHATSAPP_NUMBER}`;
 
   if (q.includes('social') || q.includes('tiktok') || q.includes('instagram') || q.includes('facebook') || q.includes('ig') || q.includes('fb') || q.includes('follow') || q.includes('channel') || q.includes('page')) {
     return `Follow KULT Studios on our official channels:
-• **TikTok:** [@loop.studio4](${SOCIAL_LINKS.tiktok})
-• **Instagram:** [KULT Studio](${SOCIAL_LINKS.instagram})
-• **Facebook:** [KULT Studio](${SOCIAL_LINKS.facebook})
+• **TikTok:** [@kultstudiolk](${SOCIAL_LINKS.tiktok})
+• **Instagram:** [@kultstudiolk](${SOCIAL_LINKS.instagram})
+• **Facebook:** [KULT Studios](${SOCIAL_LINKS.facebook})
 • **Direct WhatsApp:** [${DISPLAY_PHONE}](${SOCIAL_LINKS.whatsapp})
 • **Studio Base:** [📍 Google Maps Coordinates](${GOOGLE_MAPS_LOCATION_URL})
 
