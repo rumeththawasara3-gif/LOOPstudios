@@ -115,7 +115,7 @@ export const GeminiChatWidget: React.FC<GeminiChatWidgetProps> = ({ isDark = tru
     {
       id: 'welcome',
       role: 'model',
-      text: "Hello! I'm Loop AI, your 24/7 creative production consultant. Ask me about our cinema event coverage, viral short-form editing rates, 360° VR capture, or monthly brand retainers. You can also tap the microphone to start a live voice conversation!",
+      text: "Hello! I'm KULT AI, your 24/7 creative production consultant. Ask me about our cinema event coverage, viral short-form editing rates, 360° VR capture, or monthly brand retainers. You can also tap the microphone to start a live voice conversation!",
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     },
   ]);
@@ -541,13 +541,13 @@ export const GeminiChatWidget: React.FC<GeminiChatWidgetProps> = ({ isDark = tru
           <div className="relative group">
             <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 hidden md:flex items-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               <div className="px-3 py-1.5 rounded-xl text-xs font-medium tracking-wide bg-[#0A0A0C] text-white dark:bg-white dark:text-black shadow-xl whitespace-nowrap border border-white/10 dark:border-black/10">
-                Chat or Speak with Loop AI
+                Chat or Speak with KULT AI
               </div>
             </div>
 
             <button
               onClick={() => setIsOpen(true)}
-              aria-label="Open Loop Studios AI Assistant"
+              aria-label="Open KULT Studios AI Assistant"
               className="relative flex items-center gap-2 sm:gap-2.5 px-3.5 py-2.5 sm:px-5 sm:py-3.5 rounded-full backdrop-blur-xl bg-white/90 dark:bg-[#0E1015]/95 text-[#0A0A0C] dark:text-white border border-black/10 dark:border-white/15 shadow-2xl hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer min-h-[44px]"
             >
               <div className="absolute inset-0 rounded-full bg-blue-500/15 filter blur-md -z-10 animate-pulse" />
@@ -558,7 +558,7 @@ export const GeminiChatWidget: React.FC<GeminiChatWidgetProps> = ({ isDark = tru
 
               <div className="flex flex-col text-left">
                 <div className="flex items-center gap-1.5">
-                  <span className="text-xs font-display font-bold tracking-tight">Loop AI</span>
+                  <span className="text-xs font-display font-bold tracking-tight">KULT AI</span>
                   <span className="text-[9px] font-mono px-1 py-0.2 rounded bg-blue-500/10 text-blue-500 font-semibold">
                     LIVE
                   </span>
@@ -597,7 +597,7 @@ export const GeminiChatWidget: React.FC<GeminiChatWidgetProps> = ({ isDark = tru
               <div>
                 <div className="flex items-center gap-2">
                   <h3 className="text-sm font-display font-bold tracking-tight">
-                    {isVoiceActive ? 'Executive Producer' : 'Loop AI Assistant'}
+                    {isVoiceActive ? 'Executive Producer' : 'KULT AI Assistant'}
                   </h3>
                   <span className="text-[9px] font-mono px-1.5 py-0.5 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 font-medium">
                     {isVoiceActive ? 'Live 3.8 Voice' : 'Gemini 3.8'}
@@ -777,7 +777,7 @@ export const GeminiChatWidget: React.FC<GeminiChatWidgetProps> = ({ isDark = tru
                   {isMuted
                     ? 'Microphone muted. Tap button above to unmute.'
                     : voiceStatus === 'speaking'
-                      ? 'Loop Executive Producer is answering...'
+                      ? 'KULT Executive Producer is answering...'
                       : 'Speak naturally into your microphone...'}
                 </div>
               </div>
@@ -792,7 +792,7 @@ export const GeminiChatWidget: React.FC<GeminiChatWidgetProps> = ({ isDark = tru
                 )}
                 {liveTranscript.model && (
                   <div className="text-xs text-[#0A0A0C] dark:text-white font-medium flex items-start gap-1.5">
-                    <span className="text-emerald-500 font-mono font-semibold uppercase shrink-0">Loop:</span>
+                    <span className="text-emerald-500 font-mono font-semibold uppercase shrink-0">KULT:</span>
                     <span className="leading-relaxed line-clamp-3">{liveTranscript.model}</span>
                   </div>
                 )}
@@ -830,7 +830,7 @@ export const GeminiChatWidget: React.FC<GeminiChatWidgetProps> = ({ isDark = tru
 
                 <div className="grid grid-cols-2 gap-2 pt-1">
                   <a
-                    href={getWhatsAppUrl(`Hi Loop Studios Producer, I'm following up from the Live Voice session.`)}
+                    href={getWhatsAppUrl(`Hello KULT Studios, I'm following up from the Live Voice session.`)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold shadow-sm transition-all text-center"

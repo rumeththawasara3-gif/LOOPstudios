@@ -132,7 +132,7 @@ function generateProcedural360Texture(): HTMLCanvasElement {
   ctx.font = 'bold 24px monospace';
   ctx.fillStyle = '#ffffff';
   ctx.textAlign = 'center';
-  ctx.fillText('LOOP STUDIOS · 360° RECORDED EXPERIENCE', stageX, 520);
+  ctx.fillText('KULT STUDIOS · 360° RECORDED EXPERIENCE', stageX, 520);
   ctx.font = '14px monospace';
   ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
   ctx.fillText('RELIVE THE MOMENT FROM ANY ANGLE', stageX, 550);
@@ -649,7 +649,7 @@ export const Panorama360Viewer: React.FC = () => {
               {activeHotspot.description}
             </p>
             <a
-              href={getWhatsAppUrl(`Hi Loop Studios, I'd like to book 360° Memory Capture for: ${activeHotspot.name}`)}
+              href={getWhatsAppUrl(`Hello KULT Studios, I would like to book 360° Memory Capture for: ${activeHotspot.name}`)}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 w-full py-2.5 text-xs font-semibold rounded-xl bg-white text-black hover:bg-slate-200 transition-colors shadow-md cursor-pointer"
@@ -692,7 +692,7 @@ export const Panorama360Viewer: React.FC = () => {
           </button>
 
           <a
-            href={getWhatsAppUrl(`Hi Loop Studios, I'd like to book 360° Memory Capture & Recorded Video for our upcoming event.`)}
+            href={getWhatsAppUrl(`Hello KULT Studios, I would like to book 360° Memory Capture & Recorded Video for our upcoming event.`)}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] text-xs sm:text-sm font-semibold rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 text-black hover:opacity-95 shadow-[0_0_25px_rgba(0,242,254,0.3)] transition-all active:scale-95 whitespace-nowrap font-display"

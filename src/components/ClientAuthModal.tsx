@@ -91,7 +91,7 @@ export const ClientAuthModal: React.FC<ClientAuthModalProps> = ({
         setErrorMsg('Please enter a valid email address.');
         break;
       case 'auth/user-disabled':
-        setErrorMsg('This account has been disabled. Please contact Loop Studios support.');
+        setErrorMsg('This account has been disabled. Please contact KULT Studios support.');
         break;
       case 'auth/too-many-requests':
         setErrorMsg('Too many unsuccessful attempts. Please wait a few moments or reset your password.');
@@ -269,7 +269,7 @@ export const ClientAuthModal: React.FC<ClientAuthModalProps> = ({
             )}
           </div>
           <span className="font-mono text-[10px] tracking-widest uppercase text-blue-500 dark:text-blue-400 font-semibold mb-1">
-            Loop Studios Portal
+            KULT Studios Portal
           </span>
           <h2 className="font-display text-xl sm:text-2xl font-bold tracking-tight">
             {mode === 'signin' && 'Client Asset & Review Access'}
@@ -456,7 +456,7 @@ export const ClientAuthModal: React.FC<ClientAuthModalProps> = ({
         {/* Security badge */}
         <div className="mt-5 pt-4 border-t border-black/5 dark:border-white/5 flex items-center justify-center gap-1.5 text-[10px] text-slate-400 font-mono">
           <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
-          <span>Encrypted Client Vault · Loop Studios Sri Lanka</span>
+          <span>Encrypted Client Vault · KULT Studios Sri Lanka</span>
         </div>
       </div>
     </div>

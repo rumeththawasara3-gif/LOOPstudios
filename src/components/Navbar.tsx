@@ -58,7 +58,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {!logoError ? (
             <img
               src={LOGO_PATH}
-              alt="Loop Studios Logo"
+              alt="KULT Studios Logo"
               referrerPolicy="no-referrer"
               onError={() => setLogoError(true)}
               className={`h-7 w-auto object-contain transition-transform duration-300 group-hover:scale-105 ${
@@ -71,7 +71,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </span>
           )}
           <span className="font-display font-semibold text-sm tracking-tight text-[#0A0A0C] dark:text-white">
-            LOOP <span className="text-slate-500 dark:text-slate-400 font-normal text-xs tracking-normal">STUDIOS</span>
+            KULT <span className="text-slate-500 dark:text-slate-400 font-normal text-xs tracking-normal">STUDIOS</span>
           </span>
         </button>
 
@@ -93,7 +93,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Direct WhatsApp Quick Link */}
           <a
-            href={getWhatsAppUrl(`Hi Loop Studios, I'd like to discuss a project with your team.`)}
+            href={getWhatsAppUrl(`Hello KULT Studios, I would like to book a production consultation...`)}
             target="_blank"
             rel="noopener noreferrer"
             className="p-2 min-h-[40px] min-w-[40px] rounded-full bg-[#0A0A0C] text-white dark:bg-white dark:text-black flex items-center justify-center transition-all active:scale-95"
@@ -126,7 +126,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               {!logoError ? (
                 <img
                   src={LOGO_PATH}
-                  alt="Loop Studios Logo"
+                  alt="KULT Studios Logo"
                   referrerPolicy="no-referrer"
                   onError={() => setLogoError(true)}
                   className={`h-7 lg:h-8 w-auto object-contain transition-transform duration-300 group-hover:scale-105 ${
@@ -139,7 +139,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </span>
               )}
               <span className="font-display font-semibold text-sm lg:text-base tracking-tight text-[#0A0A0C] dark:text-white group-hover:text-slate-500 dark:group-hover:text-slate-300 transition-colors whitespace-nowrap">
-                LOOP <span className="text-slate-500 dark:text-slate-400 font-normal text-xs lg:text-sm tracking-normal">STUDIOS</span>
+                KULT <span className="text-slate-500 dark:text-slate-400 font-normal text-xs lg:text-sm tracking-normal">STUDIOS</span>
               </span>
             </button>
           </div>
@@ -230,7 +230,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
             <Magnetic strength={0.2}>
               <a
-                href={getWhatsAppUrl(`Hi Loop Studios, I'd like to discuss a project with your team.`)}
+                href={getWhatsAppUrl(`Hello KULT Studios, I would like to book a production consultation...`)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-5 py-2 text-xs font-semibold rounded-full bg-[#0A0A0C] text-white dark:bg-white dark:text-black hover:opacity-90 transition-all shadow-md active:scale-95 whitespace-nowrap"
@@ -306,11 +306,11 @@ export const Navbar: React.FC<NavbarProps> = ({
               </button>
             </div>
 
-            {/* Follow Loop Studio Quick-Link Row */}
+            {/* Follow KULT Studio Quick-Link Row */}
             <div className="pt-3 border-t border-black/10 dark:border-white/10 space-y-2">
               <div className="flex items-center justify-between px-1">
                 <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                  Follow Loop Studio
+                  Follow KULT Studio
                 </span>
                 <span className="text-[10px] font-mono text-cyan-400">Official Channels</span>
               </div>
@@ -350,7 +350,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
             <div className="pt-2">
               <a
-                href={getWhatsAppUrl(`Hi Loop Studios, I'd like to discuss a project with your team.`)}
+                href={getWhatsAppUrl(`Hello KULT Studios, I would like to book a production consultation...`)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full min-h-[44px] py-3 text-xs font-semibold rounded-xl bg-[#0A0A0C] text-white dark:bg-white dark:text-black flex items-center justify-center gap-2 shadow-md active:scale-98"

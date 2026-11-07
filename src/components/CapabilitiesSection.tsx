@@ -111,7 +111,7 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavi
 
                   <div className="pt-4 flex items-center gap-4">
                     <a
-                      href={getWhatsAppUrl(`Hi Loop Studios, I'd like to inquire about Aerial & Drone filming for our event/project.`)}
+                      href={getWhatsAppUrl(`Hello KULT Studios, I would like to inquire about Aerial & Drone filming for our event/project.`)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-cyan-400 hover:text-white transition-colors group/link"
@@ -185,7 +185,7 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavi
 
                   <div className="pt-4 flex items-center gap-4">
                     <a
-                      href={getWhatsAppUrl(`Hi Loop Studios, I'd like to check event availability for Full-Crew Event Coverage.`)}
+                      href={getWhatsAppUrl(`Hello KULT Studios, I would like to check event availability for Full-Crew Event Coverage.`)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-cyan-400 hover:text-white transition-colors group/link"

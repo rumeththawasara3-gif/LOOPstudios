@@ -28,7 +28,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuoteModal, is
               {!logoError ? (
                 <img
                   src={LOGO_PATH}
-                  alt="Loop Studios Brandmark"
+                  alt="KULT Studios Brandmark"
                   referrerPolicy="no-referrer"
                   onError={() => setLogoError(true)}
                   className={`h-8 w-auto object-contain ${
@@ -41,12 +41,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuoteModal, is
                 </span>
               )}
               <span className="font-display font-semibold text-base text-[#0A0A0C] dark:text-white tracking-tight">
-                LOOP STUDIOS
+                KULT STUDIOS
               </span>
             </div>
 
             <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed max-w-sm font-light">
-              Loop Studios — Full-stack visual content and strategic growth agency.
+              KULT Studios — Full-stack visual content and strategic growth agency.
             </p>
 
             <div className="pt-1">
@@ -180,7 +180,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuoteModal, is
                 Direct WhatsApp Hotline
               </div>
               <a
-                href={getWhatsAppUrl(`Hi Loop Studios, I'd like to reach out directly.`)}
+                href={getWhatsAppUrl(`Hello KULT Studios, I would like to book a production consultation...`)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-[#0A0A0C] dark:text-white hover:text-cyan-400 dark:hover:text-cyan-300 font-mono text-sm py-1 border-b border-black/20 dark:border-white/20 hover:border-cyan-400 dark:hover:border-cyan-300 transition-colors"
@@ -195,7 +195,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuoteModal, is
         {/* Bottom copyright line */}
         <div className="mt-14 pt-6 border-t border-black/10 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono text-slate-500 dark:text-slate-400">
           <div>
-            © {new Date().getFullYear()} Loop Studios. Full-stack visual content & strategic growth.
+            © {new Date().getFullYear()} KULT Studios. All rights reserved. Full-stack visual content & strategic growth.
           </div>
           <div>
             Colombo · Kandy · Galle · Worldwide

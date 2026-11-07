@@ -129,7 +129,7 @@ export const PackagePricingCalculator: React.FC = () => {
   // Generate customized WhatsApp dispatch URL
   const whatsAppUrl = useMemo(() => {
     const lines: string[] = [
-      `Hi Loop Studios! I configured a custom package quote on your website:`,
+      `Hello KULT Studios! I configured a custom package quote on your website:`,
       ``,
       `📦 SELECTED SCOPE:`,
     ];

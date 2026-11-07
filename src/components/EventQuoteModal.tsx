@@ -43,7 +43,7 @@ export const EventQuoteModal: React.FC<EventQuoteModalProps> = ({
       .filter(Boolean)
       .join('\n• ');
 
-    return `*Loop Studios — Custom Event Quote Inquiry*
+    return `*KULT Studios — Custom Event Quote Inquiry*
 
 *Event Type:* ${eventType}
 *Location / Venue:* ${location || 'To be determined'}

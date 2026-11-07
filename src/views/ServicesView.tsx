@@ -160,7 +160,7 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
               </p>
             </div>
             <a
-              href={getWhatsAppUrl(`Hi Loop Studios, I'd like to check event availability for Full-Crew Event Coverage (Videographers + Photographers + Drones).`)}
+              href={getWhatsAppUrl(`Hello KULT Studios, I would like to check event availability for Full-Crew Event Coverage (Videographers + Photographers + Drones).`)}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] text-xs sm:text-sm font-semibold rounded-full bg-[#0A0A0C] text-white dark:bg-white dark:text-black hover:opacity-90 transition-all shadow-md whitespace-nowrap active:scale-95"
@@ -188,7 +188,7 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
               </p>
             </div>
             <a
-              href={getWhatsAppUrl(`Hi Loop Studios, I'd like to request a bespoke quote for Cinematic Videography & Recap Films.`)}
+              href={getWhatsAppUrl(`Hello KULT Studios, I would like to request a bespoke quote for Cinematic Videography & Recap Films.`)}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] text-xs sm:text-sm font-semibold rounded-full bg-[#0A0A0C] text-white dark:bg-white dark:text-black hover:opacity-90 transition-all shadow-md whitespace-nowrap active:scale-95"
@@ -216,7 +216,7 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
               </p>
             </div>
             <a
-              href={getWhatsAppUrl(`Hi Loop Studios, I'd like to request a bespoke quote for Signature Event Photography.`)}
+              href={getWhatsAppUrl(`Hello KULT Studios, I would like to request a bespoke quote for Signature Event Photography.`)}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] text-xs sm:text-sm font-semibold rounded-full bg-[#0A0A0C] text-white dark:bg-white dark:text-black hover:opacity-90 transition-all shadow-md whitespace-nowrap active:scale-95"
@@ -244,7 +244,7 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
               </p>
             </div>
             <a
-              href={getWhatsAppUrl(`Hi Loop Studios, I'd like to book 360° Memory Capture (Recorded Video & Playback Anywhere) for our upcoming event.`)}
+              href={getWhatsAppUrl(`Hello KULT Studios, I would like to book 360° Memory Capture (Recorded Video & Playback Anywhere) for our upcoming event.`)}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] text-xs sm:text-sm font-semibold rounded-full bg-[#0A0A0C] text-white dark:bg-white dark:text-black hover:opacity-90 transition-all shadow-md whitespace-nowrap active:scale-95"
@@ -350,7 +350,7 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
                   <div className="pt-6 sm:pt-8 mt-6 sm:mt-8 border-t border-white/10">
                     <a
                       href={getWhatsAppUrl(
-                        `Hi Loop Studios, I'd like to order "${tier.title}" (${tier.level}) for short-form video editing at LKR ${tier.priceLKR.toLocaleString()} / video.`
+                        `Hello KULT Studios, I would like to order "${tier.title}" (${tier.level}) for short-form video editing at LKR ${tier.priceLKR.toLocaleString()} / video.`
                       )}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -467,7 +467,7 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
                 <div className="pt-6 sm:pt-8 mt-6 sm:mt-8 border-t border-black/10 dark:border-white/10">
                   <a
                     href={getWhatsAppUrl(
-                      `Hi Loop Studios, I'd like to book the "${pkg.title}" (LKR ${pkg.priceLKR.toLocaleString()} / month) for our brand/classes.`
+                      `Hello KULT Studios, I would like to book the "${pkg.title}" (LKR ${pkg.priceLKR.toLocaleString()} / month) for our brand/classes.`
                     )}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -501,7 +501,7 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenQuoteModal, is
           </div>
 
           <a
-            href={getWhatsAppUrl(`Hi Loop Studios, I'm interested in adding custom modular add-ons to our retainer.`)}
+            href={getWhatsAppUrl(`Hello KULT Studios, I am interested in adding custom modular add-ons to our retainer.`)}
             target="_blank"
             rel="noopener noreferrer"
             className="w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-2 px-5 py-3 min-h-[44px] text-xs font-semibold rounded-full bg-black/5 dark:bg-white/10 text-[#0A0A0C] dark:text-white hover:bg-black/10 dark:hover:bg-white/20 border border-black/10 dark:border-white/15 transition-all active:scale-95"

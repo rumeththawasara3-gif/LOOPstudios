@@ -26,12 +26,12 @@ import {
 import { getWhatsAppUrl, WHATSAPP_NUMBER } from '../types.ts';
 import { computeClientSideVenueLogistics } from '../geminiClient.ts';
 
-// Loop Studios Exact Base Location (Nittambuwa, Western Province)
+// KULT Studios Exact Base Location (Nittambuwa, Western Province)
 export const BASE_COORDINATES = { lat: 7.1424, lng: 80.1038 };
-const LOOP_STUDIOS_BASE = {
+const KULT_STUDIOS_BASE = {
   lat: 7.1424,
   lng: 80.1038,
-  name: 'Loop Studios HQ',
+  name: 'KULT Studios HQ',
   address: 'Nittambuwa, Western Province, Sri Lanka',
 };
 
@@ -187,8 +187,8 @@ export const VenueLocatorMap: React.FC<VenueLocatorMapProps> = ({ isDark = true 
     try {
       const logistics = computeClientSideVenueLogistics(
         target,
-        LOOP_STUDIOS_BASE.lat,
-        LOOP_STUDIOS_BASE.lng,
+        KULT_STUDIOS_BASE.lat,
+        KULT_STUDIOS_BASE.lng,
         overrideCoords
       );
 
@@ -201,7 +201,7 @@ export const VenueLocatorMap: React.FC<VenueLocatorMapProps> = ({ isDark = true 
       setGroundingChunks([
         {
           maps: {
-            title: `Loop Studios Dispatch to ${target}`,
+            title: `KULT Studios Dispatch to ${target}`,
             uri: 'https://maps.app.goo.gl/kzwf9SkoCJSia1J37',
           },
         },
@@ -218,7 +218,7 @@ export const VenueLocatorMap: React.FC<VenueLocatorMapProps> = ({ isDark = true 
     handleEstimateVenue('Shangri-La Colombo', { lat: 6.9271, lng: 79.8612 });
   }, []);
 
-  const whatsAppMessage = `Hi Loop Studios, I'd like to reserve an event date for our venue: "${activeVenue}" (~${distanceKm}km from Nittambuwa HQ base, ETA: ${travelTime}). Please confirm full-crew availability (Videographers, Photographers & Drone).`;
+  const whatsAppMessage = `Hello KULT Studios, I would like to reserve an event date for our venue: "${activeVenue}" (~${distanceKm}km from Nittambuwa HQ base, ETA: ${travelTime}). Please confirm full-crew availability (Videographers, Photographers & Drone).`;
 
   return (
     <div className="w-full rounded-3xl editorial-glass border border-black/10 dark:border-white/10 overflow-hidden shadow-2xl">
@@ -475,8 +475,8 @@ export const VenueLocatorMap: React.FC<VenueLocatorMapProps> = ({ isDark = true 
                   internalUsageAttributionIds={['gmp_git_agentskills_v1']}
                   className="w-full h-full"
                 >
-                  {/* Base Marker: Loop Studios HQ */}
-                  <AdvancedMarker position={BASE_COORDINATES} title="Loop Studios HQ">
+                  {/* Base Marker: KULT Studios HQ */}
+                  <AdvancedMarker position={BASE_COORDINATES} title="KULT Studios HQ">
                     <Pin
                       background={'#2563EB'}
                       borderColor={'#1E40AF'}
@@ -522,7 +522,7 @@ export const VenueLocatorMap: React.FC<VenueLocatorMapProps> = ({ isDark = true 
             <div className="text-[10px] uppercase text-slate-400 font-semibold tracking-wider">Route Vector Telemetry</div>
             <div className="flex items-center gap-2 text-black dark:text-white font-semibold">
               <span className="w-2 h-2 rounded-full bg-blue-500 inline-block" />
-              <span>• Base: Nittambuwa / Western Province (Loop Studios Base)</span>
+              <span>• Base: Nittambuwa / Western Province (KULT Studios Base)</span>
             </div>
             <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-semibold">
               <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" />

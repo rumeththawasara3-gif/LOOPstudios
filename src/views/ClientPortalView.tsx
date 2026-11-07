@@ -56,7 +56,7 @@ const createDefaultProjectData = (uid: string, email: string, displayName: strin
   currentStage: 3, // In Color Grading & Audio Engineering
   videoPreviewUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
   photoGalleryUrl: 'https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1600&auto=format&fit=crop',
-  spatialVrUrl: 'https://loopstudios.lk/spatial/colombo-fashion-week-360',
+  spatialVrUrl: 'https://kultstudios.lk/spatial/colombo-fashion-week-360',
   shortFormEdits: [
     {
       id: 'cut-01',
@@ -189,7 +189,7 @@ export const ClientPortalView: React.FC<ClientPortalViewProps> = ({ isDark, onOp
           const initialProject = createDefaultProjectData(
             currentUser.uid,
             currentUser.email || 'client@brand.com',
-            currentUser.displayName || 'Loop Studios Client'
+            currentUser.displayName || 'KULT Studios Client'
           );
           setDoc(projectDocRef, initialProject)
             .then(() => setProject(initialProject))
@@ -285,7 +285,7 @@ export const ClientPortalView: React.FC<ClientPortalViewProps> = ({ isDark, onOp
       note: noteText.trim(),
       status: 'pending',
       authorId: currentUser?.uid || 'demo-user',
-      authorEmail: currentUser?.email || 'demo@loopstudios.lk',
+      authorEmail: currentUser?.email || 'demo@kultstudios.lk',
       createdAt: new Date().toISOString(),
     };
 
@@ -331,7 +331,7 @@ export const ClientPortalView: React.FC<ClientPortalViewProps> = ({ isDark, onOp
   // Format WhatsApp string of all notes
   const getWhatsAppRevisionShareUrl = () => {
     if (!project) return getWhatsAppUrl();
-    let text = `*Loop Studios Revision Feedback*\nProject: ${project.title}\nClient: ${project.clientName}\n\n`;
+    let text = `*KULT Studios Revision Feedback*\nProject: ${project.title}\nClient: ${project.clientName}\n\n`;
     revisionNotes.forEach((n, idx) => {
       text += `${idx + 1}. [${n.timestampFormatted}] ${n.note} (${n.status.toUpperCase()})\n`;
     });
@@ -380,7 +380,7 @@ export const ClientPortalView: React.FC<ClientPortalViewProps> = ({ isDark, onOp
       <div className="min-h-[70vh] flex flex-col items-center justify-center p-6 text-center">
         <RefreshCw className="w-8 h-8 text-blue-500 animate-spin mb-4" />
         <p className="font-mono text-xs uppercase tracking-widest text-slate-400">
-          Connecting to Loop Studios Client Vault...
+          Connecting to KULT Studios Client Vault...
         </p>
       </div>
     );
@@ -399,7 +399,7 @@ export const ClientPortalView: React.FC<ClientPortalViewProps> = ({ isDark, onOp
           </div>
 
           <h1 className="font-display text-3xl sm:text-5xl font-extrabold tracking-tight mb-4 cinema-gradient-text">
-            Loop Studios Client Portal
+            KULT Studios Client Portal
           </h1>
           <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-lg mx-auto mb-8 leading-relaxed font-light">
             Real-time milestone tracking, interactive timestamped video review, and instant 4K master downloads for our brand partners and event clients.
@@ -445,7 +445,7 @@ export const ClientPortalView: React.FC<ClientPortalViewProps> = ({ isDark, onOp
                 Timestamped Revision Tool
               </h3>
               <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-snug">
-                Pause review cuts at exact seconds and submit notes directly to the Loop Studios editing room.
+                Pause review cuts at exact seconds and submit notes directly to the KULT Studios editing room.
               </p>
             </div>
 

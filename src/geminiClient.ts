@@ -17,12 +17,12 @@ const getApiKey = (): string => {
 };
 
 export const LOOP_STUDIOS_SYSTEM_INSTRUCTION = `
-You are the Executive Producer and AI Production Consultant for Loop Studios.
+You are the official KULT AI Assistant representing KULT Studios.
 Persona: Highly articulate, polished, direct, concise, and helpful. You speak with high-end creative authority.
 
 Core Studio Knowledge:
 1. Base Location & Dispatch:
-   - Loop Studios is based in Nittambuwa, Western Province, Sri Lanka at this exact Google Maps pin: ${GOOGLE_MAPS_LOCATION_URL}
+   - KULT Studios is based in Nittambuwa, Western Province, Sri Lanka at this exact Google Maps pin: ${GOOGLE_MAPS_LOCATION_URL}
    - Islandwide full-crew dispatch (Colombo, Kandy, Negombo, Galle, Gampaha, Bentota, etc.) and available worldwide for commercial shoots.
    - Crew deployments include Cinema Videographers, Fine-Art Photographers, 4K Drone Operators, and 360° VR Spatial Engineers.
 
@@ -57,8 +57,8 @@ Core Studio Knowledge:
 
 7. Official Social Media Channels:
    - TikTok: [TikTok — @loop.studio4](${SOCIAL_LINKS.tiktok})
-   - Instagram: [Instagram — Loop Studio](${SOCIAL_LINKS.instagram})
-   - Facebook: [Facebook — Loop Studio](${SOCIAL_LINKS.facebook})
+   - Instagram: [Instagram — KULT Studio](${SOCIAL_LINKS.instagram})
+   - Facebook: [Facebook — KULT Studio](${SOCIAL_LINKS.facebook})
    - Studio Base Pin: [📍 Google Maps](${GOOGLE_MAPS_LOCATION_URL})
    When any visitor asks about our social channels, TikTok reels, Instagram page, Facebook, or where to watch our portfolio, provide these direct links cleanly formatted in markdown.
 
@@ -114,7 +114,7 @@ function getOfflineFallbackResponse(prompt: string): string {
   const q = prompt.toLowerCase();
 
   if (q.includes('where') || q.includes('location') || q.includes('address') || q.includes('studio') || q.includes('based')) {
-    return `Loop Studios is based in Sri Lanka at our primary production base: [📍 View on Google Maps](${GOOGLE_MAPS_LOCATION_URL}). We deploy full production crews (videographers, photographers, 4K drone pilots, and 360° VR engineers) islandwide and worldwide. Reach us directly on WhatsApp (${DISPLAY_PHONE}) at https://wa.me/${WHATSAPP_NUMBER}`;
+    return `KULT Studios is based in Sri Lanka at our primary production base: [📍 View on Google Maps](${GOOGLE_MAPS_LOCATION_URL}). We deploy full production crews (videographers, photographers, 4K drone pilots, and 360° VR engineers) islandwide and worldwide. Reach us directly on WhatsApp (${DISPLAY_PHONE}) at https://wa.me/${WHATSAPP_NUMBER}`;
   }
 
   if (q.includes('rate') || q.includes('price') || q.includes('cost') || q.includes('editing') || q.includes('tier') || q.includes('short form') || q.includes('reel')) {
@@ -136,14 +136,14 @@ Subscribe or discuss on WhatsApp: https://wa.me/${WHATSAPP_NUMBER}`;
   }
 
   if (q.includes('360') || q.includes('vr') || q.includes('spatial') || q.includes('virtual') || q.includes('memory')) {
-    return `Loop Studios provides 360° Memory Capture & Recorded Video: We record your entire event or space in immersive 360° video. We deliver a ready-to-view experience completely hosted online so you, your guests, or clients can re-watch the moment from anywhere, anytime on any smartphone or with a VR headset (no apps needed). Message our team on WhatsApp (${DISPLAY_PHONE}) at https://wa.me/${WHATSAPP_NUMBER} to request sample experiences or get a custom event quote!`;
+    return `KULT Studios provides 360° Memory Capture & Recorded Video: We record your entire event or space in immersive 360° video. We deliver a ready-to-view experience completely hosted online so you, your guests, or clients can re-watch the moment from anywhere, anytime on any smartphone or with a VR headset (no apps needed). Message our team on WhatsApp (${DISPLAY_PHONE}) at https://wa.me/${WHATSAPP_NUMBER} to request sample experiences or get a custom event quote!`;
   }
 
   if (q.includes('social') || q.includes('tiktok') || q.includes('instagram') || q.includes('facebook') || q.includes('ig') || q.includes('fb') || q.includes('follow') || q.includes('channel') || q.includes('page')) {
-    return `Follow Loop Studios on our official channels:
+    return `Follow KULT Studios on our official channels:
 • **TikTok:** [@loop.studio4](${SOCIAL_LINKS.tiktok})
-• **Instagram:** [Loop Studio](${SOCIAL_LINKS.instagram})
-• **Facebook:** [Loop Studio](${SOCIAL_LINKS.facebook})
+• **Instagram:** [KULT Studio](${SOCIAL_LINKS.instagram})
+• **Facebook:** [KULT Studio](${SOCIAL_LINKS.facebook})
 • **Direct WhatsApp:** [${DISPLAY_PHONE}](${SOCIAL_LINKS.whatsapp})
 • **Studio Base:** [📍 Google Maps Coordinates](${GOOGLE_MAPS_LOCATION_URL})
 
@@ -154,7 +154,7 @@ Feel free to browse our viral short-form edits and shoot BTS, or message us on W
     return `You can connect directly with our Executive Producer on WhatsApp (${DISPLAY_PHONE}): [Click here to Open WhatsApp](https://wa.me/${WHATSAPP_NUMBER}) to lock in an event date, book an editing batch, or request a bespoke quote.`;
   }
 
-  return `Thanks for reaching out to Loop Studios! We specialize in full-crew event cinematography, viral short-form editing (LKR 1,000 / 3,000 / 5,000), 360° VR captures, and monthly digital retainers (LKR 25,000 / 35,000). 
+  return `Thanks for reaching out to KULT Studios! We specialize in full-crew event cinematography, viral short-form editing (LKR 1,000 / 3,000 / 5,000), 360° VR captures, and monthly digital retainers (LKR 25,000 / 35,000). 
 
 How can we assist your brand today? You can also message our executive producer directly on WhatsApp: https://wa.me/${WHATSAPP_NUMBER}`;
 }

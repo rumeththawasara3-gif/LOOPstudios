@@ -128,7 +128,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenQuoteModal
 
           {/* Narrative copy */}
           <p className="hero-fade-item text-base sm:text-lg md:text-xl text-slate-300 max-w-2xl font-light leading-relaxed [text-wrap:balance]">
-            Loop Studios unites editorial cinema production with data-driven social retention engineering. We deliver multi-crew event coverage, viral short-form edits, and turnkey brand retainers.
+            KULT Studios unites editorial cinema production with data-driven social retention engineering. We deliver multi-crew event coverage, viral short-form edits, and turnkey brand retainers.
           </p>
 
           {/* Key Metrics Badges */}
@@ -166,7 +166,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenQuoteModal
 
             <Magnetic strength={0.2}>
               <a
-                href={getWhatsAppUrl(`Hi Loop Studios, I'd like to start a project with your team.`)}
+                href={getWhatsAppUrl(`Hello KULT Studios, I would like to book a production consultation...`)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-7 py-4 min-h-[44px] text-xs sm:text-sm font-medium rounded-full bg-white/[0.04] hover:bg-white/[0.08] text-white border border-white/15 hover:border-cyan-400/50 transition-all active:scale-95 shadow-md"
@@ -204,7 +204,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenQuoteModal
 
           <div className="lg:col-span-7 space-y-6">
             <p className="text-base sm:text-lg md:text-xl text-[#0A0A0C] dark:text-white font-light leading-relaxed border-l-2 border-black/20 dark:border-white/20 pl-4 sm:pl-6">
-              “Loop is a full-stack digital content and social media agency built for the modern creator economy. We understand that in today’s digital ecosystem, a great video isn't enough—it needs to be strategically optimized, actively managed, and designed to convert. We bridge the gap between creative visual storytelling and strategic digital marketing.”
+              “KULT is a full-stack digital content and social media agency built for the modern creator economy. We understand that in today’s digital ecosystem, a great video isn't enough—it needs to be strategically optimized, actively managed, and designed to convert. We bridge the gap between creative visual storytelling and strategic digital marketing.”
             </p>
           </div>
         </div>
@@ -371,7 +371,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate, onOpenQuoteModal
 
           <div className="flex flex-col sm:flex-row md:flex-col gap-3 w-full sm:w-auto shrink-0">
             <a
-              href={getWhatsAppUrl(`Hi Loop Studios, I'd like to check event availability and request a custom quote.`)}
+              href={getWhatsAppUrl(`Hello KULT Studios, I would like to check event availability and request a custom quote.`)}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-bold text-sm shadow-[0_0_25px_rgba(0,242,254,0.35)] hover:shadow-[0_0_35px_rgba(0,242,254,0.6)] transition-all active:scale-95"
