@@ -55,21 +55,29 @@ export const Navbar: React.FC<NavbarProps> = ({
           onClick={() => handleNavClick('home')}
           className="flex items-center gap-2.5 text-left group focus-visible:outline-none"
         >
-          {!logoError ? (
-            <img
-              src={LOGO_PATH}
-              alt="KULT Studios Logo"
-              referrerPolicy="no-referrer"
-              onError={() => setLogoError(true)}
-              className={`h-7 w-auto object-contain transition-transform duration-300 group-hover:scale-105 ${
-                isDark ? 'brightness-125' : 'brightness-0'
-              }`}
-            />
-          ) : (
-            <span className="text-xl font-bold tracking-tighter text-[#0A0A0C] dark:text-white">
-              ∞
-            </span>
-          )}
+          <svg 
+              className="h-7 w-7 text-[#0A0A0C] dark:text-white transition-transform duration-300 group-hover:scale-105" 
+              viewBox="0 0 100 100" 
+              fill="none" 
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              {/* Geometric Double-Outline Stem */}
+              <path 
+                d="M26 15 H40 V85 H26 Z" 
+                stroke="currentColor" 
+                strokeWidth="6" 
+                strokeLinejoin="round" 
+                fill="none" 
+              />
+              {/* Upper & Lower Diagonal Arms */}
+              <path 
+                d="M40 54 L68 18 H86 L52 58 L88 85 H70 L40 62" 
+                stroke="currentColor" 
+                strokeWidth="6" 
+                strokeLinejoin="round" 
+                fill="none" 
+              />
+            </svg>
           <span className="font-display font-semibold text-sm tracking-tight text-[#0A0A0C] dark:text-white">
             KULT <span className="text-slate-500 dark:text-slate-400 font-normal text-xs tracking-normal">STUDIOS</span>
           </span>
@@ -123,21 +131,29 @@ export const Navbar: React.FC<NavbarProps> = ({
               onClick={() => handleNavClick('home')}
               className="flex items-center gap-3 text-left group focus-visible:outline-none"
             >
-              {!logoError ? (
-                <img
-                  src={LOGO_PATH}
-                  alt="KULT Studios Logo"
-                  referrerPolicy="no-referrer"
-                  onError={() => setLogoError(true)}
-                  className={`h-7 lg:h-8 w-auto object-contain transition-transform duration-300 group-hover:scale-105 ${
-                    isDark ? 'brightness-125' : 'brightness-0'
-                  }`}
+              <svg 
+                className="h-8 w-8 text-[#0A0A0C] dark:text-white transition-transform duration-300 group-hover:scale-105" 
+                viewBox="0 0 100 100" 
+                fill="none" 
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {/* Geometric Double-Outline Stem */}
+                <path 
+                  d="M26 15 H40 V85 H26 Z" 
+                  stroke="currentColor" 
+                  strokeWidth="6" 
+                  strokeLinejoin="round" 
+                  fill="none" 
                 />
-              ) : (
-                <span className="text-xl font-bold tracking-tighter text-[#0A0A0C] dark:text-white">
-                  ∞
-                </span>
-              )}
+                {/* Upper & Lower Diagonal Arms */}
+                <path 
+                  d="M40 54 L68 18 H86 L52 58 L88 85 H70 L40 62" 
+                  stroke="currentColor" 
+                  strokeWidth="6" 
+                  strokeLinejoin="round" 
+                  fill="none" 
+                />
+              </svg>
               <span className="font-display font-semibold text-sm lg:text-base tracking-tight text-[#0A0A0C] dark:text-white group-hover:text-slate-500 dark:group-hover:text-slate-300 transition-colors whitespace-nowrap">
                 KULT <span className="text-slate-500 dark:text-slate-400 font-normal text-xs lg:text-sm tracking-normal">STUDIOS</span>
               </span>

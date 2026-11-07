@@ -25,21 +25,29 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuoteModal, is
           {/* Brand Statement */}
           <div className="md:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
-              {!logoError ? (
-                <img
-                  src={LOGO_PATH}
-                  alt="KULT Studios Brandmark"
-                  referrerPolicy="no-referrer"
-                  onError={() => setLogoError(true)}
-                  className={`h-8 w-auto object-contain ${
-                    isDark ? 'brightness-125' : 'brightness-0'
-                  }`}
+              <svg 
+                className="h-8 w-8 text-[#0A0A0C] dark:text-white" 
+                viewBox="0 0 100 100" 
+                fill="none" 
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {/* Geometric Double-Outline Stem */}
+                <path 
+                  d="M26 15 H40 V85 H26 Z" 
+                  stroke="currentColor" 
+                  strokeWidth="6" 
+                  strokeLinejoin="round" 
+                  fill="none" 
                 />
-              ) : (
-                <span className="text-xl font-bold tracking-tighter text-[#0A0A0C] dark:text-white">
-                  ∞
-                </span>
-              )}
+                {/* Upper & Lower Diagonal Arms */}
+                <path 
+                  d="M40 54 L68 18 H86 L52 58 L88 85 H70 L40 62" 
+                  stroke="currentColor" 
+                  strokeWidth="6" 
+                  strokeLinejoin="round" 
+                  fill="none" 
+                />
+              </svg>
               <span className="font-display font-semibold text-base text-[#0A0A0C] dark:text-white tracking-tight">
                 KULT STUDIOS
               </span>
